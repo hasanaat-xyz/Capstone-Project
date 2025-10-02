@@ -1,62 +1,67 @@
 // src/QuizApp.jsx
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { motion } from "framer-motion";
 import LoginSignup from "./LoginSignup"; // import your login/signup component
 
 const quizData = [
   {
-    question: "Your friend is upset because their project failed. What’s your BEST first response?",
+    question:
+      " 1. Your friend is upset because their project failed. What’s your BEST first response?",
     options: [
       "Chill, it’s not a big deal.",
       "I told you this would happen.",
       "That sucks… want to talk about it?",
-      "Let’s watch memes and forget this."
+      "Let’s watch memes and forget this.",
     ],
     answer: 2,
   },
   {
-    question: "You’re super stressed but someone cuts in line at the café. What do you do?",
+    question:
+      "2. You’re super stressed but someone cuts in line at the café. What do you do?",
     options: [
       "Politely say, 'Excuse me, I was here first.'",
       "Explode like the Hulk.",
       "Say nothing but give death stares.",
-      "Leave the café and cry in the washroom."
+      "Leave the café and cry in the washroom.",
     ],
     answer: 0,
   },
   {
-    question: "Your teammate made a mistake. What’s your reaction?",
+    question: "3. Your teammate made a mistake. What’s your reaction?",
     options: [
       "Publicly shame them.",
       "Take all the blame yourself.",
       "Talk privately and find solutions.",
-      "Pretend it didn’t happen."
+      "Pretend it didn’t happen.",
     ],
     answer: 2,
   },
   {
-    question: "What do you usually notice first in a conversation?",
+    question: "4. What do you usually notice first in a conversation?",
     options: [
       "The person’s tone of voice.",
       "Their exact words only.",
       "What’s on their phone screen.",
-      "How fast you can escape."
+      "How fast you can escape.",
     ],
     answer: 0,
   },
   {
-    question: "When you’re sad, what’s your go-to coping style?",
+    question: "5. When you’re sad, what’s your go-to coping style?",
     options: [
       "Eat ice cream.",
       "Journal/write thoughts down.",
       "Spam reels until 3am.",
-      "Pretend everything’s fine (but it’s not)."
+      "Pretend everything’s fine (but it’s not).",
     ],
     answer: 1,
   },
 ];
 
 export default function QuizApp() {
+  const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [stage, setStage] = useState("quiz"); // "quiz" | "login" | "result"
@@ -70,7 +75,7 @@ export default function QuizApp() {
     if (currentQuestion + 1 < quizData.length) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setStage("login"); // move to login form after quiz finishes
+      setStage("login");
     }
   };
 
@@ -78,14 +83,17 @@ export default function QuizApp() {
     setUser(formData);
     setStage("result");
   };
+const handleNextLevel = () => {
+    navigate("/levelup"); 
+  };
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-r from-indigo-200 via-pink-200 to-purple-200 flex items-center justify-center">
       <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 text-center w-full max-w-lg">
         {stage === "quiz" && (
           <>
-            <h1 className="text-4xl font-extrabold text-gray-800 mb-3">
-              EI Fun Quiz 🎉
+            <h1 className="text-2xl font-extrabold text-gray-800 mb-3">
+              Emotional Intelligence FGamified Assessment!🎉
             </h1>
             <p className="text-sm text-gray-600 mb-6">
               This game checks how well you recognize emotions in real-life
@@ -140,8 +148,10 @@ export default function QuizApp() {
                 : "🙂 Keep practicing empathy and self-awareness!"}
             </p>
             <div className="mt-6">
-              <button className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600 transition">
-               Level-up your EI
+              <button 
+              onClick={handleNextLevel}
+              className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600 transition">
+                Level-up your EI
               </button>
             </div>
           </motion.div>
