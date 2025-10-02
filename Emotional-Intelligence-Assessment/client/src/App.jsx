@@ -1,7 +1,7 @@
 import { useState } from "react";
 import QuizApp from "./QuizApp";
 import LoginSignup from "./LoginSignup";
-import LevelUp from "./LevelUp";
+// import LevelUp from "./LevelUp";
 
 function App() {
   const [step, setStep] = useState("quiz"); // quiz → login → levelup
