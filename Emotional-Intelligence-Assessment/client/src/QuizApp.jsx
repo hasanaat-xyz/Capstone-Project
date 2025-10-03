@@ -3,7 +3,58 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import LoginSignup from "./LoginSignup";
 
-const quizData = [ /* your quiz data here */ ];
+const quizData = [ {
+    question:
+      " 1. Your friend is upset because their project failed. What’s your BEST first response?",
+    options: [
+      "Chill, it’s not a big deal.",
+      "I told you this would happen.",
+      "That sucks… want to talk about it?",
+      "Let’s watch memes and forget this.",
+    ],
+    answer: 2,
+  },
+  {
+    question:
+      "2. You’re super stressed but someone cuts in line at the café. What do you do?",
+    options: [
+      "Politely say, 'Excuse me, I was here first.'",
+      "Explode like the Hulk.",
+      "Say nothing but give death stares.",
+      "Leave the café and cry in the washroom.",
+    ],
+    answer: 0,
+  },
+  {
+    question: "3. Your teammate made a mistake. What’s your reaction?",
+    options: [
+      "Publicly shame them.",
+      "Take all the blame yourself.",
+      "Talk privately and find solutions.",
+      "Pretend it didn’t happen.",
+    ],
+    answer: 2,
+  },
+  {
+    question: "4. What do you usually notice first in a conversation?",
+    options: [
+      "The person’s tone of voice.",
+      "Their exact words only.",
+      "What’s on their phone screen.",
+      "How fast you can escape.",
+    ],
+    answer: 0,
+  },
+  {
+    question: "5. When you’re sad, what’s your go-to coping style?",
+    options: [
+      "Eat ice cream.",
+      "Journal/write thoughts down.",
+      "Spam reels until 3am.",
+      "Pretend everything’s fine (but it’s not).",
+    ],
+    answer: 1,
+  }, ];
 
 export default function QuizApp() {
   const navigate = useNavigate();
@@ -12,16 +63,15 @@ export default function QuizApp() {
   const [stage, setStage] = useState("quiz"); 
   const [user, setUser] = useState(null);
 
-  const [questionTimes, setQuestionTimes] = useState([]); // store time spent per Q
-  const [timeStart, setTimeStart] = useState(Date.now()); // track when Q started
+  const [questionTimes, setQuestionTimes] = useState([]); 
+  const [timeStart, setTimeStart] = useState(Date.now());
 
   useEffect(() => {
-    // reset start time whenever question changes
     setTimeStart(Date.now());
   }, [currentQuestion]);
 
   const handleSelect = (index) => {
-    const timeSpent = Math.floor((Date.now() - timeStart) / 1000); // in seconds
+    const timeSpent = Math.floor((Date.now() - timeStart) / 1000); 
     setQuestionTimes((prev) => {
       const newTimes = [...prev];
       newTimes[currentQuestion] = timeSpent;
@@ -97,8 +147,6 @@ export default function QuizApp() {
             <p className="text-gray-700 mb-4">
               You scored {score} out of {quizData.length}
             </p>
-
-            {/* Show time spent per question */}
             <div className="text-left mb-6">
               <h2 className="font-semibold mb-2">⏱️ Time spent per question:</h2>
               <ul className="list-disc pl-6 text-gray-600">

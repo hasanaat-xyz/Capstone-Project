@@ -1,16 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import levelUpData from "./levelUpData";
 
 export default function LevelUpQuiz() {
-  const [currentQ, setCurrentQ] = useState(0);  //first question.
+  const [currentQ, setCurrentQ] = useState(0);  
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  const handleSelect = (i) => {
-    if (i === levelUpData[currentQ].answer) setScore(score + 1);
+  const [questionTimes, setQuestionTimes] = useState([]); 
+  const [timeStart, setTimeStart] = useState(Date.now());
 
+  // Reset start time whenever the question changes
+  useEffect(() => {
+    setTimeStart(Date.now());
+  }, [currentQ]);
+
+  const handleSelect = (i) => {
+    // calculate time spent on current question
+    const timeSpent = Math.floor((Date.now() - timeStart) / 1000); 
+    setQuestionTimes((prev) => {
+      const newTimes = [...prev];
+      newTimes[currentQ] = timeSpent;
+      return newTimes;
+    });
+
+    // check answer
+    if (i === levelUpData[currentQ].answer) {
+      setScore(score + 1);
+    }
+    
     if (currentQ + 1 < levelUpData.length) {
-      setCurrentQ(currentQ + 1);  // moves to the next question
+      setCurrentQ(currentQ + 1);
     } else {
       setFinished(true);
     }
@@ -57,6 +76,19 @@ export default function LevelUpQuiz() {
             <p className="text-gray-700 mb-4">
               You scored {score} out of {levelUpData.length}
             </p>
+
+            {/* Show time spent per question */}
+            <div className="text-left mb-4">
+              <h3 className="font-semibold mb-2">⏱️ Time spent per question:</h3>
+              <ul className="list-disc pl-6 text-gray-600 text-sm">
+                {questionTimes.map((t, i) => (
+                  <li key={i}>
+                    Q{i + 1}: {t} sec
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <p className="text-gray-600 text-sm">
               {score === levelUpData.length
                 ? "🌟 Incredible! You’ve mastered advanced EI."
