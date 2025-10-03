@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
-import LoginSignup from "./LoginSignup"; // import your login/signup component
+import LoginSignup from "./LoginSignup";
 
 const quizData = [
   {
