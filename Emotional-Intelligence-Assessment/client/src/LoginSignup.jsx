@@ -19,7 +19,7 @@ export default function LoginSignup({ onSubmit }) {
 
   return (
     <div className="bg-white rounded-3xl shadow-lg p-8 w-96">
-      <h2 className="text-2xl font-bold text-center mb-6">Sign In to Play</h2>
+      <h2 className="text-2xl font-bold text-center mb-6">Sign In to Continue</h2>
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <input
           type="text"
