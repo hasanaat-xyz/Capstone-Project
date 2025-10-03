@@ -1,72 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { motion } from "framer-motion";
 import LoginSignup from "./LoginSignup";
 
-const quizData = [
-  {
-    question:
-      " 1. Your friend is upset because their project failed. What’s your BEST first response?",
-    options: [
-      "Chill, it’s not a big deal.",
-      "I told you this would happen.",
-      "That sucks… want to talk about it?",
-      "Let’s watch memes and forget this.",
-    ],
-    answer: 2,
-  },
-  {
-    question:
-      "2. You’re super stressed but someone cuts in line at the café. What do you do?",
-    options: [
-      "Politely say, 'Excuse me, I was here first.'",
-      "Explode like the Hulk.",
-      "Say nothing but give death stares.",
-      "Leave the café and cry in the washroom.",
-    ],
-    answer: 0,
-  },
-  {
-    question: "3. Your teammate made a mistake. What’s your reaction?",
-    options: [
-      "Publicly shame them.",
-      "Take all the blame yourself.",
-      "Talk privately and find solutions.",
-      "Pretend it didn’t happen.",
-    ],
-    answer: 2,
-  },
-  {
-    question: "4. What do you usually notice first in a conversation?",
-    options: [
-      "The person’s tone of voice.",
-      "Their exact words only.",
-      "What’s on their phone screen.",
-      "How fast you can escape.",
-    ],
-    answer: 0,
-  },
-  {
-    question: "5. When you’re sad, what’s your go-to coping style?",
-    options: [
-      "Eat ice cream.",
-      "Journal/write thoughts down.",
-      "Spam reels until 3am.",
-      "Pretend everything’s fine (but it’s not).",
-    ],
-    answer: 1,
-  },
-];
+const quizData = [ /* your quiz data here */ ];
 
 export default function QuizApp() {
   const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [stage, setStage] = useState("quiz"); // "quiz" | "login" | "result"
+  const [stage, setStage] = useState("quiz"); 
   const [user, setUser] = useState(null);
 
+  const [questionTimes, setQuestionTimes] = useState([]); // store time spent per Q
+  const [timeStart, setTimeStart] = useState(Date.now()); // track when Q started
+
+  useEffect(() => {
+    // reset start time whenever question changes
+    setTimeStart(Date.now());
+  }, [currentQuestion]);
+
   const handleSelect = (index) => {
+    const timeSpent = Math.floor((Date.now() - timeStart) / 1000); // in seconds
+    setQuestionTimes((prev) => {
+      const newTimes = [...prev];
+      newTimes[currentQuestion] = timeSpent;
+      return newTimes;
+    });
+
     if (index === quizData[currentQuestion].answer) {
       setScore(score + 1);
     }
@@ -82,23 +43,20 @@ export default function QuizApp() {
     setUser(formData);
     setStage("result");
   };
-const handleNextLevel = () => {
+
+  const handleNextLevel = () => {
     navigate("/levelup"); 
   };
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-r from-indigo-200 via-pink-200 to-purple-200 flex items-center justify-center">
       <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 text-center w-full max-w-lg">
+        
         {stage === "quiz" && (
           <>
             <h1 className="text-2xl font-extrabold text-gray-800 mb-3">
               Emotional Intelligence Gamified Assessment!🎉
             </h1>
-            <p className="text-sm text-gray-600 mb-6">
-              This game checks how well you recognize emotions in real-life
-              scenarios. <br /> Be honest with your choices!
-            </p>
-
             <h2 className="text-lg font-semibold text-gray-700 mb-6">
               {quizData[currentQuestion].question}
             </h2>
@@ -139,6 +97,19 @@ const handleNextLevel = () => {
             <p className="text-gray-700 mb-4">
               You scored {score} out of {quizData.length}
             </p>
+
+            {/* Show time spent per question */}
+            <div className="text-left mb-6">
+              <h2 className="font-semibold mb-2">⏱️ Time spent per question:</h2>
+              <ul className="list-disc pl-6 text-gray-600">
+                {questionTimes.map((t, i) => (
+                  <li key={i}>
+                    Q{i + 1}: {t} sec
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <p className="text-gray-600 text-sm mb-6">
               {score === quizData.length
                 ? "🌟 Amazing EQ! You nailed it!"
@@ -148,8 +119,8 @@ const handleNextLevel = () => {
             </p>
             <div className="mt-6">
               <button 
-              onClick={handleNextLevel}
-              className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600 transition">
+                onClick={handleNextLevel}
+                className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600 transition">
                 Level-up your EI
               </button>
             </div>
