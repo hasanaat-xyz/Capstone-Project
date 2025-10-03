@@ -1,4 +1,3 @@
-// src/QuizApp.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -93,7 +92,7 @@ const handleNextLevel = () => {
         {stage === "quiz" && (
           <>
             <h1 className="text-2xl font-extrabold text-gray-800 mb-3">
-              Emotional Intelligence FGamified Assessment!🎉
+              Emotional Intelligence Gamified Assessment!🎉
             </h1>
             <p className="text-sm text-gray-600 mb-6">
               This game checks how well you recognize emotions in real-life
