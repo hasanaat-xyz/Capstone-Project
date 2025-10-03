@@ -2,7 +2,7 @@ import { useState } from "react";
 import levelUpData from "./levelUpData";
 
 export default function LevelUpQuiz() {
-  const [currentQ, setCurrentQ] = useState(0);
+  const [currentQ, setCurrentQ] = useState(0);  //first question.
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
 
@@ -10,7 +10,7 @@ export default function LevelUpQuiz() {
     if (i === levelUpData[currentQ].answer) setScore(score + 1);
 
     if (currentQ + 1 < levelUpData.length) {
-      setCurrentQ(currentQ + 1);
+      setCurrentQ(currentQ + 1);  // moves to the next question
     } else {
       setFinished(true);
     }
