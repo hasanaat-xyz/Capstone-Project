@@ -56,6 +56,7 @@ export default function LevelUpQuiz() {
       console.error("Error saving results:", err);
     }
   };
+  
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-yellow-200 via-pink-200 to-red-200 flex items-center justify-center">
       <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 text-center w-full max-w-lg">
