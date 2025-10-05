@@ -8,7 +8,6 @@ export default function LevelUpQuiz() {
 
   const [questionTimes, setQuestionTimes] = useState([]); 
   const [timeStart, setTimeStart] = useState(Date.now());
-
   // Reset start time whenever the question changes
   useEffect(() => {
     setTimeStart(Date.now());
