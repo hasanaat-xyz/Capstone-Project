@@ -118,7 +118,6 @@ export default function QuizApp() {
     alert("Login or result submission failed.");
   }
 };
-
   const handleNextLevel = () => {
     navigate("/levelup");
   };
