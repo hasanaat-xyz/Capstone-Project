@@ -26,7 +26,6 @@ export default function LevelUpQuiz() {
     if (i === levelUpData[currentQ].answer) {
       setScore(score + 1);
     }
-    
     if (currentQ + 1 < levelUpData.length) {
       setCurrentQ(currentQ + 1);
     } else {
