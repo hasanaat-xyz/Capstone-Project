@@ -14,7 +14,7 @@ export default function LevelUpQuiz() {
   }, [currentQ]);
 
   const handleSelect = (i) => {
-    // calculate time spent on current question
+    // calculate time spent on current questionn
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000); 
     setQuestionTimes((prev) => {
       const newTimes = [...prev];
@@ -31,8 +31,7 @@ export default function LevelUpQuiz() {
     } else {
       setFinished(true);
 
-      // Save results to DB
-      saveResultsToDB();
+      saveResultsToDB();  // Save results to DB
     }
   };
   const saveResultsToDB
