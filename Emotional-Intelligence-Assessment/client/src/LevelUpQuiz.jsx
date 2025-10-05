@@ -32,6 +32,28 @@ export default function LevelUpQuiz() {
       setCurrentQ(currentQ + 1);
     } else {
       setFinished(true);
+
+      // Save results to DB
+      saveResultsToDB();
+    }
+  };
+
+  const saveResultsToDB
+   = async () => {
+    try {
+      await post("http://localhost:5000/api/quizResults", {
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          score,
+          questionTimes,
+          date: new Date(),
+          // include userId if available (e.g. from auth context)
+          userId: "64fbd1e9c9a12345abc6789", 
+        }),
+      });
+      
+    } catch (err) {
+      console.error("Error saving results:", err);
     }
   };
 
@@ -76,18 +98,6 @@ export default function LevelUpQuiz() {
             <p className="text-gray-700 mb-4">
               You scored {score} out of {levelUpData.length}
             </p>
-
-            {/* Show time spent per question */}
-            <div className="text-left mb-4">
-              <h3 className="font-semibold mb-2">⏱️ Time spent per question:</h3>
-              <ul className="list-disc pl-6 text-gray-600 text-sm">
-                {questionTimes.map((t, i) => (
-                  <li key={i}>
-                    Q{i + 1}: {t} sec
-                  </li>
-                ))}
-              </ul>
-            </div>
 
             <p className="text-gray-600 text-sm">
               {score === levelUpData.length
