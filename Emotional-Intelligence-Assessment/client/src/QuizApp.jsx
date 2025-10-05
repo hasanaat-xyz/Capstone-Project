@@ -111,7 +111,6 @@ export default function QuizApp() {
       total: quizData.length,
       timePerQuestion: questionTimes,
     });
-
     setStage("result");
   } catch (error) {
     console.error(error);
