@@ -109,6 +109,7 @@ await axios.post("http://localhost:5000/api/quiz/result", {
       total: quizData.length,
       timePerQuestion: questionTimes,
     });
+    
     setStage("result");
   } catch (error) {
     console.error(error);
