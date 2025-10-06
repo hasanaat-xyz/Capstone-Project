@@ -34,6 +34,7 @@ export default function LevelUpQuiz() {
       saveResultsToDB();  // Save results to DB
     }
   };
+
   const saveResultsToDB
    = async () => {
     try {
