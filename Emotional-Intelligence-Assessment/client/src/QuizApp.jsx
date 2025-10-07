@@ -6,7 +6,8 @@ import axios from "axios";
 
 const quizData = [
   {
-    question: "1. Your friend is upset because their project failed. What’s your BEST first response?",
+    question:
+      "1. Your friend is upset because their project failed. What’s your BEST first response?",
     options: [
       "Chill, it’s not a big deal.",
       "I told you this would happen.",
@@ -16,7 +17,8 @@ const quizData = [
     answer: 2,
   },
   {
-    question: "2. You’re super stressed but someone cuts in line at the café. What do you do?",
+    question:
+      "2. You’re super stressed but someone cuts in line at the café. What do you do?",
     options: [
       "Politely say, 'Excuse me, I was here first.'",
       "Explode like the Hulk.",
@@ -97,25 +99,29 @@ export default function QuizApp() {
       setStage("login");
     }
   };
- const handleLoginSubmit = async (formData) => {
-  try {
-    const response = await axios.post("http://localhost:5000/api/auth/login", formData);
-    const currentUser = response.data.user;
-    setUser(currentUser);
-await axios.post("http://localhost:5000/api/quiz/result", {
-      userId: currentUser._id,
-      score: score,
-      answers: userAnswers,
-      total: quizData.length,
-      timePerQuestion: questionTimes,
-    });
-    
-    setStage("result");
-  } catch (error) {
-    console.error(error);
-    alert("Login or result submission failed.");
-  }
-};
+  const handleLoginSubmit = async (formData) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData
+      );
+      const currentUser = response.data.user;
+      setUser(currentUser);
+
+      await axios.post("http://localhost:5000/api/quiz/result", {
+        userId: currentUser._id,
+        score: score,
+        answers: userAnswers,
+        total: quizData.length,
+        timePerQuestion: questionTimes,
+      });
+
+      setStage("result");
+    } catch (error) {
+      console.error(error);
+      alert("Login or result submission failed.");
+    }
+  };
   const handleNextLevel = () => {
     navigate("/levelup");
   };
@@ -156,8 +162,12 @@ await axios.post("http://localhost:5000/api/quiz/result", {
             animate={{ scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h1 className="text-4xl font-bold mb-4 text-green-600">🎉 Level Up!</h1>
-            <p className="text-lg mb-4">Congrats {user?.name}, you unlocked the first level 🚀</p>
+            <h1 className="text-4xl font-bold mb-4 text-green-600">
+              🎉 Level Up!
+            </h1>
+            <p className="text-lg mb-4">
+              Congrats {user?.name}, you unlocked the first level 🚀
+            </p>
             <p className="text-gray-700 mb-4">
               You scored {score} out of {quizData.length}
             </p>
