@@ -96,6 +96,7 @@ export default function LevelUpQuiz({ currentUser }) {
           </>
         )}
         {stage === "result" && (
+          
           <motion.div
             className="text-center bg-white p-10 rounded-3xl shadow-2xl"
             initial={{ scale: 0 }}
