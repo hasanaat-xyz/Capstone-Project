@@ -73,8 +73,10 @@ export default function LevelUpQuiz({ currentUser }) {
       <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 text-center w-full max-w-lg">
         {stage === "quiz" && (
           <>
+
             <h1 className="text-2xl font-extrabold text-gray-800 mb-3">
               Emotional Intelligence Gamified Assessment! 🎉
+              
             </h1>
             <h2 className="text-lg font-semibold text-gray-700 mb-6">
               {levelUpData[currentQ].question}
