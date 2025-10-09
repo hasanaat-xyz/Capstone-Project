@@ -99,6 +99,7 @@ export default function QuizApp() {
       setStage("login");
     }
   };
+  
   const handleLoginSubmit = async (formData) => {
     try {
       const response = await axios.post(
