@@ -9,6 +9,7 @@ const levelUpData = [
     ],
     answer: 1,
   },
+  
   { //😌 Self-Regulation
     question: "2. You’re angry at a teammate in a group project. What do you do first?",
     options: [
