@@ -40,7 +40,6 @@ const levelUpData = [
     ],
     answer: 1,
   },
-  
   {//🤝 Social Skills
     question: "5. At a networking event, what’s the smartest move?",
     options: [
