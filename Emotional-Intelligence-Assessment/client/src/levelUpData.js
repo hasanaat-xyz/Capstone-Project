@@ -1,5 +1,5 @@
 const levelUpData = [
-  
+
   { //🧠 Self-Awareness
     question: "1. You bombed an interview. What’s your best self-talk?",
     options: [
@@ -30,6 +30,7 @@ const levelUpData = [
     ],
     answer: 1,
   },
+  
   {//💙 Empathy
     question: "4. Your friend cancels plans last minute and says they’re 'not feeling it'. What’s the best response?",
     options: [
