@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
-import levelUpData from "./levelUpData"; // ✅ import your data
+import levelUpData from "./levelUpData";
 
 export default function LevelUpQuiz({ currentUser }) {
   const navigate = useNavigate();
@@ -10,7 +10,8 @@ export default function LevelUpQuiz({ currentUser }) {
   const [score, setScore] = useState(0);
   const [stage, setStage] = useState("quiz");
 
-  const [questionTimes, setQuestionTimes] = useState([]); // ⏳ stores seconds per Q
+  const [questionTimes, setQuestionTimes] = useState([]); 
+  //stores seconds per Q
   const [userAnswers, setUserAnswers] = useState([]);
   const [timeStart, setTimeStart] = useState(Date.now());
 
@@ -29,14 +30,14 @@ export default function LevelUpQuiz({ currentUser }) {
       return updated;
     });
 
-    // store user answer
+    // store the user answer
     setUserAnswers((prev) => {
       const updated = [...prev];
       updated[currentQ] = index;
       return updated;
     });
 
-    // check answer
+    // check the answer
     if (index === levelUpData[currentQ].answer) {
       setScore((prev) => prev + 1);
     }
