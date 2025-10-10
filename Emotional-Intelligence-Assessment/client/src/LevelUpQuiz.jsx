@@ -74,9 +74,9 @@ export default function LevelUpQuiz({ currentUser }) {
         {stage === "quiz" && (
           <>
             <h1 className="text-2xl font-extrabold text-gray-800 mb-3">
-              Emotional Intelligence Gamified Assessment! 🎉
+              Emotional Intelligence Gamified Assessment! LEVEL-2🎉
             </h1>
-            
+          
             <h2 className="text-lg font-semibold text-gray-700 mb-6">
               {levelUpData[currentQ].question}
             </h2>
