@@ -104,8 +104,7 @@ export default function QuizApp() {
       const response = await axios.post(
         "http://localhost:5000/api/auth/login",
         formData
-      );
-      
+      );   
       const currentUser = response.data.user;
       setUser(currentUser);
       await axios.post("http://localhost:5000/api/quiz/result", {
