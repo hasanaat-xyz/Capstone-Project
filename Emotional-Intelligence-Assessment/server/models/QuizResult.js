@@ -5,7 +5,7 @@ const quizResultSchema = new mongoose.Schema({
   score: { type: Number, required: true },
   total: { type: Number, required: true },
   answers: [{ questionId: String, selectedOption: Number }],
-  timePerQuestion: [{ type: Number }], // <-- make sure this exists
+  timePerQuestion: [{ type: Number }], 
   date: { type: Date, default: Date.now },
 });
 
