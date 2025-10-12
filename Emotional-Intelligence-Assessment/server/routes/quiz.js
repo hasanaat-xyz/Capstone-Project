@@ -2,7 +2,6 @@ import express from "express";
 import QuizResult from "../models/QuizResult.js";
 
 const router = express.Router();
-
 // Save Quiz Result
 router.post("/result", async (req, res) => {
       console.log("Incoming quiz data:", req.body);
