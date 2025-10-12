@@ -4,7 +4,7 @@ import QuizResult from "../models/QuizResult.js";
 const router = express.Router();
 // Save Quiz Result
 router.post("/result", async (req, res) => {
-      console.log("Incoming quiz data:", req.body);
+  console.log("Incoming quiz data:", req.body);
 
   try {
     const { userId, score, total, timePerQuestion } = req.body;
@@ -18,7 +18,6 @@ router.post("/result", async (req, res) => {
 });
 // Get all results for a user
 router.get("/results/:userId", async (req, res) => {
-
   try {
     const results = await QuizResult.find({ userId: req.params.userId });
     res.json(results);
@@ -27,7 +26,6 @@ router.get("/results/:userId", async (req, res) => {
 
     res.status(500).json({ msg: "Server error" });
   }
-
 });
 
 export default router;
