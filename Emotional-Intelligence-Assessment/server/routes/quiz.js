@@ -17,9 +17,11 @@ router.post("/result", async (req, res) => {
   }
 });
 
+
 // Get all results for a user
 router.get("/results/:userId", async (req, res) => {
   try {
+    
     const results = await QuizResult.find({ userId: req.params.userId });
     res.json(results);
   } catch (err) {
