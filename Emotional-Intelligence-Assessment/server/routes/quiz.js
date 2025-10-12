@@ -10,7 +10,6 @@ router.post("/result", async (req, res) => {
     const { userId, score, total, timePerQuestion } = req.body;
     const result = new QuizResult({ userId, score, total, timePerQuestion });
     await result.save();
-
     res.json({ msg: "Result saved successfully", result });
   } catch (err) {
     console.error(err);
