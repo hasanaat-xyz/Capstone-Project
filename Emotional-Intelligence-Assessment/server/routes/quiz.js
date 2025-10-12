@@ -8,7 +8,6 @@ router.post("/result", async (req, res) => {
 
   try {
     const { userId, score, total, timePerQuestion } = req.body;
-
     const result = new QuizResult({ userId, score, total, timePerQuestion });
     await result.save();
 
