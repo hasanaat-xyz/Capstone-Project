@@ -21,13 +21,14 @@ router.post("/result", async (req, res) => {
 // Get all results for a user
 router.get("/results/:userId", async (req, res) => {
   try {
-    
+
     const results = await QuizResult.find({ userId: req.params.userId });
     res.json(results);
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Server error" });
   }
+  
 });
 
 export default router;
