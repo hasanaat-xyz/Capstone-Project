@@ -24,7 +24,7 @@ const levelUpData3 = [
     ],
     answer: 1,
   },
-  
+
   { // 🔥 Motivation
     question: "3. Your motivation dips midway through a tough project. What’s the BEST EI strategy?",
     options: [
@@ -35,6 +35,7 @@ const levelUpData3 = [
     ],
     answer: 1,
   },
+
   { // 💙 Empathy
     question: "4. A colleague snaps at you unexpectedly. What’s the MOST emotionally intelligent way to respond?",
     options: [
@@ -45,6 +46,7 @@ const levelUpData3 = [
     ],
     answer: 2,
   },
+  
   { // 🤝 Social Skills
     question: "5. During a heated team debate, what’s the most effective EI-driven action?",
     options: [
