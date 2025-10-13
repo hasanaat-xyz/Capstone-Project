@@ -46,7 +46,7 @@ const levelUpData3 = [
     ],
     answer: 2,
   },
-  
+
   { // 🤝 Social Skills
     question: "5. During a heated team debate, what’s the most effective EI-driven action?",
     options: [
@@ -58,5 +58,4 @@ const levelUpData3 = [
     answer: 2,
   },
 ];
-
 export default levelUpData3;
