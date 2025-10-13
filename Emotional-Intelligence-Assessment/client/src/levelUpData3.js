@@ -2,7 +2,6 @@
  * This version is harder and more confusing because the wrong answers sound tempting (so the user must really think in terms of EI, 
  * not just pick the obvious one).
  */
-
 const levelUpData3 = [
   { // 🧠 Self-Awareness
     question: "1. You receive both praise and criticism for the same project. What’s the MOST emotionally intelligent response?",
@@ -14,6 +13,7 @@ const levelUpData3 = [
     ],
     answer: 1,
   },
+  
   { // 🔒 Self-Regulation
     question: "2. You’re furious at a teammate for missing a deadline. What’s the smartest first move?",
     options: [
