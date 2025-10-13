@@ -13,7 +13,7 @@ const levelUpData3 = [
     ],
     answer: 1,
   },
-  
+
   { // 🔒 Self-Regulation
     question: "2. You’re furious at a teammate for missing a deadline. What’s the smartest first move?",
     options: [
@@ -24,6 +24,7 @@ const levelUpData3 = [
     ],
     answer: 1,
   },
+  
   { // 🔥 Motivation
     question: "3. Your motivation dips midway through a tough project. What’s the BEST EI strategy?",
     options: [
