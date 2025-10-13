@@ -14,7 +14,6 @@ function App() {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-
   // ✅ Update both localStorage + state
   const handleLoginSignup = (userData) => {
     localStorage.setItem("user", JSON.stringify(userData));
