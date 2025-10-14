@@ -9,8 +9,8 @@ export default function LevelUpQuiz({ currentUser }) {
   const [currentQ, setCurrentQ] = useState(0);
   const [score, setScore] = useState(0);
   const [stage, setStage] = useState("quiz");
+
   const [questionTimes, setQuestionTimes] = useState([]); 
-  
   //stores seconds per Q
   const [userAnswers, setUserAnswers] = useState([]);
   const [timeStart, setTimeStart] = useState(Date.now());
@@ -22,6 +22,7 @@ export default function LevelUpQuiz({ currentUser }) {
 
   const handleSelect = async (index) => {
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
+
     // store time spent for this question
     setQuestionTimes((prev) => {
       const updated = [...prev];
@@ -44,7 +45,6 @@ export default function LevelUpQuiz({ currentUser }) {
     // next question or finish
     if (currentQ + 1 < levelUpData.length) {
       setCurrentQ(currentQ + 1);
-
     } else {
       // ✅ auto-submit results to DB since we already have currentUser
       try {
@@ -57,7 +57,6 @@ export default function LevelUpQuiz({ currentUser }) {
             timePerQuestion: [...questionTimes, timeSpent],
           });
         }
-
         setStage("result");
       } catch (err) {
         console.error(err);
@@ -69,6 +68,7 @@ export default function LevelUpQuiz({ currentUser }) {
   const handleNextLevel = () => {
     navigate("/levelup");
   };
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-r from-indigo-200 via-pink-200 to-purple-200 flex items-center justify-center">
       <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 text-center w-full max-w-lg">
