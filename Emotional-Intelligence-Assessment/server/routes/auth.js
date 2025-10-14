@@ -17,6 +17,7 @@ router.post("/register", async (req, res) => {
     console.error(err);
     res.status(500).json({ msg: "Server error" });
   }
+  
 });
 
 // Login
