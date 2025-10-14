@@ -6,7 +6,6 @@ import LevelUpQuiz from "./LevelUpQuiz";
 
 function App() {
   const [user, setUser] = useState(null);
-
   // ✅ Load user from localStorage when app loads
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -14,7 +13,7 @@ function App() {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-  
+
   // ✅ Update both localStorage + state
   const handleLoginSignup = (userData) => {
     localStorage.setItem("user", JSON.stringify(userData));
