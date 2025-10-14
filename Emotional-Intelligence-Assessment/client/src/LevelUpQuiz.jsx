@@ -21,7 +21,6 @@ export default function LevelUpQuiz({ currentUser }) {
 
   const handleSelect = async (index) => {
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
-
     // store time spent for this question
     setQuestionTimes((prev) => {
       const updated = [...prev];
@@ -44,6 +43,7 @@ export default function LevelUpQuiz({ currentUser }) {
     // next question or finish
     if (currentQ + 1 < levelUpData.length) {
       setCurrentQ(currentQ + 1);
+
     } else {
       // ✅ auto-submit results to DB since we already have currentUser
       try {
@@ -56,6 +56,7 @@ export default function LevelUpQuiz({ currentUser }) {
             timePerQuestion: [...questionTimes, timeSpent],
           });
         }
+        
         setStage("result");
       } catch (err) {
         console.error(err);
