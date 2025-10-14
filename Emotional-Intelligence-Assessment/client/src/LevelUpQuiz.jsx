@@ -10,8 +10,6 @@ export default function LevelUpQuiz({ currentUser }) {
   const [score, setScore] = useState(0);
   const [stage, setStage] = useState("quiz");
   const [questionTimes, setQuestionTimes] = useState([]); 
-
-
   
   //stores seconds per Q
   const [userAnswers, setUserAnswers] = useState([]);
