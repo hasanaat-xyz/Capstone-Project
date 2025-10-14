@@ -10,6 +10,9 @@ export default function LevelUpQuiz({ currentUser }) {
   const [score, setScore] = useState(0);
   const [stage, setStage] = useState("quiz");
   const [questionTimes, setQuestionTimes] = useState([]); 
+
+
+  
   //stores seconds per Q
   const [userAnswers, setUserAnswers] = useState([]);
   const [timeStart, setTimeStart] = useState(Date.now());
@@ -56,7 +59,7 @@ export default function LevelUpQuiz({ currentUser }) {
             timePerQuestion: [...questionTimes, timeSpent],
           });
         }
-        
+
         setStage("result");
       } catch (err) {
         console.error(err);
