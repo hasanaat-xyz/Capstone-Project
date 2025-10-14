@@ -4,6 +4,7 @@ import User from "../models/User.js";
 const router = express.Router();
 
 // Register
+
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -17,6 +18,7 @@ router.post("/register", async (req, res) => {
     res.status(500).json({ msg: "Server error" });
   }
 });
+
 // Login
 router.post("/login", async (req, res) => {
   try {

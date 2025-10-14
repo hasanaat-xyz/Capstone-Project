@@ -8,7 +8,7 @@ const quizResultSchema = new mongoose.Schema({
   answers: [{ questionId: String, selectedOption: Number }],
   timePerQuestion: [{ type: Number }], 
   date: { type: Date, default: Date.now },
-  
+
 });
 
 export default mongoose.model("QuizResult", quizResultSchema);
