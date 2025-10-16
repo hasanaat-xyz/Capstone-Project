@@ -63,12 +63,10 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
         <p className="text-gray-600 text-sm mb-6">
           {score === 5
             ? "🌟 Amazing EQ! You nailed it!"
-
             : score >= 3
             ? "👍 Great job, you’re emotionally aware!"
             : "🙂 Keep practicing empathy and self-awareness!"}
         </p>
-        
         <div className="mt-6">
           <button
             onClick={() => navigate("/levelup", { state: { currentUser: user } })}
