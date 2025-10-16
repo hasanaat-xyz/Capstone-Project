@@ -6,7 +6,7 @@ import LevelUpQuiz from "./LevelUpQuiz";
 
 function App() {
   const [user, setUser] = useState(null);
-  
+
   // ✅ Load user from localStorage when app loads
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -32,9 +32,11 @@ function App() {
           />
           <Route
             path="/levelup"
+            
             element={<LevelUpQuiz currentUser={user} />}
           />
         </Routes>
+
       </div>
     </BrowserRouter>
   );
