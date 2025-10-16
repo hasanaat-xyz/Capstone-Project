@@ -18,7 +18,7 @@ function App() {
   // ✅ Update both localStorage + state
   const handleLoginSignup = (userData) => {
     localStorage.setItem("user", JSON.stringify(userData));
-    setUser(userData);  // state updates immediately
+    setUser(userData); // state updates immediately
   };
 
   return (
@@ -30,13 +30,8 @@ function App() {
             path="/login"
             element={<LoginSignup onSubmit={handleLoginSignup} />}
           />
-          <Route
-            path="/levelup"
-            
-            element={<LevelUpQuiz currentUser={user} />}
-          />
+          <Route path="/levelup" element={<LevelUpQuiz currentUser={user} />} />
         </Routes>
-
       </div>
     </BrowserRouter>
   );
