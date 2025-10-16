@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginSignup from "./LoginSignup";
 
-
 // Sample quiz data
 const quizData = [
   {
