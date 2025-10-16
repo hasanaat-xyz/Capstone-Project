@@ -7,5 +7,7 @@ const quizResultSchema = new mongoose.Schema({
   total: { type: Number, required: true },
   timePerQuestion: [{ type: Number }], 
   date: { type: Date, default: Date.now },
+  
 });
+
 export default mongoose.model("QuizResult", quizResultSchema);
