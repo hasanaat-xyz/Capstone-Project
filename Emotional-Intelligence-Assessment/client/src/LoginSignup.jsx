@@ -29,7 +29,7 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
       const loggedInUser = data.user || data;
       setUser(loggedInUser);
       onSubmit(loggedInUser);
-      
+
       // Submit quiz result for this user
       await axios.post("http://localhost:5000/api/quiz/result", {
         userId: loggedInUser._id || loggedInUser.id,
@@ -37,6 +37,7 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
         total: 5,
         timePerQuestion,
       });
+      
     } catch (err) {
       console.error("Registration/quiz submit error:", err);
       setError(err.response?.data?.msg || "Something went wrong. Try again!");
