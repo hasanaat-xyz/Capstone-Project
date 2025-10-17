@@ -5,7 +5,6 @@ export default function LevelUpQuiz3() {
   const [currentQ, setCurrentQ] = useState(0);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
-
   const handleSelect = (i) => {
     if (i === levelUpData3[currentQ].answer) setScore(score + 1);
     if (currentQ + 1 < levelUpData3.length) {
@@ -22,14 +21,13 @@ export default function LevelUpQuiz3() {
             <h1 className="text-3xl font-extrabold text-gray-800 mb-3">
               🧩 Level 3: Master the 5 Pillars of EI
             </h1>
-            
             <p className="text-sm text-gray-600 mb-6">
         These are advanced, mind-twisting scenarios. Think carefully before you answer!
             </p>
+
             <h2 className="text-lg font-semibold text-gray-700 mb-6">
               {levelUpData3[currentQ].question}
             </h2>
-
             <div className="space-y-3">
               {levelUpData3[currentQ].options.map((opt, i) => (
                 <button
