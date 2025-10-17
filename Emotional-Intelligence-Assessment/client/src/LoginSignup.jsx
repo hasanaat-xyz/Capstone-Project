@@ -18,7 +18,6 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
     e.preventDefault();
     setError("");
     setLoading(true);
-
     if (!formData.name || !formData.email || !formData.password) {
       setError("⚠️ Please fill all fields");
       setLoading(false);
