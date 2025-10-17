@@ -2,6 +2,7 @@ import { useState } from "react";
 import levelUpData3 from "./levelUpData3";
 
 export default function LevelUpQuiz3() {
+  
   const [currentQ, setCurrentQ] = useState(0);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
