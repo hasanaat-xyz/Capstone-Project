@@ -25,9 +25,9 @@ export default function LevelUpQuiz3() {
               🧩 Level 3: Master the 5 Pillars of EI
             </h1>
             <p className="text-sm text-gray-600 mb-6">
+              
               These are advanced, mind-twisting scenarios. Think carefully before you answer!
             </p>
-
             <h2 className="text-lg font-semibold text-gray-700 mb-6">
               {levelUpData3[currentQ].question}
             </h2>
