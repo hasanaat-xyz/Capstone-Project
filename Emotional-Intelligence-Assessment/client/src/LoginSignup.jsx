@@ -56,7 +56,6 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
       >
         <h1 className="text-4xl font-bold mb-4 text-green-600">🎉 Level Up!</h1>
         <p className="text-lg mb-4">
-        
           Congrats {user.name || "User"}, you unlocked Level 1 🚀
         </p>
         <p className="text-gray-700 mb-4">You scored {score} out of 5</p>
