@@ -25,7 +25,7 @@ export default function LevelUpQuiz3() {
               🧩 Level 3: Master the 5 Pillars of EI
             </h1>
             <p className="text-sm text-gray-600 mb-6">
-              
+
               These are advanced, mind-twisting scenarios. Think carefully before you answer!
             </p>
             <h2 className="text-lg font-semibold text-gray-700 mb-6">
@@ -37,6 +37,7 @@ export default function LevelUpQuiz3() {
                 <button
                   key={i}
                   onClick={() => handleSelect(i)}
+                  
                   className="w-full py-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition"
                 >
                   {opt}
