@@ -23,7 +23,6 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
       setLoading(false);
       return;
     }
-
     try {
       // Register the user
       const { data } = await axios.post("http://localhost:5000/api/auth/register", formData);
