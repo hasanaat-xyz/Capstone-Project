@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -13,6 +14,7 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
