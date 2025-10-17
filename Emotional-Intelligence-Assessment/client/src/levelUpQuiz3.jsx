@@ -14,7 +14,6 @@ export default function LevelUpQuiz3() {
       setFinished(true);
     }
   };
-
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 flex items-center justify-center">
       <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 text-center w-full max-w-lg">
@@ -23,6 +22,7 @@ export default function LevelUpQuiz3() {
             <h1 className="text-3xl font-extrabold text-gray-800 mb-3">
               🧩 Level 3: Master the 5 Pillars of EI
             </h1>
+            
             <p className="text-sm text-gray-600 mb-6">
         These are advanced, mind-twisting scenarios. Think carefully before you answer!
             </p>
