@@ -13,11 +13,11 @@ export default function LevelUpQuiz3() {
       setFinished(true);
     }
   };
+  
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 flex items-center justify-center">
       <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 text-center w-full max-w-lg">
         {!finished ? (
-          
           <>
             <h1 className="text-3xl font-extrabold text-gray-800 mb-3">
               🧩 Level 3: Master the 5 Pillars of EI
@@ -25,12 +25,12 @@ export default function LevelUpQuiz3() {
             <p className="text-sm text-gray-600 mb-6">
         These are advanced, mind-twisting scenarios. Think carefully before you answer!
             </p>
-
             <h2 className="text-lg font-semibold text-gray-700 mb-6">
               {levelUpData3[currentQ].question}
             </h2>
             <div className="space-y-3">
               {levelUpData3[currentQ].options.map((opt, i) => (
+
                 <button
                   key={i}
                   onClick={() => handleSelect(i)}

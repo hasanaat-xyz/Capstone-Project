@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import LoginSignup from "./LoginSignup";
 
-// Sample quiz data
 const quizData = [
   {
     question:
@@ -59,70 +58,73 @@ const quizData = [
 ];
 
 export default function QuizApp() {
-  const [stage, setStage] = useState("quiz"); // quiz → login → result
+  const [stage, setStage] = useState("quiz"); 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [questionTimes, setQuestionTimes] = useState([]);
   const [timeStart, setTimeStart] = useState(Date.now());
   const [user, setUser] = useState(null);
 
-  // Start timer on each question
-  useEffect(() => {
-    setTimeStart(Date.now());
-  }, [currentQuestion]);
+  useEffect(() => setTimeStart(Date.now()), [currentQuestion]);
 
-  // Handle answer selection
   const handleSelect = (index) => {
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
-
     setQuestionTimes((prev) => [...prev, timeSpent]);
 
     const isCorrect = index === quizData[currentQuestion].answer;
     setScore((prev) => prev + (isCorrect ? 1 : 0));
 
-    if (currentQuestion + 1 < quizData.length) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      // Quiz finished → move to login/signup stage
-      setStage("login");
-    }
+    if (currentQuestion + 1 < quizData.length) setCurrentQuestion(currentQuestion + 1);
+    else setStage("login");
   };
 
-  // Called when user completes login/signup
-  const handleUserLogin = (loggedInUser) => {
-    setUser(loggedInUser);
-  };
+  const handleUserLogin = (loggedInUser) => setUser(loggedInUser);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-r from-indigo-200 via-pink-200 to-purple-200 flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 text-center w-full max-w-lg">
-        {/* Quiz Stage */}
+    <div className="relative min-h-screen w-full bg-gradient-to-br from-[#c084fc] via-[#e0aaff] to-[#f3e8ff] flex items-center justify-center p-6 overflow-hidden">
+      {/* Floating shapes */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-purple-300/40 rounded-full filter blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-10 right-10 w-48 h-48 bg-pink-300/30 rounded-full filter blur-2xl animate-pulse"></div>
+
+      <motion.div 
+        className="relative bg-gradient-to-br from-[#9d4edd]/70 via-[#c084fc]/60 to-[#e9d5ff]/60 backdrop-blur-lg rounded-3xl shadow-2xl px-10 py-12 w-full max-w-lg text-purple-900"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         {stage === "quiz" && (
           <>
-            <h1 className="text-2xl font-extrabold text-gray-800 mb-3">
-              Emotional Intelligence Gamified Assessment! 🎉
+            <h1 className="text-3xl font-extrabold mb-4 text-white drop-shadow-lg">
+              🎮 Emotional Intelligence Quiz
             </h1>
-            <h2 className="text-lg font-semibold text-gray-700 mb-6">
+            <motion.h2 
+              key={currentQuestion}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="text-lg font-medium mb-8 text-purple-50 drop-shadow-sm"
+            >
               {quizData[currentQuestion].question}
-            </h2>
-            <div className="space-y-3">
+            </motion.h2>
+            <div className="space-y-4">
               {quizData[currentQuestion].options.map((option, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => handleSelect(index)}
-                  className="w-full py-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full py-3 bg-white bg-opacity-90 text-purple-800 font-semibold rounded-xl shadow-lg hover:bg-opacity-100 transition transform duration-200"
                 >
                   {option}
-                </button>
+                </motion.button>
               ))}
             </div>
-            <p className="text-xs text-gray-500 mt-6">
+            <p className="text-sm text-purple-100 mt-6">
               Question {currentQuestion + 1} / {quizData.length}
             </p>
           </>
         )}
 
-        {/* Login/Signup Stage */}
         {stage === "login" && (
           <LoginSignup
             onSubmit={handleUserLogin}
@@ -130,9 +132,7 @@ export default function QuizApp() {
             timePerQuestion={questionTimes}
           />
         )}
-
-        {/* Level-up stage will be handled inside LoginSignup */}
-      </div>
+      </motion.div>
     </div>
   );
 }
