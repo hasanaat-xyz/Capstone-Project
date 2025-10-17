@@ -29,16 +29,15 @@ export default function LevelUpQuiz3() {
             <h2 className="text-lg font-semibold text-gray-700 mb-6">
               {levelUpData3[currentQ].question}
             </h2>
-
+            
             <div className="space-y-3">
               {levelUpData3[currentQ].options.map((opt, i) => (
                 <button
                   key={i}
                   onClick={() => handleSelect(i)}
-
                   className="w-full py-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition"
                 >
-                  {opt}
+               {opt}
                 </button>
               ))}
             </div>
