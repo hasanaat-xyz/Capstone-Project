@@ -1,44 +1,51 @@
 import express from "express";
-import User from "../models/User.js";
+import User from "../models/User.js";  // create this model if not exists
+import QuizResult from "../models/QuizResult.js";
 
 const router = express.Router();
 
+// 🧠 Register user
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Check required fields
     if (!name || !email || !password) {
-      return res.status(400).json({ msg: "Please provide all fields" });
+      return res.status(400).json({ msg: "All fields are required" });
     }
 
-    // Check if user exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ msg: "User already exists" });
-    }
+    // check if user exists
+    let user = await User.findOne({ email });
+    if (user) return res.status(400).json({ msg: "User already exists" });
 
-    // Save new user
-    const newUser = new User({ name, email, password });
-    await newUser.save();
+    // create new user
+    user = new User({ name, email, password });
+    await user.save();
 
-    res.status(201).json({ msg: "User registered successfully", user: newUser });
-  } catch (error) {
-    console.error("Registration error:", error);
+    res.status(201).json({ msg: "User registered successfully", user });
+  } catch (err) {
+    console.error("Registration error:", err);
     res.status(500).json({ msg: "Server error" });
   }
 });
 
-// ✅ Login
-router.post("/login", async (req, res) => {
+// ✅ Save quiz result (you already had this)
+router.post("/result", async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email, psw: password });
-    if (!user) return res.status(400).json({ msg: "Invalid credentials" });
-
-    res.json({ msg: "Login successful", user });
+    const { userId, score, total, answers, timePerQuestion, level } = req.body;
+    const result = new QuizResult({ userId, score, total, answers, timePerQuestion, level });
+    await result.save();
+    res.json({ msg: "Result saved successfully", result });
   } catch (err) {
-    console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
+});
+
+// ✅ Get results
+router.get("/results/:userId", async (req, res) => {
+  try {
+    const results = await QuizResult.find({ userId: req.params.userId }).sort({ createdAt: -1 });
+    res.json(results);
+  } catch (err) {
     res.status(500).json({ msg: "Server error" });
   }
 });

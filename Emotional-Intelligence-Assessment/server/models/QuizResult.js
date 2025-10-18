@@ -1,13 +1,17 @@
 import mongoose from "mongoose";
 
-const quizResultSchema = new mongoose.Schema({  
-
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+const quizResultSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   score: { type: Number, required: true },
   total: { type: Number, required: true },
-  timePerQuestion: [{ type: Number }], 
-  date: { type: Date, default: Date.now },
-  
+  answers: { type: [Number], default: [] },
+  timePerQuestion: { type: [Number], default: [] },
+  level: { type: Number, default: 1 },
+  createdAt: { type: Date, default: Date.now },
 });
 
 export default mongoose.model("QuizResult", quizResultSchema);
