@@ -60,6 +60,7 @@ export default function LevelUpQuiz3() {
             </p>
           </div>
         )}
+        
       </div>
     </div>
   );
