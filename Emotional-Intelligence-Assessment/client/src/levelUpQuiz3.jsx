@@ -12,7 +12,6 @@ export default function LevelUpQuiz3() {
     } else {
       setFinished(true);
     }
-    
   };
 
   return (
