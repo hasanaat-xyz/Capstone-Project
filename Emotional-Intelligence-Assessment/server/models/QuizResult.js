@@ -12,6 +12,7 @@ const quizResultSchema = new mongoose.Schema({
   timePerQuestion: { type: [Number], default: [] },
   level: { type: Number, default: 1 },
   createdAt: { type: Date, default: Date.now },
+  
 });
 
 export default mongoose.model("QuizResult", quizResultSchema);
