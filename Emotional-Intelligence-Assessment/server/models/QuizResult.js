@@ -6,7 +6,6 @@ const quizResultSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-
   score: { type: Number, required: true },
   total: { type: Number, required: true },
   answers: { type: [Number], default: [] },
@@ -14,5 +13,4 @@ const quizResultSchema = new mongoose.Schema({
   level: { type: Number, default: 1 },
   createdAt: { type: Date, default: Date.now },
 });
-
 export default mongoose.model("QuizResult", quizResultSchema);
