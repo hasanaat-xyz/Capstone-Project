@@ -52,4 +52,5 @@ const levelUpData = [
     answer: 1,
   },
 ];
+
 export default levelUpData;
