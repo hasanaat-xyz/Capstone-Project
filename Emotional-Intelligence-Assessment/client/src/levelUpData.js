@@ -1,6 +1,7 @@
 const levelUpData = [
 
   { //🧠 Self-Awareness
+    
     question: "1. You bombed an interview. What’s your best self-talk?",
     options: [
       "I’m useless. I’ll never get a job.",
