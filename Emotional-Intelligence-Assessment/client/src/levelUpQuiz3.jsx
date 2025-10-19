@@ -42,6 +42,7 @@ export default function LevelUpQuiz3() {
             <p className="text-xs text-gray-500 mt-6">
               Question {currentQ + 1} / {levelUpData3.length}
             </p>
+            
           </>
         ) : (
           <div>   
