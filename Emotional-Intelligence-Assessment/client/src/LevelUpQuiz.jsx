@@ -4,57 +4,39 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import levelUpData from "./levelUpData";
 
-export default function LevelUpQuiz({ currentUser }) {
+export default function LevelUpQuiz({ currentUser, level }) {
   const navigate = useNavigate();
   const [currentQ, setCurrentQ] = useState(0);
   const [score, setScore] = useState(0);
   const [stage, setStage] = useState("quiz");
-
-  const [questionTimes, setQuestionTimes] = useState([]); 
+  const [questionTimes, setQuestionTimes] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
   const [timeStart, setTimeStart] = useState(Date.now());
 
-  // ⏱ reset timer each time question changes
-  useEffect(() => {
-    setTimeStart(Date.now());
-  }, [currentQ]);
+  useEffect(() => setTimeStart(Date.now()), [currentQ]);
 
   const handleSelect = async (index) => {
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
+    setQuestionTimes((prev) => [...prev, timeSpent]);
+    setUserAnswers((prev) => [...prev, index]);
 
-    // store time for this question
-    setQuestionTimes((prev) => {
-      const updated = [...prev];
-      updated[currentQ] = timeSpent;
-      return updated;
-    });
-
-    // store user’s selected answer
-    setUserAnswers((prev) => {
-      const updated = [...prev];
-      updated[currentQ] = index;
-      return updated;
-    });
-
-    // check correctness
     const isCorrect = index === levelUpData[currentQ].answer;
     const newScore = score + (isCorrect ? 1 : 0);
     setScore(newScore);
 
-    // move next or finish
     if (currentQ + 1 < levelUpData.length) {
       setCurrentQ(currentQ + 1);
     } else {
+      // Quiz finished, save result
       try {
         if (currentUser?._id) {
-          // ✅ store Level 2 results + timePerQuestion
           await axios.post("http://localhost:5000/api/quiz/result", {
             userId: currentUser._id,
             score: newScore,
             total: levelUpData.length,
             answers: [...userAnswers, index],
             timePerQuestion: [...questionTimes, timeSpent],
-            level: 2, // ✅ clearly marked
+            level: level,
           });
         }
         setStage("result");
@@ -65,70 +47,113 @@ export default function LevelUpQuiz({ currentUser }) {
     }
   };
 
-  const handleNextLevel = () => navigate("/levelup");
+  const handleNextLevel = () => {
+    if (level === 2) navigate("/level3");
+    else navigate("/"); // fallback or dynamic
+  };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-r from-indigo-200 via-pink-200 to-purple-200 flex items-center justify-center">
-      <div className="bg-white rounded-3xl shadow-2xl px-8 py-10 text-center w-full max-w-lg">
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#7e22ce] via-[#9d4edd] to-[#c084fc] overflow-hidden p-6">
+      {/* ✨ Floating glow shapes */}
+      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-[-5%] right-[-10%] w-80 h-80 bg-pink-400/30 rounded-full blur-3xl animate-ping"></div>
+      <div className="absolute top-[40%] right-[30%] w-48 h-48 bg-indigo-400/20 rounded-full blur-2xl animate-bounce"></div>
+
+      <motion.div
+        className="relative bg-white/15 backdrop-blur-2xl rounded-3xl shadow-[0_0_50px_rgba(168,85,247,0.4)] px-10 py-12 w-full max-w-xl border border-white/10 text-purple-50"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         {stage === "quiz" && (
           <>
-            <h1 className="text-2xl font-extrabold text-gray-800 mb-3">
-              Emotional Intelligence Gamified Assessment — LEVEL 2 🎯
+            <h1 className="text-3xl font-extrabold mb-6 text-white text-center drop-shadow-lg">
+              ⚡ Level {level}: Emotional Intelligence Challenge
             </h1>
 
-            <h2 className="text-lg font-semibold text-gray-700 mb-6">
+            <motion.h2
+              key={currentQ}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="text-lg font-medium mb-8 text-purple-100 text-center leading-relaxed"
+            >
               {levelUpData[currentQ].question}
-            </h2>
+            </motion.h2>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               {levelUpData[currentQ].options.map((option, i) => (
-                <button
+                <motion.button
                   key={i}
                   onClick={() => handleSelect(i)}
-                  className="w-full py-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition"
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 0 20px rgba(255,255,255,0.5)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full py-3 bg-white/90 text-purple-900 font-semibold rounded-xl shadow-lg hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-400 hover:text-white transition-all duration-300"
                 >
                   {option}
-                </button>
+                </motion.button>
               ))}
             </div>
 
-            <p className="text-xs text-gray-500 mt-6">
-              Question {currentQ + 1} / {levelUpData.length}
+            <div className="mt-8">
+              <p className="text-sm text-purple-100 text-center mb-2">
+                Question {currentQ + 1} of {levelUpData.length}
+              </p>
+              <div className="w-full bg-purple-200 rounded-full h-2 overflow-hidden">
+                <motion.div
+                  className="bg-gradient-to-r from-purple-600 to-pink-400 h-full"
+                  initial={{ width: 0 }}
+                  animate={{
+                    width: `${((currentQ + 1) / levelUpData.length) * 100}%`,
+                  }}
+                  transition={{ duration: 0.5 }}
+                ></motion.div>
+              </div>
+            </div>
+
+            <p className="text-xs text-purple-100 mt-3 text-center italic">
+              “Your emotional awareness is leveling up ✨”
             </p>
           </>
         )}
 
         {stage === "result" && (
           <motion.div
-            className="text-center bg-white p-10 rounded-3xl shadow-2xl"
+            className="text-center p-8 rounded-2xl bg-white/10 backdrop-blur-xl shadow-2xl border border-white/20"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl font-bold mb-4 text-green-600">
-              🎉 Level 2 Complete!
+            <h1 className="text-4xl font-bold mb-4 text-white">
+              🎉 Level {level} Complete!
             </h1>
-            <p className="text-lg mb-4">Awesome! You’ve finished Level 2 🚀</p>
-            <p className="text-gray-700 mb-4">
-              You scored {score} out of {levelUpData.length}
+            <p className="text-lg mb-3">
+              You scored <span className="font-bold">{score}</span> / {levelUpData.length}
             </p>
-            <p className="text-gray-600 text-sm mb-6">
+            <p className="text-purple-100 mb-6">
               {score === levelUpData.length
-                ? "🌟 Incredible emotional awareness!"
+                ? "🌟 Perfect emotional balance!"
                 : score > levelUpData.length / 2
-                ? "👍 Great emotional understanding!"
-                : "🙂 Keep practicing empathy and reflection!"}
+                ? "✨ Great emotional insight, keep going!"
+                : "💭 Keep exploring your empathy and awareness!"}
             </p>
 
-            <button
+            <motion.button
               onClick={handleNextLevel}
-              className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600 transition"
+              whileHover={{
+                scale: 1.1,
+                boxShadow: "0 0 25px rgba(255,255,255,0.5)",
+              }}
+              className="bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300"
             >
-              Continue your EI Journey 💪
-            </button>
+              Continue 💪
+            </motion.button>
           </motion.div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -70,7 +70,7 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
         <div className="mt-6">
           <button
 
-            onClick={() => navigate("/levelup", { state: { currentUser: user } })}
+            onClick={() => navigate("/level2", { state: { currentUser: user } })}
             className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600 transition"
           >
             Level-up your EI

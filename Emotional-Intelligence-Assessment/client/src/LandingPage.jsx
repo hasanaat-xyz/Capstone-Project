@@ -73,7 +73,7 @@ export default function LandingPage() {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => navigate("/assessment")}
+          onClick={() => navigate("/level1")}
           className="px-8 py-3 text-lg font-semibold bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg hover:shadow-xl transition-all"
         >
           Wanna Get Started ?
@@ -226,7 +226,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="py-6 bg-transparent text-center text-gray-400 text-sm">
-        Made with ❤️ by <span className="text-white font-semibold">Amtul Noor Hasanaat</span> | © 2025
+        Made with ❤️ by <span className="text-white font-semibold">Amtul Noor Hasanaat</span> | 2025
       </footer>
     </div>
   );
