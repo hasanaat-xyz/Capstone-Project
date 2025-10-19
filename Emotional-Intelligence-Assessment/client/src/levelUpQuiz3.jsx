@@ -59,8 +59,7 @@ export default function LevelUpQuiz3() {
                 : "⚡ Keep sharpening your awareness. Mastery comes with practice."}
             </p>
           </div>
-        )}
-        
+        )}        
       </div>
     </div>
   );
