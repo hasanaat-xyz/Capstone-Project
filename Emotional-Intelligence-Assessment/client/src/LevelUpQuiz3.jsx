@@ -59,6 +59,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
               These are advanced, mind-twisting scenarios. Think carefully before answering!
             </p>
 
+
             <h2 className="text-lg font-medium text-center mb-8">
               {levelUpData3[currentQ].question}
             </h2>
