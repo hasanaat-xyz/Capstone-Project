@@ -15,7 +15,6 @@ export default function LevelUpQuiz({ currentUser, level }) {
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
     setQuestionTimes((prev) => [...prev, timeSpent]);
     setUserAnswers((prev) => [...prev, i]);
-
     const isCorrect = i === levelUpData3[currentQ].answer;
     const newScore = score + (isCorrect ? 1 : 0);
     setScore(newScore);
