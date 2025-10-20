@@ -10,7 +10,6 @@ export default function LandingPage() {
   // WhyCard Component
   function WhyCard({ item }) {
     const [open, setOpen] = useState(false);
-
     return (
       <motion.div
         whileHover={{ scale: 1.05 }}
@@ -19,7 +18,7 @@ export default function LandingPage() {
       >
         <div className="text-4xl mb-3">{item.icon}</div>
         <p className="text-gray-200 font-semibold">{item.title}</p>
-        
+
         {/* Animated Info Box */}
         {open && (
           <motion.div
