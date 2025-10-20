@@ -52,13 +52,13 @@ export default function LevelUpQuiz({ currentUser, level }) {
       <div className="bg-white/15 backdrop-blur-2xl rounded-3xl shadow-[0_0_50px_rgba(168,85,247,0.4)] px-10 py-12 w-full max-w-xl border border-white/10 text-purple-50">
         {!finished ? (
           <>
+          
             <h1 className="text-3xl font-extrabold text-white mb-4 text-center">
               🧩 Level {level || 3}: Master the 5 Pillars of EI
             </h1>
             <p className="text-sm text-purple-100 text-center mb-8">
               These are advanced, mind-twisting scenarios. Think carefully before answering!
             </p>
-
             <h2 className="text-lg font-medium text-center mb-8">
               {levelUpData3[currentQ].question}
             </h2>
@@ -85,7 +85,6 @@ export default function LevelUpQuiz({ currentUser, level }) {
             <p className="text-lg mb-3">
               You scored <span className="font-bold">{score}</span> / {levelUpData3.length}
             </p>
-            
             <p className="text-purple-100 mb-6">
               {score === levelUpData3.length
                 ? "🌟 Genius! You’ve conquered the toughest EI challenges."
