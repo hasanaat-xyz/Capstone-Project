@@ -26,6 +26,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
       setCurrentQ(currentQ + 1);
     } else {
       setFinished(true);
+      
       // Save result
       try {
         if (currentUser?._id) {
