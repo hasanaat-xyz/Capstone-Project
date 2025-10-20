@@ -14,15 +14,17 @@ export default function LevelUpQuiz({ currentUser, level }) {
   useEffect(() => setTimeStart(Date.now()), [currentQ]);
 
   const handleSelect = async (i) => {
-    
+
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
     setQuestionTimes((prev) => [...prev, timeSpent]);
     setUserAnswers((prev) => [...prev, i]);
     const isCorrect = i === levelUpData3[currentQ].answer;
     const newScore = score + (isCorrect ? 1 : 0);
+
     setScore(newScore);
 
     if (currentQ + 1 < levelUpData3.length) {
+      
       setCurrentQ(currentQ + 1);
     } else {
       setFinished(true);
