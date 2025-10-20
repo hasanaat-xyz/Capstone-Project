@@ -40,7 +40,6 @@ export default function LevelUpQuiz({ currentUser, level }) {
             level: level || 3, // dynamic level, defaults to 3
           });
         }
-
       } catch (err) {
         console.error(err);
         alert("❌ Could not save final results to the database.");
