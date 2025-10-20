@@ -16,11 +16,8 @@ export default function LandingPage() {
         className="bg-[#3b0a45]/80 p-6 rounded-2xl w-60 shadow-md hover:shadow-lg cursor-pointer relative"
         onClick={() => setOpen(!open)}
       >
-        
         <div className="text-4xl mb-3">{item.icon}</div>
         <p className="text-gray-200 font-semibold">{item.title}</p>
-
-        {/* Animated Info Box */}
         {open && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -48,9 +45,11 @@ export default function LandingPage() {
   }
 
   return (
+
     <div className="min-h-screen bg-gradient-to-br from-[#3b0a45] via-[#5a189a] to-[#240046] text-white overflow-hidden font-poppins">
-      {/* Hero Section */}
+
       <section className="flex flex-col items-center justify-center text-center h-screen relative">
+        
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
