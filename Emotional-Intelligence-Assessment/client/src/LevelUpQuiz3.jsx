@@ -3,7 +3,7 @@ import axios from "axios";
 import levelUpData3 from "./levelUpData3";
 
 export default function LevelUpQuiz({ currentUser, level }) {
-  
+
   const [currentQ, setCurrentQ] = useState(0);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
@@ -19,6 +19,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
     setQuestionTimes((prev) => [...prev, timeSpent]);
     setUserAnswers((prev) => [...prev, i]);
+    
     const isCorrect = i === levelUpData3[currentQ].answer;
     const newScore = score + (isCorrect ? 1 : 0);
 
