@@ -3,6 +3,7 @@ import axios from "axios";
 import levelUpData3 from "./levelUpData3";
 
 export default function LevelUpQuiz({ currentUser, level }) {
+  
   const [currentQ, setCurrentQ] = useState(0);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
@@ -24,7 +25,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
     setScore(newScore);
 
     if (currentQ + 1 < levelUpData3.length) {
-      
+
       setCurrentQ(currentQ + 1);
     } else {
       setFinished(true);
