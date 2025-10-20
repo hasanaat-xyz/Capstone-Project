@@ -2,7 +2,41 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import LoginSignup from "./LoginSignup";
 
-export default function LevelUpQuiz({ quizData, currentUser, level }) {
+export default function LevelUpQuiz({ currentUser, level }) {
+  // ✅ Questions defined inside the component
+  const quizData = [
+    {
+      question: "1. Your friend is upset. What do you do?",
+      options: [
+        "Ignore them",
+        "Tell them to cheer up",
+        "Listen and empathize",
+        "Make a joke to lighten the mood",
+      ],
+      answer: 2,
+    },
+    {
+      question: "2. You make a mistake at work. How do you react?",
+      options: ["Blame others", "Apologize and fix it", "Hide it", "Quit"],
+      answer: 1,
+    },
+    {
+      question: "3. You are given a difficult task. What's your approach?",
+      options: ["Procrastinate", "Ask for help", "Break it into steps", "Ignore it"],
+      answer: 2,
+    },
+    {
+      question: "4. Someone disagrees with you publicly. You:",
+      options: ["Yell", "Listen calmly", "Post online", "Walk away silently"],
+      answer: 1,
+    },
+    {
+      question: "5. You achieve a goal. How do you celebrate?",
+      options: ["Brag to others", "Stay humble", "Ignore it", "Criticize others"],
+      answer: 1,
+    },
+  ];
+
   const [stage, setStage] = useState("quiz");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -30,7 +64,7 @@ export default function LevelUpQuiz({ quizData, currentUser, level }) {
 
   const handleUserLogin = (loggedInUser) => {
     if (loggedInUser?._id) {
-      // Optionally save Level 1 results here
+      // Optionally save results here
     }
   };
 
@@ -42,7 +76,7 @@ export default function LevelUpQuiz({ quizData, currentUser, level }) {
       <div className="absolute top-[30%] right-[30%] w-48 h-48 bg-indigo-400/20 rounded-full blur-2xl animate-bounce"></div>
 
       <motion.div
-        className="relative bg-white/20 backdrop-blur-xl rounded-3xl shadow-[0_0_50px_rgba(157,78,221,0.35)] px-10 py-12 w-full max-w-lg text-purple-900 border border-white/20"
+        className="relative bg-white/30 backdrop-blur-xl rounded-3xl shadow-[0_0_50px_rgba(157,78,221,0.35)] px-10 py-12 w-full max-w-lg text-purple-900 border border-white/20"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}

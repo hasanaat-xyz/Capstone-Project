@@ -32,7 +32,7 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
       onSubmit(loggedInUser);
 
       // Submit quiz result for this user
-      await axios.post("http://localhost:5000/api/quiz/result", {
+      await axios.post("http://localhost:5000/api/auth/result", {
         userId: loggedInUser._id || loggedInUser.id,
         score,
         total: 5,

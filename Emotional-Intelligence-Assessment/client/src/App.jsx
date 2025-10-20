@@ -3,8 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import QuizApp from "./QuizApp";              // Level 1
 import LoginSignup from "./LoginSignup";
 import LevelUpQuiz from "./LevelUpQuiz";      // Level 2
+import LevelUpQuiz3 from "./LevelUpQuiz3";    // Level 3
 import LandingPage from "./LandingPage";
-import LevelUpQuiz3 from "./levelUpQuiz3";    // ✅ Capitalized properly
+
+// level2 and level3 data !
+import levelUpData from "./levelUpData";  
+import levelUpData3 from "./levelUpData3";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,11 +29,30 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginSignup onSubmit={handleLoginSignup} />} />
-
-          {/* ✅ Correct level order */}
-          <Route path="/level1" element={<QuizApp />} />
-          <Route path="/level2" element={<LevelUpQuiz currentUser={user} />} />
-          <Route path="/level3" element={<LevelUpQuiz3 />} />
+          <Route
+            path="/level1"
+            element={<QuizApp currentUser={user} level={1} />}
+          />
+          <Route
+            path="/level2"
+            element={
+              <LevelUpQuiz
+                quizData={levelUpData}
+                currentUser={user}
+                level={2}
+              />
+            }
+          />
+          <Route
+            path="/level3"
+            element={
+              <LevelUpQuiz3
+                quizData={levelUpData3}
+                currentUser={user}
+                level={3}
+              />
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>

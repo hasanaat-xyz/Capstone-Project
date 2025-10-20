@@ -68,7 +68,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
         {stage === "quiz" && (
           <>
             <h1 className="text-3xl font-extrabold mb-6 text-white text-center drop-shadow-lg">
-              ⚡ Level {level}: Emotional Intelligence Challenge
+              ⚡ Level 2 {level}: Emotional Intelligence Challenge
             </h1>
 
             <motion.h2
