@@ -49,7 +49,6 @@ export default function LandingPage() {
     <div className="min-h-screen bg-gradient-to-br from-[#3b0a45] via-[#5a189a] to-[#240046] text-white overflow-hidden font-poppins">
 
       <section className="flex flex-col items-center justify-center text-center h-screen relative">
-        
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
