@@ -84,6 +84,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
           <div className="text-center">
             <h2 className="text-4xl font-bold mb-4 text-white">
               🎯 Level {level || 3} Completed!
+              
             </h2>
             <p className="text-lg mb-3">
               You scored <span className="font-bold">{score}</span> / {levelUpData3.length}
