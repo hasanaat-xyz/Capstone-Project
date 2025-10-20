@@ -38,7 +38,6 @@ export default function LoginSignup({ onSubmit, score, timePerQuestion }) {
         total: 5,
         timePerQuestion,
       });
-
     } catch (err) {
       console.error("Registration/quiz submit error:", err);
       setError(err.response?.data?.msg || "Something went wrong. Try again!");
