@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
   const navigate = useNavigate();
-
   // WhyCard Component
   function WhyCard({ item }) {
     const [open, setOpen] = useState(false);
