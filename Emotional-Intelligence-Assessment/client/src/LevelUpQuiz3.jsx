@@ -9,8 +9,10 @@ export default function LevelUpQuiz({ currentUser, level }) {
   const [questionTimes, setQuestionTimes] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
   const [timeStart, setTimeStart] = useState(Date.now());
+
   // Reset timer on each question
   useEffect(() => setTimeStart(Date.now()), [currentQ]);
+  
   const handleSelect = async (i) => {
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
     setQuestionTimes((prev) => [...prev, timeSpent]);
