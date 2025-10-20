@@ -40,14 +40,13 @@ export default function LevelUpQuiz({ currentUser, level }) {
             level: level || 3, // dynamic level, defaults to 3
           });
         }
-        
+
       } catch (err) {
         console.error(err);
         alert("❌ Could not save final results to the database.");
       }
     }
   };
-
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#4c1d95] via-[#7e22ce] to-[#c084fc] flex items-center justify-center p-6">
       <div className="bg-white/15 backdrop-blur-2xl rounded-3xl shadow-[0_0_50px_rgba(168,85,247,0.4)] px-10 py-12 w-full max-w-xl border border-white/10 text-purple-50">
