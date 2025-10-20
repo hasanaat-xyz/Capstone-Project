@@ -15,7 +15,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
   useEffect(() => setTimeStart(Date.now()), [currentQ]);
 
   const handleSelect = async (i) => {
-
+    
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
     setQuestionTimes((prev) => [...prev, timeSpent]);
     setUserAnswers((prev) => [...prev, i]);
@@ -59,11 +59,9 @@ export default function LevelUpQuiz({ currentUser, level }) {
               These are advanced, mind-twisting scenarios. Think carefully before answering!
             </p>
 
-
             <h2 className="text-lg font-medium text-center mb-8">
               {levelUpData3[currentQ].question}
             </h2>
-
             <div className="space-y-4">
               {levelUpData3[currentQ].options.map((opt, idx) => (
                 <button
@@ -83,8 +81,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
         ) : (
           <div className="text-center">
             <h2 className="text-4xl font-bold mb-4 text-white">
-              🎯 Level {level || 3} Completed!
-              
+              🎯 Level {level || 3} Completed!  
             </h2>
             <p className="text-lg mb-3">
               You scored <span className="font-bold">{score}</span> / {levelUpData3.length}
