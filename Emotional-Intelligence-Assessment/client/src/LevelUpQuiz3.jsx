@@ -85,6 +85,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
             <p className="text-lg mb-3">
               You scored <span className="font-bold">{score}</span> / {levelUpData3.length}
             </p>
+            
             <p className="text-purple-100 mb-6">
               {score === levelUpData3.length
                 ? "🌟 Genius! You’ve conquered the toughest EI challenges."
