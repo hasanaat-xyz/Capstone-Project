@@ -7,14 +7,14 @@ export default function LevelUpQuiz({ currentUser, level }) {
   const [currentQ, setCurrentQ] = useState(0);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+
   const [questionTimes, setQuestionTimes] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
   const [timeStart, setTimeStart] = useState(Date.now());
-  // Reset timer on each question
 
+  // Reset timer on each question
   useEffect(() => setTimeStart(Date.now()), [currentQ]);
   const handleSelect = async (i) => {
-
     const timeSpent = Math.floor((Date.now() - timeStart) / 1000);
     setQuestionTimes((prev) => [...prev, timeSpent]);
     setUserAnswers((prev) => [...prev, i]);
@@ -25,9 +25,8 @@ export default function LevelUpQuiz({ currentUser, level }) {
     if (currentQ + 1 < levelUpData3.length) {
       setCurrentQ(currentQ + 1);
     } else {
-      setFinished(true);
-      
-      // Save result
+      setFinished(true);  
+
       try {
         if (currentUser?._id) {
           await axios.post("http://localhost:5000/api/quiz/result", {
@@ -54,7 +53,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
             <h1 className="text-3xl font-extrabold text-white mb-4 text-center">
               🧩 Level {level || 3}: Master the 5 Pillars of EI
             </h1>
-            <p className="text-sm text-purple-100 text-center mb-8">
+            <p className = "text-sm text-purple-100 text-center mb-8">
               These are advanced, mind-twisting scenarios. Think carefully before answering!
             </p>
             <h2 className="text-lg font-medium text-center mb-8">
@@ -65,7 +64,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
                 <button
                   key={idx}
                   onClick={() => handleSelect(idx)}
-                  className="w-full py-3 bg-white/90 text-purple-900 font-semibold rounded-xl shadow-lg hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 hover:text-white transition-all duration-300"
+                  className = "w-full py-3 bg-white/90 text-purple-900 font-semibold rounded-xl shadow-lg hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 hover:text-white transition-all duration-300"
                 >
                   {opt}
                 </button>
@@ -81,7 +80,7 @@ export default function LevelUpQuiz({ currentUser, level }) {
               🎯 Level {level || 3} Completed!  
             </h2>
             <p className="text-lg mb-3">
-              You scored <span className="font-bold">{score}</span> / {levelUpData3.length}
+             You scored <span className="font-bold">{score}</span> / {levelUpData3.length}
             </p>
             <p className="text-purple-100 mb-6">
               {score === levelUpData3.length
