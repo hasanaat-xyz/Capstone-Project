@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import QuizApp from "./QuizApp";              // Level 1
+import QuizApp from "./components/QuizApp"; // Level 1
 import LoginSignup from "./LoginSignup";
-import LevelUpQuiz from "./LevelUpQuiz";      // Level 2
-import LevelUpQuiz3 from "./LevelUpQuiz3";    // Level 3
+import LevelUpQuiz from "./components/LevelUpQuiz"; // Level 2
+import LevelUpQuiz3 from "./components/LevelUpQuiz3"; // Level 3
 import LandingPage from "./LandingPage";
+import EQassessment from "./components/EQassessment";
+import EQReport from "./components/EQReport"; // adjust the path if needed
 
 // level2 and level3 data !
-import levelUpData from "./levelUpData";  
-import levelUpData3 from "./levelUpData3";
+import levelUpData from "./data/levelUpData";
+import levelUpData3 from "./data/levelUpData3";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,7 +30,10 @@ function App() {
       <div className="min-h-screen bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<LoginSignup onSubmit={handleLoginSignup} />} />
+          <Route
+            path="/login"
+            element={<LoginSignup onSubmit={handleLoginSignup} />}
+          />
           <Route
             path="/level1"
             element={<QuizApp currentUser={user} level={1} />}
@@ -53,6 +58,8 @@ function App() {
               />
             }
           />
+          <Route path="/assessment" element={<EQassessment />} />
+          <Route path="/eq-report" element={<EQReport />} />
         </Routes>
       </div>
     </BrowserRouter>
