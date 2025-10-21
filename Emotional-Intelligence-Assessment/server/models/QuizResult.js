@@ -9,6 +9,4 @@ const QuizResultSchema = new mongoose.Schema({
   level: { type: Number, required: true }, // ✅ ensure this exists
   createdAt: { type: Date, default: Date.now },
 });
-
-
 export default mongoose.model("QuizResult", QuizResultSchema);
