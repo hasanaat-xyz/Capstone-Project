@@ -67,7 +67,6 @@ export default function LevelUpQuiz({ currentUser, level }) {
                   onClick={() => handleSelect(idx)}
                   className = "w-full py-3 bg-white/90 text-purple-900 font-semibold rounded-xl shadow-lg hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 hover:text-white transition-all duration-300"
                 >
-                
                   {opt}
                 </button>
               ))}
