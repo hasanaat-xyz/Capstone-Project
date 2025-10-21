@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const QuizResultSchema = new mongoose.Schema({
+  
   userId: { type: String, required: true },
   score: Number,
   total: Number,
