@@ -24,7 +24,6 @@ router.post("/register", async (req, res) => {
     await user.save();
 
     res.status(201).json({ msg: "User registered successfully", user });
-    
   } catch (err) {
     console.error("❌ Registration error:", err);
     res.status(500).json({ msg: "Server error", error: err.message });
@@ -60,7 +59,9 @@ router.post("/result", async (req, res) => {
 // ✅ Get all results for a user
 router.get("/results/:userId", async (req, res) => {
   try {
-    const results = await QuizResult.find({ userId: req.params.userId }).sort({ createdAt: -1 });
+    const results = await QuizResult.find({ userId: req.params.userId }).sort({
+      createdAt: -1,
+    });
     res.json(results);
   } catch (err) {
     console.error("❌ Error fetching results:", err);
