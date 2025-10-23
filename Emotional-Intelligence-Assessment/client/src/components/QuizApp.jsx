@@ -31,12 +31,13 @@ export default function Level1Quiz({ currentUser, onComplete }) {
           answers: newAnswers,
           level: 1,
         });
-        
+
         console.log("Level 1 result saved:", res.data);
       } catch (err) {
         console.error("Error saving Level 1 result:", err);
       }
       // Call onComplete callback
+      
       if (typeof onComplete === "function") {
         onComplete({
           score: newScore,
