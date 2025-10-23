@@ -9,6 +9,7 @@ const levelUpData = [
     ],
     answer: 0,
   },
+  
   {
     question: "2. You’re under pressure to finish a project, but you feel overwhelmed. What’s the healthiest approach?",
     options: [
