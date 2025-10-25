@@ -24,7 +24,6 @@ export default function EQAssessment({ currentUser }) {
       {level === 3 && (
         <LevelUpQuiz3 currentUser={currentUser} onComplete={(data) => handleLevelComplete(3, data)} />
       )}
-      
       {level === 4 && <EQReport results={results} />}
     </>
   );
