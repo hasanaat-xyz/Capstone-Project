@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 // Routes
 import authRoutes from "./routes/auth.js";
 import quizRoutes from "./routes/quiz.js";
+import aiReportRoutes from "./routes/aiReportRoutes.js";
+
 
 dotenv.config();
 const app = express();
@@ -21,8 +23,9 @@ mongoose
   .catch((err) => console.error("❌ MongoDB Error:", err));
 
 // Routes
-app.use("/api/auth", authRoutes);   // 👉 handles /register & /login
-app.use("/api/quiz", quizRoutes);   // 👉 handles /result & /results/:userId
+app.use("/api/auth", authRoutes);   //  handles /register & /login
+app.use("/api/quiz", quizRoutes);   //  handles /result & /results/:userId
+app.use("/api/ai", aiReportRoutes);
 
 // server.js (Node/Express)
 app.post("/api/quizResults", async (req, res) => {
