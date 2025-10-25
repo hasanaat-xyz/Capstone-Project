@@ -12,7 +12,6 @@ export default function EQAssessment({ currentUser }) {
     if (lvl < 3) setLevel(lvl + 1);
     else setLevel(4);
   };
-
   return (
     <>
       {level === 1 && (
