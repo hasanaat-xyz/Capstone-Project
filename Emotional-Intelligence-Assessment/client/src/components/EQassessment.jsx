@@ -7,12 +7,15 @@ import EQReport from "../components/EQReport";
 export default function EQAssessment({ currentUser }) {
 
   const [level, setLevel] = useState(1);
+
   const [results, setResults] = useState({ level1: null, level2: null, level3: null });
+
   const handleLevelComplete = (lvl, data) => {
     setResults((prev) => ({ ...prev, [`level${lvl}`]: data }));
     if (lvl < 3) setLevel(lvl + 1);
     else setLevel(4);
   };
+  
   return (
     <>
       {level === 1 && (
