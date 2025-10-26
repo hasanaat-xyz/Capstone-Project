@@ -18,11 +18,10 @@ export default function Level1Quiz({ currentUser, onComplete }) {
     const newAnswers = [...userAnswers, index];
     const isCorrect = index === quizData[currentQuestion].answer;
     const newScore = isCorrect ? score + 1 : score;
-
     if (currentQuestion + 1 === quizData.length) {
       // Save result to backend
+      
       try {
-        
         const res = await axios.post("http://localhost:5000/api/quiz/result", {
           userId: currentUser._id,
           score: newScore,
