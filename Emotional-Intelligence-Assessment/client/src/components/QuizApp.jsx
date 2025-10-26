@@ -12,6 +12,7 @@ export default function Level1Quiz({ currentUser, onComplete }) {
   const [startTime, setStartTime] = useState(Date.now());
 
   const navigate = useNavigate();
+  
   const handleSelect = async (index) => {
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
     const newTimes = [...questionTimes, timeSpent];
@@ -20,7 +21,7 @@ export default function Level1Quiz({ currentUser, onComplete }) {
     const newScore = isCorrect ? score + 1 : score;
     if (currentQuestion + 1 === quizData.length) {
       // Save result to backend
-      
+
       try {
         const res = await axios.post("http://localhost:5000/api/quiz/result", {
           userId: currentUser._id,
