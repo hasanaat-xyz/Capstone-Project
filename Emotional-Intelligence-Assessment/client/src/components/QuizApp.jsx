@@ -12,7 +12,7 @@ export default function Level1Quiz({ currentUser, onComplete }) {
   const [startTime, setStartTime] = useState(Date.now());
 
   const navigate = useNavigate();
-  
+
   const handleSelect = async (index) => {
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
     const newTimes = [...questionTimes, timeSpent];
@@ -35,6 +35,7 @@ export default function Level1Quiz({ currentUser, onComplete }) {
       } catch (err) {
         console.error("Error saving Level 1 result:", err);
       }
+
       // Call onComplete callback
       if (typeof onComplete === "function") {
         onComplete({
@@ -45,7 +46,6 @@ export default function Level1Quiz({ currentUser, onComplete }) {
           level: 1,
         });
       }
-
       // Navigate to next level or login
       navigate("/level2", {
         state: { score: newScore, times: newTimes, answers: newAnswers },
