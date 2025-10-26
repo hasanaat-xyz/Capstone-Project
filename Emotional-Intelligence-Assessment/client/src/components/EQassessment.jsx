@@ -5,7 +5,7 @@ import LevelUpQuiz3 from "../components/LevelUpQuiz3";
 import EQReport from "../components/EQReport";
 
 export default function EQAssessment({ currentUser }) {
-  
+
   const [level, setLevel] = useState(1);
   const [results, setResults] = useState({ level1: null, level2: null, level3: null });
   const handleLevelComplete = (lvl, data) => {
@@ -23,7 +23,8 @@ export default function EQAssessment({ currentUser }) {
         <LevelUpQuiz currentUser={currentUser} onComplete={(data) => handleLevelComplete(2, data)} />
       )}
       {level === 3 && (
-        <LevelUpQuiz3 currentUser={currentUser} onComplete={(data) => handleLevelComplete(3, data)} />
+     
+     <LevelUpQuiz3 currentUser={currentUser} onComplete={(data) => handleLevelComplete(3, data)} />
       )}
       {level === 4 && <EQReport results={results} />}
     </>
