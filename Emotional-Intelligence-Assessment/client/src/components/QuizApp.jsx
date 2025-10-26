@@ -50,7 +50,7 @@ export default function Level1Quiz({ currentUser, onComplete }) {
       navigate("/level2", {
         state: { score: newScore, times: newTimes, answers: newAnswers },
       });
-      
+
     } else {
       setScore(newScore);
       setQuestionTimes(newTimes);
@@ -87,6 +87,7 @@ export default function Level1Quiz({ currentUser, onComplete }) {
       <p className="mt-6 text-sm opacity-80">
         Question {currentQuestion + 1} of {quizData.length}
       </p>
+      
     </motion.div>
   );
 }
