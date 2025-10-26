@@ -22,6 +22,7 @@ export default function Level1Quiz({ currentUser, onComplete }) {
     if (currentQuestion + 1 === quizData.length) {
       // Save result to backend
       try {
+        
         const res = await axios.post("http://localhost:5000/api/quiz/result", {
           userId: currentUser._id,
           score: newScore,
