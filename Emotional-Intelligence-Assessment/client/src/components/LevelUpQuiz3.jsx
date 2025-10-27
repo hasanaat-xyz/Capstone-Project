@@ -19,6 +19,7 @@ export default function Level3Quiz() {
   const handleSelect = (index) => {
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
     setUserAnswers([...userAnswers, index]);
+    
     setQuestionTimes([...questionTimes, timeSpent]);
     if (currentQuestion + 1 === levelUpData3.length) {
       setStage("complete");
