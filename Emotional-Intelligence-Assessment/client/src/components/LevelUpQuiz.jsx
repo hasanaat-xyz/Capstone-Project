@@ -7,7 +7,6 @@ import levelUpData from "../data/levelUpData"; // Level 2 questions
 export default function Level2Quiz() {
   const navigate = useNavigate();
   const location = useLocation();
-
   const { currentUser, level1Results } = location.state || {};
   if (!currentUser) navigate("/login");
 
