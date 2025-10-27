@@ -52,6 +52,7 @@ export default function Level3Quiz() {
           (sum, ans, i) => sum + (ans === levelUpData3[i].answer ? 1 : 0),
           0
         ),
+        
         total: levelUpData3.length,
         questions: levelUpData3.map((q, i) => ({
           questionText: q.question,
