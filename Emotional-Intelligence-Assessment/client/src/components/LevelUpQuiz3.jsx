@@ -60,7 +60,6 @@ export default function Level3Quiz() {
           timeSpent: questionTimes[i],
         })),
       };
-
       const results = [
         { level: 1, ...level1Results },
         { level: 2, ...level2Results },
