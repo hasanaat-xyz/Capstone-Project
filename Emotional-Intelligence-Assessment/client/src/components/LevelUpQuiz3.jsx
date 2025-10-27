@@ -72,7 +72,6 @@ export default function Level3Quiz() {
       console.error("Error saving Level 3 result:", err);
     }
   };
-
   return (
     <motion.div
       className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-700 to-violet-600 text-white p-6"
