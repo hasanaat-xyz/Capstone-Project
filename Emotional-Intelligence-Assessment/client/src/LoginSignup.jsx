@@ -48,7 +48,6 @@ export default function LoginSignup() {
       );
 
       const loggedUser = registerRes.data.user || registerRes.data;
-
       // ✅ Login
       const loginRes = await axios.post("http://localhost:5000/api/auth/login", {
         email,
