@@ -7,11 +7,14 @@ export default function LoginSignup() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ✅ Get quiz result data from Level 1 redirect
-  const quizData = location.state || {}; // { score, total, times, level }
-  const { score = 0, total = 5 } = quizData;
+  const level1Results = location.state?.level1Results || {};
+  const { score = 0, total = 5 } = level1Results;
 
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [user, setUser] = useState(null);
@@ -25,30 +28,70 @@ export default function LoginSignup() {
     setError("");
     setLoading(true);
 
-    if (!formData.name || !formData.email || !formData.password) {
+    const { name, email, password } = formData;
+
+    if (!name || !email || !password) {
       setError("⚠️ Please fill all fields");
       setLoading(false);
       return;
     }
 
     try {
-      // ✅ Register or login user
-      const { data } = await axios.post("http://localhost:5000/api/auth/register", formData);
-      const loggedInUser = data.user || data;
+      // ✅ Register
+      const registerRes = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          name, // match backend field
+          email,
+         password,  // match backend field
+        }
+      );
+
+      const loggedUser = registerRes.data.user || registerRes.data;
+
+      // ✅ Login
+      const loginRes = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password, // match backend field
+      });
+
+      const token = loginRes.data.token;
+      const loggedInUser = loginRes.data.user;
+
+      if (!token || !loggedInUser) throw new Error("Login failed");
+
+      localStorage.setItem("token", token);
       setUser(loggedInUser);
 
-      // ✅ Store quiz result for this user
-      if (quizData && score) {
-        await axios.post("http://localhost:5000/api/auth/result", {
-          userId: loggedInUser._id || loggedInUser.id,
-          score,
-          total,
-          level: 1,
-        });
+      // ✅ Send Level 1 result if available
+      if (level1Results && score !== undefined) {
+        await axios.post(
+          "http://localhost:5000/api/quiz/result",
+          {
+            userId: loggedInUser._id || loggedInUser.id,
+            score,
+            total,
+            level: 1,
+            times: level1Results.times || [],
+            answers: level1Results.answers || [],
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
       }
+
+      // ✅ Navigate to Level 2
+      navigate("/level2", {
+        state: { currentUser: loggedInUser, level1Results },
+      });
     } catch (err) {
-      console.error("Registration/quiz submit error:", err);
-      setError(err.response?.data?.msg || "Something went wrong. Try again!");
+      console.error("Auth error:", err);
+      setError(
+        err.response?.data?.msg ||
+        err.response?.data?.message ||
+        "Something went wrong!"
+      );
     } finally {
       setLoading(false);
     }
@@ -66,7 +109,7 @@ export default function LoginSignup() {
           <h1 className="text-4xl font-bold mb-4 text-green-600">🎉 Level 1 Complete!</h1>
           <p className="text-gray-700 mb-6">You scored {score} out of {total}</p>
           <button
-            onClick={() => navigate("/level2", { state: { currentUser: user } })}
+            onClick={() => navigate("/level2", { state: { currentUser: user, level1Results } })}
             className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600 transition"
           >
             Next Level →

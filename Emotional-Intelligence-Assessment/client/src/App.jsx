@@ -5,7 +5,6 @@ import LoginSignup from "./LoginSignup";
 import LevelUpQuiz from "./components/LevelUpQuiz"; // Level 2
 import LevelUpQuiz3 from "./components/LevelUpQuiz3"; // Level 3
 import LandingPage from "./LandingPage";
-import EQassessment from "./components/EQassessment";
 import EQReport from "./components/EQReport"; // adjust the path if needed
 
 // level2 and level3 data !
@@ -57,7 +56,6 @@ function App() {
               />
             }
           />
-          <Route path="/assessment" element={<EQassessment />} />
           <Route path="/eq-report" element={<EQReport />} />
         </Routes>
       </div>

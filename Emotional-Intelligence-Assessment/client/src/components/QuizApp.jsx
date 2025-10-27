@@ -6,56 +6,76 @@ import quizData from "../data/levelUpData"; // Level 1 questions
 
 export default function Level1Quiz({ currentUser, onComplete }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
-  const [questionTimes, setQuestionTimes] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
+  const [questionTimes, setQuestionTimes] = useState([]);
   const [startTime, setStartTime] = useState(Date.now());
 
   const navigate = useNavigate();
 
   const handleSelect = async (index) => {
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
-    const newTimes = [...questionTimes, timeSpent];
     const newAnswers = [...userAnswers, index];
-    const isCorrect = index === quizData[currentQuestion].answer;
-    const newScore = isCorrect ? score + 1 : score;
-    if (currentQuestion + 1 === quizData.length) {
-      // Save result to backend
+    const newTimes = [...questionTimes, timeSpent];
+    const nextQuestion = currentQuestion + 1;
+
+    if (nextQuestion === quizData.length) {
+      const totalScore = newAnswers.reduce(
+        (sum, ans, i) => sum + (ans === quizData[i].answer ? 1 : 0),
+        0
+      );
 
       try {
-        const res = await axios.post("http://localhost:5000/api/quiz/result", {
-          userId: currentUser._id,
-          score: newScore,
-          total: quizData.length,
-          timePerQuestion: newTimes,
-          answers: newAnswers,
+        // ✅ Updated backend-compatible payload
+        await axios.post("http://localhost:5000/api/quiz/result", {
+          userId: currentUser?._id || null,
           level: 1,
+          userAnswers: newAnswers,
+          timePerQuestion: newTimes,
+          quizQuestions: quizData.map((q) => ({
+            question: q.question,
+            options: q.options,
+            correctIndex: q.answer,
+          })),
         });
-        console.log("Level 1 result saved:", res.data);
+        console.log("Level 1 result saved ✅");
       } catch (err) {
         console.error("Error saving Level 1 result:", err);
       }
 
-      // Call onComplete callback
       if (typeof onComplete === "function") {
         onComplete({
-          score: newScore,
+          score: totalScore,
           total: quizData.length,
-          times: newTimes,
-          answers: newAnswers,
+          questions: quizData.map((q, i) => ({
+            questionText: q.question,
+            chosenAnswer: q.options[newAnswers[i]],
+            score: newAnswers[i] === q.answer ? 1 : 0,
+            timeSpent: newTimes[i],
+          })),
           level: 1,
         });
       }
-      // Navigate to next level or login
-      navigate("/level2", {
-        state: { score: newScore, times: newTimes, answers: newAnswers },
-      });
 
+      navigate("/level2", {
+        state: {
+          currentUser,
+          level1Results: {
+            score: totalScore,
+            total: quizData.length,
+            questions: quizData.map((q, i) => ({
+              questionText: q.question,
+              chosenAnswer: q.options[newAnswers[i]],
+              score: newAnswers[i] === q.answer ? 1 : 0,
+              timeSpent: newTimes[i],
+            })),
+            level: 1,
+          },
+        },
+      });
     } else {
-      setScore(newScore);
-      setQuestionTimes(newTimes);
       setUserAnswers(newAnswers);
-      setCurrentQuestion(currentQuestion + 1);
+      setQuestionTimes(newTimes);
+      setCurrentQuestion(nextQuestion);
       setStartTime(Date.now());
     }
   };
@@ -87,7 +107,6 @@ export default function Level1Quiz({ currentUser, onComplete }) {
       <p className="mt-6 text-sm opacity-80">
         Question {currentQuestion + 1} of {quizData.length}
       </p>
-      
     </motion.div>
   );
 }
