@@ -10,7 +10,6 @@ export default function Level3Quiz() {
 
   const { currentUser, level1Results, level2Results } = location.state || {};
   if (!currentUser) navigate("/login");
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [questionTimes, setQuestionTimes] = useState([]);
