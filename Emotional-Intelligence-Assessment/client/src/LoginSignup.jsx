@@ -53,7 +53,6 @@ export default function LoginSignup() {
         email,
         password, // match backend field
       });
-
       const token = loginRes.data.token;
       const loggedInUser = loginRes.data.user;
 
