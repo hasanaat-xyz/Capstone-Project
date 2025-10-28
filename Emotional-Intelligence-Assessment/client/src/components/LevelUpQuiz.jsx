@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import levelUpData from "../data/levelUpData"; // Level 2 questions
@@ -14,6 +14,7 @@ export default function Level2Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
   const [questionTimes, setQuestionTimes] = useState([]);
   const [startTime, setStartTime] = useState(Date.now());
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSelect = async (index) => {
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
@@ -27,7 +28,6 @@ export default function Level2Quiz() {
       );
 
       try {
-        // ✅ Send data in backend-compatible format
         await axios.post("http://localhost:5000/api/quiz/result", {
           userId: currentUser._id,
           level: 2,
@@ -38,18 +38,17 @@ export default function Level2Quiz() {
             options: q.options,
             correctIndex: q.answer,
           })),
+          score: totalScore,
+          total: levelUpData.length,
         });
-        console.log("Level 2 result saved ✅");
-      } catch (err) {
-        console.error("Error saving Level 2 result:", err);
-      }
 
-      // Navigate to Level 3
-      navigate("/level3", {
-        state: {
-          currentUser,
-          level1Results,
-          level2Results: {
+        // ✅ Show popup
+        setShowPopup(true);
+
+        // Store result temporarily
+        localStorage.setItem(
+          "level2Results",
+          JSON.stringify({
             score: totalScore,
             total: levelUpData.length,
             questions: levelUpData.map((q, i) => ({
@@ -58,9 +57,11 @@ export default function Level2Quiz() {
               score: newAnswers[i] === q.answer ? 1 : 0,
               timeSpent: newTimes[i],
             })),
-          },
-        },
-      });
+          })
+        );
+      } catch (err) {
+        console.error("Error saving Level 2 result:", err);
+      }
     } else {
       setUserAnswers(newAnswers);
       setQuestionTimes(newTimes);
@@ -69,9 +70,14 @@ export default function Level2Quiz() {
     }
   };
 
+  const handleNext = () => {
+    const level2Results = JSON.parse(localStorage.getItem("level2Results"));
+    navigate("/level3", { state: { currentUser, level1Results, level2Results } });
+  };
+
   return (
     <motion.div
-      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-600 to-purple-700 text-white p-6"
+      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-600 to-purple-700 text-white p-6 relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -94,6 +100,33 @@ export default function Level2Quiz() {
       <p className="mt-6 text-sm opacity-80">
         Question {currentQuestion + 1} of {levelUpData.length}
       </p>
+
+      {/* ✅ Completion Popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 flex items-center justify-center bg-black/70 backdrop-blur-md"
+          >
+            <div className="bg-white text-pink-700 rounded-2xl p-8 shadow-2xl text-center max-w-sm">
+              <h3 className="text-2xl font-bold mb-4">
+                🌟 Level 2 Completed!
+              </h3>
+              <p className="mb-6 text-gray-700">
+                Awesome work! Ready to level up your EQ?
+              </p>
+              <button
+                onClick={handleNext}
+                className="bg-pink-600 text-white px-6 py-2 rounded-full hover:bg-pink-700 transition-all"
+              >
+                Level Up Your EQ →
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

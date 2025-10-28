@@ -6,22 +6,16 @@ import { useNavigate, useLocation } from "react-router-dom";
 export default function LoginSignup() {
   const navigate = useNavigate();
   const location = useLocation();
-
   const level1Results = location.state?.level1Results || {};
-  const { score = 0, total = 5 } = level1Results;
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [user, setUser] = useState(null);
+  const [submitted, setSubmitted] = useState(false); // ✅ controls what shows after form submission
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,96 +24,86 @@ export default function LoginSignup() {
 
     const { name, email, password } = formData;
 
-    if (!name || !email || !password) {
-      setError("⚠️ Please fill all fields");
-      setLoading(false);
-      return;
-    }
-
     try {
-      // ✅ Register
-      const registerRes = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        {
-          name, // match backend field
-          email,
-         password,  // match backend field
-        }
-      );
-      const loggedUser = registerRes.data.user || registerRes.data;
-      // ✅ Login
+      // ✅ Register user
+      await axios.post("http://localhost:5000/api/auth/register", {
+        name,
+        email,
+        password,
+      });
+
+      // ✅ Login user immediately after registration
       const loginRes = await axios.post("http://localhost:5000/api/auth/login", {
         email,
-        password, // match backend field
+        password,
       });
-      const token = loginRes.data.token;
-      const loggedInUser = loginRes.data.user;
 
-      if (!token || !loggedInUser) throw new Error("Login failed");
-
+      const { user: loggedInUser, token } = loginRes.data;
       localStorage.setItem("token", token);
       setUser(loggedInUser);
 
-      // ✅ Send Level 1 result if available
-      if (level1Results && score !== undefined) {
-        await axios.post(
-          "http://localhost:5000/api/quiz/result",
-          {
-            userId: loggedInUser._id || loggedInUser.id,
-            score,
-            total,
-            level: 1,
-            times: level1Results.times || [],
-            answers: level1Results.answers || [],
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+      // ✅ Save level 1 results if available
+      if (level1Results && loggedInUser?._id) {
+        await axios.post("http://localhost:5000/api/quiz/result", {
+          userId: loggedInUser._id,
+          level: 1,
+          userAnswers: level1Results.userAnswers,
+          timePerQuestion: level1Results.timePerQuestion,
+          quizQuestions: level1Results.quizQuestions,
+          score: level1Results.score,
+          total: level1Results.total,
+        });
       }
 
-      // ✅ Navigate to Level 2
-      navigate("/level2", {
-        state: { currentUser: loggedInUser, level1Results },
-      });
+      // ✅ Show success screen, don’t redirect yet
+      setSubmitted(true);
     } catch (err) {
-      console.error("Auth error:", err);
-      setError(
-        err.response?.data?.msg ||
-        err.response?.data?.message ||
-        "Something went wrong!"
-      );
+      console.error(err);
+      setError(err.response?.data?.msg || "Something went wrong!");
     } finally {
       setLoading(false);
     }
   };
 
+  const handleContinue = () => {
+    navigate("/level2", { state: { currentUser: user, level1Results } });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      {user ? (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#EDE9FE] to-[#DDD6FE] text-gray-900 p-6">
+      {submitted && user ? (
+        // ✅ Success screen
         <motion.div
-          className="text-center bg-white p-10 rounded-3xl shadow-2xl"
-          initial={{ opacity: 0, y: -50, scale: 0.8 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center bg-white/70 backdrop-blur-lg p-10 rounded-2xl shadow-lg border border-white/50"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-4xl font-bold mb-4 text-green-600">🎉 Level 1 Complete!</h1>
-          <p className="text-gray-700 mb-6">You scored {score} out of {total}</p>
-          <button
-            onClick={() => navigate("/level2", { state: { currentUser: user, level1Results } })}
-            className="bg-green-500 text-white px-6 py-2 rounded-xl hover:bg-green-600 transition"
+          <h1 className="text-3xl font-semibold mb-4 text-purple-700">
+            🎉 Welcome, {user.name}!
+          </h1>
+          <p className="text-lg mb-6">
+            Level 1 Completed, You scored{" "}
+            <b>{level1Results.score}</b> / {level1Results.total}
+          </p>
+          <motion.button
+            onClick={handleContinue}
+            whileHover={{ scale: 1.05 }}
+            className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors shadow-md"
           >
-            Next Level →
-          </button>
+            Continue to Level 2 →
+          </motion.button>
         </motion.div>
       ) : (
+        // ✅ Login/signup form
         <motion.div
-          className="bg-white rounded-3xl shadow-lg p-8 w-96"
-          initial={{ opacity: 0, y: -50, scale: 0.8 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="bg-white/60 backdrop-blur-xl rounded-2xl shadow-md p-8 w-full max-w-md border border-white/30"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
         >
-          <h2 className="text-2xl font-bold text-center mb-6">Login / Signup</h2>
+          <h2 className="text-2xl font-bold text-center mb-6 text-purple-700">
+            Login or Sign Up to Save Your Progress ✨
+          </h2>
+
           {error && <p className="text-red-500 text-sm text-center mb-3">{error}</p>}
 
           <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
@@ -129,7 +113,8 @@ export default function LoginSignup() {
               placeholder="Full Name"
               value={formData.name}
               onChange={handleChange}
-              className="border rounded-lg p-2 focus:outline-indigo-500"
+              className="bg-white/50 border border-purple-200 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder-gray-500"
+              required
             />
             <input
               type="email"
@@ -137,7 +122,8 @@ export default function LoginSignup() {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              className="border rounded-lg p-2 focus:outline-indigo-500"
+              className="bg-white/50 border border-purple-200 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder-gray-500"
+              required
             />
             <input
               type="password"
@@ -145,14 +131,16 @@ export default function LoginSignup() {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              className="border rounded-lg p-2 focus:outline-indigo-500"
+              className="bg-white/50 border border-purple-200 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder-gray-500"
+              required
             />
+
             <button
               type="submit"
               disabled={loading}
-              className="bg-indigo-600 text-white py-2 rounded-xl hover:bg-indigo-700 disabled:opacity-50"
+              className="bg-purple-600 text-white py-3 rounded-lg font-semibold shadow-md hover:bg-purple-700 hover:shadow-lg transition-all duration-200"
             >
-              {loading ? "Submitting..." : "Continue →"}
+              {loading ? "Processing..." : "Continue →"}
             </button>
           </form>
         </motion.div>

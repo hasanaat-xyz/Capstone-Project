@@ -6,10 +6,9 @@ export default function EQReport() {
   const location = useLocation();
   let results = location.state;
 
-  // ✅ Normalize results to array
   if (!results) results = [];
   else if (!Array.isArray(results) && typeof results === "object") {
-    // Convert object {level1, level2, level3} to array
+    // Convert object level1, level2, level3 to array
     results = Object.keys(results).map(key => ({
       level: key.replace("level", ""), // "1", "2", "3"
       ...results[key]
@@ -95,7 +94,6 @@ Keep it friendly, insightful, and under 250 words.
     <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-gray-100 to-gray-200 p-6">
       <h1 className="text-4xl font-bold mb-6 text-gray-800">🎯 Your EQ Report</h1>
 
-      {/* Scores per level */}
       <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-2xl mb-6">
         <p className="text-xl mb-2 text-gray-700">
           Total Score: <span className="font-bold">{totalScore}</span> / {maxScore}
@@ -125,7 +123,6 @@ Keep it friendly, insightful, and under 250 words.
         ))}
       </div>
 
-      {/* AI Report */}
       <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-2xl mb-6">
         <h2 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center gap-2">
           🤖 AI Emotional Analysis

@@ -7,9 +7,9 @@ import levelUpData3 from "../data/levelUpData3"; // Level 3 questions
 export default function Level3Quiz() {
   const navigate = useNavigate();
   const location = useLocation();
-
   const { currentUser, level1Results, level2Results } = location.state || {};
   if (!currentUser) navigate("/login");
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [questionTimes, setQuestionTimes] = useState([]);
@@ -19,8 +19,8 @@ export default function Level3Quiz() {
   const handleSelect = (index) => {
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
     setUserAnswers([...userAnswers, index]);
-    
     setQuestionTimes([...questionTimes, timeSpent]);
+
     if (currentQuestion + 1 === levelUpData3.length) {
       setStage("complete");
     } else {
@@ -28,29 +28,27 @@ export default function Level3Quiz() {
       setStartTime(Date.now());
     }
   };
+
   const handleShowReport = async () => {
     try {
-      // Save level 3 result to backend
       await axios.post("http://localhost:5000/api/quiz/result", {
         userId: currentUser._id,
         level: 3,
         userAnswers,
         timePerQuestion: questionTimes,
-        quizQuestions: levelUpData3.map(q => ({
+        quizQuestions: levelUpData3.map((q) => ({
           question: q.question,
           options: q.options,
           correctIndex: q.answer,
         })),
       });
 
-      // Prepare combined results as array for EQReport
       const level3Data = {
         level: 3,
         score: userAnswers.reduce(
           (sum, ans, i) => sum + (ans === levelUpData3[i].answer ? 1 : 0),
           0
         ),
-
         total: levelUpData3.length,
         questions: levelUpData3.map((q, i) => ({
           questionText: q.question,
@@ -59,17 +57,13 @@ export default function Level3Quiz() {
           timeSpent: questionTimes[i],
         })),
       };
-      const results = [
-        { level: 1, ...level1Results },
-        { level: 2, ...level2Results },
-        level3Data,
-      ];
 
-      navigate("/eq-report", { state: results });
+      navigate("/eq-report", { state: [level1Results, level2Results, level3Data] });
     } catch (err) {
       console.error("Error saving Level 3 result:", err);
     }
   };
+
   return (
     <motion.div
       className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-700 to-violet-600 text-white p-6"
@@ -79,9 +73,7 @@ export default function Level3Quiz() {
     >
       {stage === "quiz" && (
         <>
-          <h2 className="text-3xl font-bold mb-6">
-            Level 3: Empathy & Relationship Skills 💞
-          </h2>
+          <h2 className="text-3xl font-bold mb-6">Level 3: Empathy & Relationships 💞</h2>
           <div className="bg-white/20 p-6 rounded-xl shadow-lg w-full max-w-lg">
             <h3 className="text-lg mb-4">{levelUpData3[currentQuestion].question}</h3>
             <div className="flex flex-col space-y-3">
@@ -109,7 +101,7 @@ export default function Level3Quiz() {
           transition={{ duration: 0.6 }}
           className="text-center bg-white/20 p-8 rounded-2xl shadow-lg"
         >
-          <h2 className="text-3xl font-bold mb-4">🎊 Level 3 Complete!</h2>
+          <h2 className="text-3xl font-bold mb-4">🎉 Level 3 Completed!</h2>
           <p className="text-xl mb-2">
             You scored{" "}
             <span className="font-bold">
@@ -119,11 +111,6 @@ export default function Level3Quiz() {
               )}
             </span>{" "}
             / {levelUpData3.length}
-          </p>
-          <p className="mb-6">
-            Average Time:{" "}
-            {(questionTimes.reduce((a, b) => a + b, 0) / questionTimes.length).toFixed(1)}
-            s per question
           </p>
           <button
             onClick={handleShowReport}
