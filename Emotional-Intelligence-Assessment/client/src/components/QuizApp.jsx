@@ -12,10 +12,11 @@ export default function Level1Quiz() {
   const navigate = useNavigate();
 
   const handleSelect = (index) => {
-    
+
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
     const newAnswers = [...userAnswers, index];
     const newTimes = [...questionTimes, timeSpent];
+    
     if (currentQuestion + 1 === quizData.length) {
       const totalScore = newAnswers.reduce(
         (sum, ans, i) => sum + (ans === quizData[i].answer ? 1 : 0),
