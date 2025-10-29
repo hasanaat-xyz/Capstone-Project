@@ -31,6 +31,7 @@ export default function Level1Quiz() {
           score: newAnswers[i] === q.answer ? 1 : 0,
           timeSpent: newTimes[i],
         })),
+        
         level: 1,
         userAnswers: newAnswers,
         timePerQuestion: newTimes,
