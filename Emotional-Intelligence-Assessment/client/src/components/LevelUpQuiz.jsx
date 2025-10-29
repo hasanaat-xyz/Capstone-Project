@@ -42,7 +42,6 @@ export default function Level2Quiz() {
           total: levelUpData.length,
         });
 
-        // ✅ Show popup
         setShowPopup(true);
 
         // Store result temporarily
@@ -101,7 +100,6 @@ export default function Level2Quiz() {
         Question {currentQuestion + 1} of {levelUpData.length}
       </p>
 
-      {/* ✅ Completion Popup */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
