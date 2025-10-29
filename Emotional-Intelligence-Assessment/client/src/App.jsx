@@ -22,7 +22,7 @@ function App() {
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
   };
-  
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100">
