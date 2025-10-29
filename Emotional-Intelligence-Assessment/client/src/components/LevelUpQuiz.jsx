@@ -99,7 +99,7 @@ export default function Level2Quiz() {
       <p className="mt-6 text-sm opacity-80">
         Question {currentQuestion + 1} of {levelUpData.length}
       </p>
-
+      
       <AnimatePresence>
         {showPopup && (
           <motion.div
