@@ -53,7 +53,6 @@ export default function Level1Quiz() {
       setStartTime(Date.now());
     }
   };
-
   const handleNextLevel = () => {
     const storedResults = JSON.parse(localStorage.getItem("level1Results"));
     navigate("/login", { state: { level1Results: storedResults } });
