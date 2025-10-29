@@ -84,6 +84,7 @@ export default function Level1Quiz() {
       <p className="mt-6 text-sm opacity-80">
         Question {currentQuestion + 1} of {quizData.length}
       </p>
+      
       {/* ✅ Completion Popup */}
       <AnimatePresence>
         {showPopup && (
