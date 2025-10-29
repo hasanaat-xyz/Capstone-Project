@@ -53,6 +53,7 @@ export default function Level1Quiz() {
       setStartTime(Date.now());
     }
   };
+
   const handleNextLevel = () => {
     const storedResults = JSON.parse(localStorage.getItem("level1Results"));
     navigate("/login", { state: { level1Results: storedResults } });
@@ -83,7 +84,6 @@ export default function Level1Quiz() {
       <p className="mt-6 text-sm opacity-80">
         Question {currentQuestion + 1} of {quizData.length}
       </p>
-
       {/* ✅ Completion Popup */}
       <AnimatePresence>
         {showPopup && (
