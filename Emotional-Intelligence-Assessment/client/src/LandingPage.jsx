@@ -182,7 +182,7 @@ export default function LandingPage() {
               gradient: "from-blue-500 via-purple-500 to-pink-500",
             },
             {
-              icon: <Smile size={50} />,
+              icon: <Smile size={100} />,
               title: "Get Your EQ Score",
               desc: "Receive a personalized EQ report that helps you improve emotional skills.",
               gradient: "from-purple-500 via-pink-500 to-yellow-400",
