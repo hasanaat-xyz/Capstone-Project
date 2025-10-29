@@ -31,7 +31,7 @@ export default function Level1Quiz() {
           score: newAnswers[i] === q.answer ? 1 : 0,
           timeSpent: newTimes[i],
         })),
-        
+
         level: 1,
         userAnswers: newAnswers,
         timePerQuestion: newTimes,
@@ -44,7 +44,6 @@ export default function Level1Quiz() {
 
       // ✅ Show popup before navigation
       setShowPopup(true);
-
       // Store results temporarily in state for when user moves next
       localStorage.setItem("level1Results", JSON.stringify(level1Results));
     } else {
