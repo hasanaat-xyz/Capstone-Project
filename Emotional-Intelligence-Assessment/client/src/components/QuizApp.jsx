@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import quizData from "../data/levelUpData"; // Level 1 questions
+import quizData from "../data/quizData"; // Level 1 questions
 
 export default function Level1Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -84,7 +84,7 @@ export default function Level1Quiz() {
       <p className="mt-6 text-sm opacity-80">
         Question {currentQuestion + 1} of {quizData.length}
       </p>
-      
+
       {/* ✅ Completion Popup */}
       <AnimatePresence>
         {showPopup && (

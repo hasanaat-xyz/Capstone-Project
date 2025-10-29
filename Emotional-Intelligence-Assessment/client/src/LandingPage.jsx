@@ -1,7 +1,7 @@
 // src/pages/LandingPage.jsx
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Brain, Gamepad2, Smile, Sparkles } from "lucide-react";
+import { Brain, Gamepad2, Smile, Sparkles, Heart, Lightbulb } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
@@ -45,10 +45,29 @@ export default function LandingPage() {
   }
 
   return (
-
     <div className="min-h-screen bg-gradient-to-br from-[#3b0a45] via-[#5a189a] to-[#240046] text-white overflow-hidden font-poppins">
 
-      <section className="flex flex-col items-center justify-center text-center h-screen relative">
+      {/* 🏁 Hero Section */}
+      <section className="flex flex-col items-center justify-center text-center h-screen relative px-4">
+
+        {/* 🧠 EQ vs EI Mini Info Box (Centered) */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          whileHover={{ scale: 1.05 }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                     bg-[#2a0a45]/80 border border-purple-400/40 backdrop-blur-md 
+                     rounded-2xl px-6 py-4 max-w-sm shadow-md text-left"
+        >
+          <h4 className="text-sm font-semibold text-purple-300 mb-1">EQ vs EI 💡</h4>
+          <p className="text-xs text-gray-200 leading-relaxed">
+            <strong>EI (Emotional Intelligence)</strong> is the broader ability to understand, use, 
+            and manage emotions effectively, while <strong>EQ (Emotional Quotient)</strong> is how we measure it, 
+            just like IQ measures intelligence.
+          </p>
+        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,6 +87,57 @@ export default function LandingPage() {
           an interactive, gamified experience.
         </motion.p>
 
+        {/* 💜 Info Boxes (3-column) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.7 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12"
+        >
+          {/* Box 1: What is EI */}
+          <div className="bg-[#2a0a45]/80 backdrop-blur-md border border-purple-400/30 p-6 rounded-2xl shadow-lg hover:shadow-purple-500/20 transition-all">
+            <div className="flex items-start space-x-5">
+              <Heart className="text-pink-400 flex-shrink-0" size={60} strokeWidth={1.2} />
+              <div>
+                <h3 className="text-xl font-semibold mb-2 text-purple-200">What is EI?</h3>
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  <strong>Emotional Intelligence (EI)</strong> is the ability to understand and manage your own emotions,
+                  while recognizing others’ emotions to build better relationships and communicate effectively.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Box 2: EQ vs IQ */}
+          <div className="bg-[#2a0a45]/80 backdrop-blur-md border border-pink-400/30 p-6 rounded-2xl shadow-lg hover:shadow-pink-500/20 transition-all">
+            <div className="flex items-start space-x-5">
+              <Brain className="text-purple-300 flex-shrink-0" size={60} strokeWidth={1.2} />
+              <div>
+                <h3 className="text-xl font-semibold mb-2 text-pink-200">EQ vs IQ</h3>
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  IQ measures how smart you are. EQ measures how *wise* you are with emotions.  
+                  Little do people know <strong>EQ often matters more than IQ</strong> in real-life success and happiness.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Box 3: Did You Know? */}
+          <div className="bg-[#2a0a45]/80 backdrop-blur-md border border-yellow-400/30 p-6 rounded-2xl shadow-lg hover:shadow-yellow-400/20 transition-all">
+            <div className="flex items-start space-x-5">
+              <Lightbulb className="text-yellow-300 flex-shrink-0" size={60} strokeWidth={1.2} />
+              <div>
+                <h3 className="text-xl font-semibold mb-2 text-yellow-200">Did You Know?</h3>
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  Studies show that <strong>90% of top performers have high EQ</strong> not high IQ.  
+                  The best part? You can actually <em>train and grow</em> your emotional intelligence over time.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* CTA Button */}
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
@@ -76,58 +146,9 @@ export default function LandingPage() {
         >
           Wanna Get Started ?
         </motion.button>
-
-        {/* Floating Emojis */}
-        <motion.div
-          className="absolute top-20 left-10 text-5xl"
-          animate={{ y: [0, 20, 0] }}
-          transition={{ repeat: Infinity, duration: 3 }}
-        >
-          😄
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-24 right-10 text-5xl"
-          animate={{ y: [0, -20, 0] }}
-          transition={{ repeat: Infinity, duration: 4 }}
-        >
-          😡
-        </motion.div>
-
-        <motion.div
-          className="absolute top-40 right-[8%] text-5xl"
-          animate={{ y: [0, 15, 0] }}
-          transition={{ repeat: Infinity, duration: 2.8 }}
-        >
-          😢
-        </motion.div>
-
-        <motion.div
-          className="absolute top-32 left-1/3 text-5xl"
-          animate={{ y: [0, 25, 0] }}
-          transition={{ repeat: Infinity, duration: 3.5 }}
-        >
-          😎
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-32 left-1/4 text-5xl"
-          animate={{ y: [0, -15, 0] }}
-          transition={{ repeat: Infinity, duration: 3.2 }}
-        >
-          🫡
-        </motion.div>
-
-        <motion.div
-          className="absolute top-16 right-1/3 text-5xl"
-          animate={{ y: [0, 18, 0] }}
-          transition={{ repeat: Infinity, duration: 2.6 }}
-        >
-          😒
-        </motion.div>
       </section>
 
-      {/* 🔄 Why EI Matters (interactive version) */}
+      {/* 💡 Why EI Matters */}
       <section className="py-24 bg-transparent text-center">
         <h2 className="text-4xl font-bold mb-10">
           Why Emotional Intelligence <span className="text-purple-300">Matters</span>
@@ -143,7 +164,7 @@ export default function LandingPage() {
             {
               icon: "🚀",
               title: "Boost your career success",
-              text: "People with strong emotional intelligence handle stress, teamwork, and feedback well,  qualities every leader and manager values.",
+              text: "People with strong emotional intelligence handle stress, teamwork, and feedback well — qualities every leader and manager values.",
             },
             {
               icon: "🌿",
@@ -161,7 +182,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 🔄 How It Works (same as before) */}
+      {/* ⚙️ How It Works */}
       <section className="py-24 bg-transparent text-center relative overflow-hidden">
         <h2 className="text-4xl font-bold mb-16 text-white">
           How It <span className="text-purple-300">Works</span>

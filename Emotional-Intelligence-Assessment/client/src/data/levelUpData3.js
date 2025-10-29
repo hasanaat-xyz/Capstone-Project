@@ -1,58 +1,60 @@
 /**
- * This version is harder and more confusing because the wrong answers sound tempting (so the user must really think in terms of EI, 
- * not just pick the obvious one).
+ * 💞 LevelUpData3 — Empathy & Relationships Round
+ * These scenarios test deep emotional intelligence — reading people, managing connection,
+ * and responding with awareness instead of automatic 'niceness'.
+ * Each question hides subtle traps — only one reflects true empathic intelligence.
  */
 
 const levelUpData3 = [
-  { // 🧠 Self-Awareness
-    question: "1. You receive both praise and criticism for the same project. What’s the MOST emotionally intelligent response?",
+  { // 💭 Reading Emotions
+    question: "1. A friend who’s usually cheerful seems distant but says they’re 'fine.' What’s the most emotionally intelligent response?",
     options: [
-      "Focus only on the praise to stay confident.",
-      "Reflect on both, noting what’s valid without losing balance.",
-      "Ignore both since others’ opinions shouldn’t matter.",
-      "Defend yourself against the criticism immediately."
+      "Accept their answer and change the topic to keep things light.",
+      "Press them to open up immediately — they need to talk.",
+      "Gently let them know you’ve noticed a change and you’re here if they want to share.",
+      "Send them motivational quotes to cheer them up."
     ],
-    answer: 1,
+    answer: 2, // ideal: empathy + respect for boundaries
   },
-  { // 🔒 Self-Regulation
-    question: "2. You’re furious at a teammate for missing a deadline. What’s the smartest first move?",
+  { // 🪞 Perspective-Taking
+    question: "2. You give feedback to a teammate, and they seem hurt even though you meant well. What’s the most empathic move?",
     options: [
-      "Send a long, angry email right away.",
-      "Take a pause, regulate your emotions, then address it calmly.",
-      "Ignore it completely and hope it doesn’t happen again.",
-      "Complain about them to another teammate."
+      "Clarify that your intention wasn’t to hurt them — they’re too sensitive.",
+      "Ignore it, they’ll get over it eventually.",
+      "Apologize for how it came across and ask how you could phrase it better next time.",
+      "Overcompensate by giving them extra compliments."
     ],
-    answer: 1,
+    answer: 2, // ideal: emotional accountability + curiosity
   },
-  { // 🔥 Motivation
-    question: "3. Your motivation dips midway through a tough project. What’s the BEST EI strategy?",
+  { // 🧠 Emotional Boundaries
+    question: "3. A close friend constantly vents about their problems and you feel emotionally drained. What’s the best response?",
     options: [
-      "Wait until you ‘feel inspired’ again.",
-      "Remind yourself of the bigger purpose and reset your goals.",
-      "Blame external factors for slowing you down.",
-      "Quit and start something new for excitement."
+      "Keep listening — that’s what good friends do, even if it exhausts you.",
+      "Avoid their calls for a while to protect your peace.",
+      "Tell them kindly you care, but need to take space or set limits when needed.",
+      "Offer them advice every time so they stop repeating the same issue."
     ],
-    answer: 1,
+    answer: 2, // ideal: balanced empathy with self-boundaries
   },
-  { // 💙 Empathy
-    question: "4. A colleague snaps at you unexpectedly. What’s the MOST emotionally intelligent way to respond?",
+  { // 💬 Relationship Dynamics
+    question: "4. Someone you care about starts withdrawing emotionally and replying coldly. What’s your most emotionally intelligent reaction?",
     options: [
-      "Snap back to defend yourself.",
-      "Assume they’re disrespectful and avoid them later.",
-      "Pause and consider they might be under pressure before reacting.",
-      "Tell everyone about how rude they were."
+      "Mirror their behavior to show how it feels.",
+      "Ask calmly if something has changed between you, without assuming or accusing.",
+      "Send long emotional messages to make them feel guilty for pulling away.",
+      "Pretend you don’t notice — you don’t want to seem needy."
     ],
-    answer: 2,
+    answer: 1, // ideal: direct + emotionally aware communication
   },
-  { // 🤝 Social Skills
-    question: "5. During a heated team debate, what’s the most effective EI-driven action?",
+  { // 🧩 Conflict & Compassion
+    question: "5. During a heated disagreement, the other person starts crying mid-conversation. What’s the most empathic action?",
     options: [
-      "Stay silent so you don’t make things worse.",
-      "Pick a side quickly and argue strongly.",
-      "Facilitate understanding by acknowledging each perspective.",
-      "End the meeting immediately to avoid conflict."
+      "Keep explaining your point — you can’t stop every time someone gets emotional.",
+      "Immediately comfort them and drop your point to make them feel better.",
+      "Pause, acknowledge their emotion, and ask if they’d like a moment before continuing.",
+      "Get uncomfortable and end the conversation quickly."
     ],
-    answer: 2,
+    answer: 2, // ideal: balance empathy + emotional pacing
   },
 ];
 
