@@ -7,11 +7,23 @@ import { useNavigate } from "react-router-dom";
 export default function LandingPage() {
   const navigate = useNavigate();
 
-  // WhyCard Component
-  function WhyCard({ item }) {
+  // ✨ Animation Variants
+  const slideFromLeft = {
+    hidden: { opacity: 0, x: -80 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  };
+
+  const slideFromRight = {
+    hidden: { opacity: 0, x: 80 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  };
+
+  // 💬 WhyCard Component
+  function WhyCard({ item, i }) {
     const [open, setOpen] = useState(false);
     return (
       <motion.div
+        variants={slideFromLeft}
         whileHover={{ scale: 1.05 }}
         className="bg-[#2b1b3a] p-6 rounded-2xl w-60 shadow-md hover:shadow-lg cursor-pointer relative"
         onClick={() => setOpen(!open)}
@@ -47,85 +59,118 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#1b0e2e] text-white overflow-hidden font-poppins">
       {/* 🏁 Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center h-screen relative px-4">
-        <motion.h1
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-6xl font-bold mb-4"
-        >
-          Test Your <span className="text-[#f9b700]">Emotional Intelligence</span> 🎮
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl"
-        >
-          Discover how well you understand emotions in yourself and others through an interactive, gamified experience.
-        </motion.p>
-
-        {/* 💜 Info Boxes (3-card section in hero) */}
+      <section className="flex flex-col md:flex-row items-center justify-center h-screen relative px-6 md:px-16 text-center md:text-left gap-10 overflow-hidden">
+        {/* 🧠 Left Text Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.7 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12"
+          className="md:w-1/2 flex flex-col items-center md:items-start"
+          variants={slideFromLeft}
+          initial="hidden"
+          animate="visible"
         >
-          <div className="bg-[#2b1b3a] p-6 rounded-2xl shadow-md hover:shadow-lg transition-all">
-            <div className="flex items-start space-x-5">
-              <Heart className="text-pink-400 flex-shrink-0" size={60} strokeWidth={1.2} />
-              <div>
-                <h3 className="text-xl font-semibold mb-2 text-purple-200">What is Emotional Intelligence?</h3>
-                <p className="text-sm text-gray-200 leading-relaxed">
-                  Emotional intelligence is the ability to understand and manage your emotions, while recognizing others’ emotions to communicate effectively.
-                </p>
-              </div>
-            </div>
-          </div>
+          <motion.h1
+            className="text-5xl md:text-6xl font-bold mb-4"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Discover Your <span className="text-[#f9b700]">Emotional Intelligence</span>:)
+          </motion.h1>
 
-          <div className="bg-[#2b1b3a] p-6 rounded-2xl shadow-md hover:shadow-lg transition-all">
-            <div className="flex items-start space-x-5">
-              <Brain className="text-yellow-400 flex-shrink-0" size={60} strokeWidth={1.2} />
-              <div>
-                <h3 className="text-xl font-semibold mb-2 text-yellow-300">EQ vs IQ</h3>
-                <p className="text-sm text-gray-200 leading-relaxed">
-                  IQ measures cognitive intelligence. EQ measures how well you understand and manage emotions. High EQ often leads to better real-life outcomes.
-                </p>
-              </div>
-            </div>
-          </div>
+          <motion.p
+            className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl"
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Discover how well you understand emotions in yourself and others through an interactive, gamified experience.
+          </motion.p>
 
-          <div className="bg-[#2b1b3a] p-6 rounded-2xl shadow-md hover:shadow-lg transition-all">
-            <div className="flex items-start space-x-5">
-              <Lightbulb className="text-green-400 flex-shrink-0" size={60} strokeWidth={1.2} />
-              <div>
-                <h3 className="text-xl font-semibold mb-2 text-green-300">Did You Know?</h3>
-                <p className="text-sm text-gray-200 leading-relaxed">
-                  Studies show that 90% of top performers have high EQ rather than high IQ. The good news: Emotional intelligence can be trained and improved over time.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* CTA Button */}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => navigate("/level1")}
+            className="px-8 py-3 text-lg font-semibold bg-[#f9b700] text-[#1b0e2e] rounded-full shadow-lg hover:shadow-xl transition-all"
+          >
+            Wanna Get Started?
+          </motion.button>
         </motion.div>
 
-        {/* CTA Button */}
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => navigate("/level1")}
-          className="px-8 py-3 text-lg font-semibold bg-[#f9b700] text-[#1b0e2e] rounded-full shadow-lg hover:shadow-xl transition-all"
+        {/* 🎨 Right Image Section */}
+        <motion.div
+          className="md:w-1/2 flex justify-center mt-10 md:mt-0"
+          variants={slideFromRight}
+          initial="hidden"
+          animate="visible"
         >
-          Wanna Get Started?
-        </motion.button>
+          <img
+            src="/images/hero-ei.png"
+            alt="Emotional Intelligence Illustration"
+            className="w-[300px] md:w-[450px] rounded-2xl shadow-2xl"
+          />
+        </motion.div>
       </section>
 
+      {/* 💜 Info Boxes */}
+<section className="py-20 bg-transparent overflow-hidden">
+  <motion.div
+    className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12 px-6"
+    initial="hidden"
+    whileInView="visible"
+    variants={{
+      hidden: {},
+      visible: {
+        transition: { staggerChildren: 0.25 },
+      },
+    }}
+    viewport={{ once: true }}
+  >
+    {[
+      {
+        icon: <Heart className="text-pink-400 flex-shrink-0" size={60} strokeWidth={1.2} />,
+        title: "What is Emotional Intelligence?",
+        text: "Emotional intelligence is the ability to understand and manage your emotions, while recognizing others’ emotions to communicate effectively.",
+      },
+      {
+        icon: <Brain className="text-yellow-400 flex-shrink-0" size={60} strokeWidth={1.2} />,
+        title: "EQ vs IQ",
+        text: "IQ measures cognitive intelligence. EQ measures how well you understand and manage emotions. High EQ often leads to better real-life outcomes.",
+      },
+      {
+        icon: <Lightbulb className="text-green-400 flex-shrink-0" size={60} strokeWidth={1.2} />,
+        title: "Did You Know?",
+        text: "Studies show that 90% of top performers have high EQ rather than high IQ. The good news: Emotional intelligence can be trained and improved over time.",
+      },
+    ].map((box, i) => (
+      <motion.div
+        key={i}
+        variants={slideFromLeft}
+        className="p-6 rounded-2xl shadow-md hover:shadow-lg transition-all bg-[#2b1b3a]"
+      >
+        <div className="flex items-start space-x-5">
+          {box.icon}
+          <div>
+            <h3 className="text-xl font-semibold mb-2 text-purple-200">{box.title}</h3>
+            <p className="text-sm text-gray-200 leading-relaxed">{box.text}</p>
+          </div>
+        </div>
+      </motion.div>
+    ))}
+  </motion.div>
+</section>
+
+
       {/* 💡 Why EI Matters */}
-      <section className="py-24 bg-transparent text-center">
-        <h2 className="text-4xl font-bold mb-10">
+      <section className="py-24 bg-transparent text-center overflow-hidden">
+        <motion.h2
+          initial={{ opacity: 0, x: -80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold mb-10"
+        >
           Why Emotional Intelligence <span className="text-[#f9b700]">Matters</span>
-        </h2>
+        </motion.h2>
 
         {/* 🌀 Animated EI Diagram */}
         <motion.div
@@ -136,13 +181,18 @@ export default function LandingPage() {
           className="flex justify-center mb-14"
         >
           <img
-            src="/images/ei-diagram.png" // 👈 save your uploaded image here
+            src="/images/ei-diagram.png"
             alt="Emotional Intelligence Diagram"
-            className="w-full max-w-3xl rounded-2xl shadow-lg border border-[#3c1f55]"
+            className="w-full max-w-2xl rounded-2xl shadow-lg border border-[#3c1f55]"
           />
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-10 px-10">
+        <motion.div
+          className="flex flex-wrap justify-center gap-10 px-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {[
             {
               icon: "💞",
@@ -165,18 +215,29 @@ export default function LandingPage() {
               text: "When emotions don’t cloud your judgment, you can think clearly, evaluate better, and choose what’s truly right for you.",
             },
           ].map((item, i) => (
-            <WhyCard key={i} item={item} />
+            <WhyCard key={i} item={item} i={i} />
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* ⚙️ How It Works */}
       <section className="py-24 bg-transparent text-center relative overflow-hidden">
-        <h2 className="text-4xl font-bold mb-16 text-white">
+        <motion.h2
+          initial={{ opacity: 0, x: -80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold mb-16 text-white"
+        >
           How It <span className="text-[#f9b700]">Works</span>
-        </h2>
+        </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 px-6 md:px-20">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-10 px-6 md:px-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {[
             {
               icon: <Gamepad2 size={50} />,
@@ -199,6 +260,7 @@ export default function LandingPage() {
           ].map((item, i) => (
             <motion.div
               key={i}
+              variants={slideFromLeft}
               whileHover={{ scale: 1.05, y: -8 }}
               transition={{ type: "spring", stiffness: 120 }}
               className="relative group p-[2px] rounded-3xl shadow-lg hover:shadow-2xl transition-all"
@@ -208,18 +270,16 @@ export default function LandingPage() {
                 <motion.div className="flex justify-center mb-6 text-white group-hover:opacity-0 transition-all duration-300">
                   {item.icon}
                 </motion.div>
-
                 <h3 className="text-xl font-semibold mb-3 group-hover:text-[#f9b700] transition-all duration-300">
                   {item.title}
                 </h3>
-
                 <p className="text-gray-300 group-hover:opacity-90 transition-all duration-500">
                   {item.desc}
                 </p>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Footer */}
