@@ -66,7 +66,7 @@ export default function Level1Quiz() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-3xl font-bold mb-6">Level 1: Self-Awareness 🧠</h2>
+      <h2 className="text-3xl font-bold mb-6">Self-Awareness 🧠</h2>
       <div className="bg-white/20 p-6 rounded-xl shadow-lg w-full max-w-lg">
         <h3 className="text-lg mb-4">{quizData[currentQuestion].question}</h3>
         <div className="flex flex-col space-y-3">

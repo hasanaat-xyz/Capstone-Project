@@ -1,64 +1,63 @@
 /**
- * 🌀 LevelUpData — Self-Regulation Round (Twisted & Psychologically Confusing)
- * Each question forces the player to navigate emotional nuance.
- * All answers sound “emotionally mature,” but only one reflects true regulation.
+ * 🌀 LevelUpData — Self-Regulation Round (Humorous, Twisted & Psychologically Playful)
+ * These scenarios are designed to trick even emotionally smart players.
+ * Every answer sounds wise, dramatic, or “zen,” but only one reflects *true calm in chaos*.
  */
 
 const levelUpData = [
   { // 😤 Emotional Impulse
-    question: "1. During a tense argument, your heart races and your voice trembles slightly. What’s your response?",
+    question: "1. You’re mid-argument, heart pounding, and your brain’s screaming 'say something savage!' What’s your move?",
     options: [
-      "Keep talking calmly to prove you’re in control, even if your thoughts blur.",
-      "Notice the rush, take a breath, and choose to pause—even if it feels like losing power.",
-      "Stay quiet but mentally prepare stronger comebacks for later.",
-      "Switch topics smoothly so no one notices your rising tension."
+      "Take a deep breath and respond like you’re narrating a meditation podcast.",
+      "Go full silent treatment, mysterious equals powerful.",
+      "Drop a ‘calm down’ bomb and instantly lose the moral high ground.",
+      "Smile creepily until they get uncomfortable and walk away first."
     ],
-    answer: 1, // true self-regulation involves conscious pause, not image control
+    answer: 0, // humor aside, mindful pause = true EQ win
   },
 
   { // ⏳ Pressure Response
-    question: "2. You’re drowning in work but smiling to maintain your reputation as 'the reliable one'. What’s your best move?",
+    question: "2. You’re juggling five deadlines, three tabs of caffeine, and one crumbling soul. How do you stay sane?",
     options: [
-      "Privately acknowledge the stress and intentionally reset your energy before continuing.",
-      "Keep smiling, it maintains morale for everyone else.",
-      "Tell yourself it’s temporary and keep pushing harder for one more week.",
-      "Vent to one friend just to release pressure—then ignore it again."
+      "Turn into a productivity zombie and hope Future You can deal with burnout.",
+      "Fake a power nap by staring at your screen motionless for 10 minutes.",
+      "Do a mini-reset, breathe, stretch, or just admit to yourself you’re overwhelmed.",
+      "Announce dramatically, 'I thrive in chaos!' while low-key spiraling."
     ],
-    answer: 0, // regulation = awareness + reset, not repression or delay
+    answer: 2, // awareness + micro-regulation = healthy chaos control
   },
 
   { // 💭 Guilt Processing
-    question: "3. You snapped at someone and instantly regret it. What’s your best next thought?",
+    question: "3. You snapped at a coworker who didn’t deserve it. Now guilt is eating your brain like a browser with 47 tabs. What now?",
     options: [
-      "You replay the moment repeatedly to ensure you never act that way again.",
-      "You justify it to yourself, they pushed you too far after all.",
-      "You admit you overreacted, understand the trigger, and decide how to repair calmly.",
-      "You quickly apologize to make the guilt disappear as fast as possible."
+      "Write a 4-paragraph apology that sounds like a TED Talk on accountability.",
+      "Blame your horoscope, Mercury *is* in retrograde after all.",
+      "Acknowledge you messed up, regulate the guilt, and make amends like an adult human.",
+      "Overcompensate by being extra nice forever. Problem solved (temporarily)."
     ],
-    answer: 2, // true regulation balances awareness, accountability, and calmness
+    answer: 2, // calm accountability > guilt theatrics
   },
 
   { // 🪞 Handling Criticism
-    question: "4. In a team meeting, someone challenges your decision publicly, and you feel heat in your chest. What’s your best emotional move?",
+    question: "4. Someone calls out your idea in a meeting, and your ego takes personal offense. What do you do?",
     options: [
-      "Clarify your reasoning immediately before they control the narrative.",
-      "Smile politely but internally decide to distance from that colleague.",
-      "Laugh and agree with them to look humble, even if you disagree.",
-      "Maintain eye contact, breathe, and listen fully before choosing whether to respond."
-
+      "Casually say 'that’s interesting' while plotting their professional downfall internally.",
+      "Breathe, let the sting pass, and actually hear what they’re saying, shocking, right?",
+      "Laugh loudly and say 'wow, bold of you!' to defuse the tension (or make it worse).",
+      "Pretend to take notes but secretly doodle their funeral."
     ],
-    answer: 3, // regulation = grounding before reaction, not strategic masking
+    answer: 1, // humor aside — grounded listening > ego defense
   },
 
   { // ⚖️ Anxiety and Control
-    question: "5. You’re moments away from an important presentation; your heart’s racing and your hands feel cold. What’s your best choice?",
+    question: "5. You’re about to present, your palms are sweating, and your brain is buffering. What’s the move?",
     options: [
-      "Channel the nerves as excitement and speak faster to ride the adrenaline wave.",
-      "Pause, feel the physical sensations without judging them, and breathe with intention.",
-      "Distract yourself by thinking of something completely unrelated until you’re on stage.",
-      "Mentally scold yourself, this isn’t the time to be nervous."
+      "Whisper 'I am Beyoncé' three times and strut to the mic.",
+      "Observe your panic like a curious scientist who forgot their lab coat.",
+      "Chug another coffee because clearly, *that’s* what anxiety needs.",
+      "Rehearse your opening line 67 more times until your brain gives up."
     ],
-    answer: 1, // mindfulness without suppression = advanced emotional regulation
+    answer: 1, // mindfulness with humor = emotional mastery
   },
 ];
 
