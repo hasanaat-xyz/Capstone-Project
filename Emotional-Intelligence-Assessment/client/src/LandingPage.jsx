@@ -127,6 +127,21 @@ export default function LandingPage() {
           Why Emotional Intelligence <span className="text-[#f9b700]">Matters</span>
         </h2>
 
+        {/* 🌀 Animated EI Diagram */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-14"
+        >
+          <img
+            src="/images/ei-diagram.png" // 👈 save your uploaded image here
+            alt="Emotional Intelligence Diagram"
+            className="w-full max-w-3xl rounded-2xl shadow-lg border border-[#3c1f55]"
+          />
+        </motion.div>
+
         <div className="flex flex-wrap justify-center gap-10 px-10">
           {[
             {
