@@ -1,59 +1,64 @@
 /**
- * 🧊 LevelUpData — Self-Regulation Round
- * Each question tests your ability to manage emotions under pressure.
- * Every wrong answer *sounds reasonable*, but only one reflects true self-regulation.
+ * 🌀 LevelUpData — Self-Regulation Round (Twisted & Psychologically Confusing)
+ * Each question forces the player to navigate emotional nuance.
+ * All answers sound “emotionally mature,” but only one reflects true regulation.
  */
 
 const levelUpData = [
-  { // 😤 Managing Impulse
-    question: "1. In a heated argument, you feel your voice rising and heart pounding. What’s your most emotionally intelligent move?",
+  { // 😤 Emotional Impulse
+    question: "1. During a tense argument, your heart races and your voice trembles slightly. What’s your response?",
     options: [
-      "Stay silent but mentally replay every point you wish you’d said.",
-      "Take a slow breath, acknowledge the anger, and speak when calm.",
-      "Keep arguing — passion shows you care about the issue.",
-      "Walk away mid-sentence to prove you’re above it."
+      "Keep talking calmly to prove you’re in control, even if your thoughts blur.",
+      "Notice the rush, take a breath, and choose to pause—even if it feels like losing power.",
+      "Stay quiet but mentally prepare stronger comebacks for later.",
+      "Switch topics smoothly so no one notices your rising tension."
     ],
-    answer: 1, // ideal: awareness + control before reaction
+    answer: 1, // true self-regulation involves conscious pause, not image control
   },
-  { // ⏳ Handling Pressure
-    question: "2. You’re overloaded with work and close to burnout, but people still depend on you. What’s the BEST way to stay emotionally balanced?",
+
+  { // ⏳ Pressure Response
+    question: "2. You’re drowning in work but smiling to maintain your reputation as 'the reliable one'. What’s your best move?",
     options: [
-      "Ignore the stress — strong people just push through.",
-      "Plan micro-breaks, reset your breathing, and delegate if possible.",
-      "Work longer hours so you can relax guilt-free later.",
-      "Vent to everyone so they know how hard you’re working."
+      "Privately acknowledge the stress and intentionally reset your energy before continuing.",
+      "Keep smiling, it maintains morale for everyone else.",
+      "Tell yourself it’s temporary and keep pushing harder for one more week.",
+      "Vent to one friend just to release pressure—then ignore it again."
     ],
-    answer: 1, // ideal: proactive regulation, not denial
+    answer: 0, // regulation = awareness + reset, not repression or delay
   },
-  { // 💭 Emotional Reflection
-    question: "3. You made a serious mistake that cost your team progress. What’s your BEST internal response?",
+
+  { // 💭 Guilt Processing
+    question: "3. You snapped at someone and instantly regret it. What’s your best next thought?",
     options: [
-      "Keep replaying the mistake until you feel bad enough to never repeat it.",
-      "Acknowledge the guilt, learn from it, and re-focus on corrective action.",
-      "Convince yourself it wasn’t really your fault — others contributed too.",
-      "Apologize dramatically to show how sorry you are."
+      "You replay the moment repeatedly to ensure you never act that way again.",
+      "You justify it to yourself, they pushed you too far after all.",
+      "You admit you overreacted, understand the trigger, and decide how to repair calmly.",
+      "You quickly apologize to make the guilt disappear as fast as possible."
     ],
-    answer: 1, // ideal: reflection + forward regulation
+    answer: 2, // true regulation balances awareness, accountability, and calmness
   },
-  { // 🔥 Reactivity Under Criticism
-    question: "4. You’re criticized publicly during a meeting for something you didn’t entirely cause. What’s your most emotionally regulated move?",
+
+  { // 🪞 Handling Criticism
+    question: "4. In a team meeting, someone challenges your decision publicly, and you feel heat in your chest. What’s your best emotional move?",
     options: [
-      "Defend yourself immediately before they finish talking.",
-      "Stay composed, listen fully, and clarify privately later.",
-      "Keep quiet but let the resentment build inside.",
-      "Laugh it off sarcastically so no one sees you’re hurt."
+      "Clarify your reasoning immediately before they control the narrative.",
+      "Smile politely but internally decide to distance from that colleague.",
+      "Laugh and agree with them to look humble, even if you disagree.",
+      "Maintain eye contact, breathe, and listen fully before choosing whether to respond."
+
     ],
-    answer: 1, // ideal: composure + emotional delay
+    answer: 3, // regulation = grounding before reaction, not strategic masking
   },
-  { // ⚖️ Anxiety Control
-    question: "5. Right before an important presentation, you feel your hands shaking and mind racing. What’s the smartest regulation step?",
+
+  { // ⚖️ Anxiety and Control
+    question: "5. You’re moments away from an important presentation; your heart’s racing and your hands feel cold. What’s your best choice?",
     options: [
-      "Force yourself to think positive thoughts only.",
-      "Take a moment to breathe deeply and observe your physical state without judgment.",
-      "Distract yourself by scrolling your phone until it’s time.",
-      "Tell yourself you’re not nervous — just excited — and suppress the fear completely."
+      "Channel the nerves as excitement and speak faster to ride the adrenaline wave.",
+      "Pause, feel the physical sensations without judging them, and breathe with intention.",
+      "Distract yourself by thinking of something completely unrelated until you’re on stage.",
+      "Mentally scold yourself, this isn’t the time to be nervous."
     ],
-    answer: 1, // ideal: mindful observation over suppression
+    answer: 1, // mindfulness without suppression = advanced emotional regulation
   },
 ];
 

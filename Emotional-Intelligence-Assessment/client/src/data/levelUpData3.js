@@ -1,60 +1,64 @@
 /**
- * 💞 LevelUpData3 — Empathy & Relationships Round
- * These scenarios test deep emotional intelligence — reading people, managing connection,
- * and responding with awareness instead of automatic 'niceness'.
- * Each question hides subtle traps — only one reflects true empathic intelligence.
+ * 💞 LevelUpData3 — Empathy & Relationships Round (Psychologically Twisted)
+ * These scenarios test *real* empathy — not people-pleasing, rescuing, or emotional fixing.
+ * Every option sounds 'emotionally smart' — only one shows true empathic depth.
  */
 
 const levelUpData3 = [
   { // 💭 Reading Emotions
-    question: "1. A friend who’s usually cheerful seems distant but says they’re 'fine.' What’s the most emotionally intelligent response?",
+    question: "1. A usually cheerful friend has gone quiet and insists they’re 'just tired.' What’s your response?",
     options: [
-      "Accept their answer and change the topic to keep things light.",
-      "Press them to open up immediately — they need to talk.",
-      "Gently let them know you’ve noticed a change and you’re here if they want to share.",
-      "Send them motivational quotes to cheer them up."
+      "You gently note that you’ve noticed a shift, and they can reach out when they’re ready.",
+      "You back off, if they wanted to talk, they would have.",
+      "You say 'okay' but keep subtly checking on them with humor or small talk.",
+      "You start sharing one of your own struggles so they might feel safe to open up."
     ],
-    answer: 2, // ideal: empathy + respect for boundaries
+    answer: 0, // awareness + space + safety = real empathy
   },
+
   { // 🪞 Perspective-Taking
-    question: "2. You give feedback to a teammate, and they seem hurt even though you meant well. What’s the most empathic move?",
+    question: "2. You give a teammate feedback meant to help, but they go silent and distant. What’s your most empathic next step?",
     options: [
-      "Clarify that your intention wasn’t to hurt them — they’re too sensitive.",
-      "Ignore it, they’ll get over it eventually.",
-      "Apologize for how it came across and ask how you could phrase it better next time.",
-      "Overcompensate by giving them extra compliments."
+      "Ask them directly if you offended them, it’s better to clear the air immediately.",
+      "Acknowledge that your words may have landed wrong and invite their perspective calmly.",
+      "Give them space for a while; if they value the feedback, they’ll come around.",
+      "Lighten the mood by complimenting them right after, to balance the energy."
     ],
-    answer: 2, // ideal: emotional accountability + curiosity
+    answer: 1, // empathy = accountability + curiosity, not control or repair urgency
   },
+
   { // 🧠 Emotional Boundaries
-    question: "3. A close friend constantly vents about their problems and you feel emotionally drained. What’s the best response?",
+    question: "3. A close friend repeatedly vents to you and you feel emotionally heavy afterwards. What’s your best action?",
     options: [
-      "Keep listening — that’s what good friends do, even if it exhausts you.",
-      "Avoid their calls for a while to protect your peace.",
-      "Tell them kindly you care, but need to take space or set limits when needed.",
-      "Offer them advice every time so they stop repeating the same issue."
+      "Start limiting your replies so they understand you’re not available emotionally.",
+      "Keep listening quietly; they might just need consistency right now.",
+      "Offer constant advice, that’s the most helpful thing you can do long-term.",
+      "Tell them honestly that you care but need small breaks sometimes, emotional balance helps both of you.",
+
     ],
-    answer: 2, // ideal: balanced empathy with self-boundaries
+    answer: 3, // real empathy = connection + boundary, not avoidance or fixing
   },
+
   { // 💬 Relationship Dynamics
-    question: "4. Someone you care about starts withdrawing emotionally and replying coldly. What’s your most emotionally intelligent reaction?",
+    question: "4. Someone close to you grows emotionally distant and unresponsive over time. What’s your best response?",
     options: [
-      "Mirror their behavior to show how it feels.",
-      "Ask calmly if something has changed between you, without assuming or accusing.",
-      "Send long emotional messages to make them feel guilty for pulling away.",
-      "Pretend you don’t notice — you don’t want to seem needy."
+      "Match their distance to protect your self-respect, you can’t chase energy.",
+      "Try to reconnect by reminding them of how good things used to be.",
+     "Ask with calm curiosity if something shifted, and share your own feelings without demanding theirs.",
+      "Overthink quietly, maybe they just need time and you shouldn’t disrupt that."
     ],
-    answer: 1, // ideal: direct + emotionally aware communication
+    answer: 2, // grounded vulnerability + curiosity = high-EQ empathy
   },
+
   { // 🧩 Conflict & Compassion
-    question: "5. During a heated disagreement, the other person starts crying mid-conversation. What’s the most empathic action?",
+    question: "5. During a disagreement, the other person starts crying unexpectedly. What’s the most emotionally intelligent move?",
     options: [
-      "Keep explaining your point — you can’t stop every time someone gets emotional.",
-      "Immediately comfort them and drop your point to make them feel better.",
-      "Pause, acknowledge their emotion, and ask if they’d like a moment before continuing.",
-      "Get uncomfortable and end the conversation quickly."
+      "Acknowledge the emotion, pause, and ask if they’d prefer to continue later or take a moment.",
+      "Immediately comfort them and apologize repeatedly, emotions matter more than logic.",
+      "Stay focused and finish your point, otherwise they’ll always cry to end arguments.",
+      "Go silent out of respect; it’s their process, not your place to interfere."
     ],
-    answer: 2, // ideal: balance empathy + emotional pacing
+    answer: 0, // empathy = emotional attunement + shared regulation, not rescue or retreat
   },
 ];
 
