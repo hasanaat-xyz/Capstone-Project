@@ -14,7 +14,7 @@ const levelUpData3 = [
     ],
     answer: 1, // awareness + empathy under hunger pressure
   },
-  
+
   { // ❤️ Relationship Talk
     question: "2. Your partner says, ‘We need to talk.’ You reply...",
     options: [
@@ -60,5 +60,4 @@ const levelUpData3 = [
     answer: 2, // genuine concern > curiosity or gossip
   },
 ];
-
 export default levelUpData3;
