@@ -7,6 +7,8 @@ const router = express.Router();
 
 // 🧠 Register user
 router.post("/register", async (req, res) => {
+  console.log("📩 Register route hit:", req.body);
+
   try {
     const { name, email, password } = req.body;
 

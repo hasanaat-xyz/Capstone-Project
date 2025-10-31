@@ -98,82 +98,6 @@ export default function LandingPage() {
 
         {/* 🎨 Right Image Section */}
         <motion.div
-          className="md:w-1/2 flex justify-center mt-10 md:mt-0"
-          variants={slideFromRight}
-          initial="hidden"
-          animate="visible"
-        >
-          <img
-            src="/images/hero-ei.png"
-            alt="Emotional Intelligence Illustration"
-            className="w-[300px] md:w-[450px] rounded-2xl shadow-2xl"
-          />
-        </motion.div>
-      </section>
-
-      {/* 💜 Info Boxes */}
-<section className="py-20 bg-transparent overflow-hidden">
-  <motion.div
-    className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12 px-6"
-    initial="hidden"
-    whileInView="visible"
-    variants={{
-      hidden: {},
-      visible: {
-        transition: { staggerChildren: 0.25 },
-      },
-    }}
-    viewport={{ once: true }}
-  >
-    {[
-      {
-        icon: <Heart className="text-pink-400 flex-shrink-0" size={60} strokeWidth={1.2} />,
-        title: "What is Emotional Intelligence?",
-        text: "Emotional intelligence is the ability to understand and manage your emotions, while recognizing others’ emotions to communicate effectively.",
-      },
-      {
-        icon: <Brain className="text-yellow-400 flex-shrink-0" size={60} strokeWidth={1.2} />,
-        title: "EQ vs IQ",
-        text: "IQ measures cognitive intelligence. EQ measures how well you understand and manage emotions. High EQ often leads to better real-life outcomes.",
-      },
-      {
-        icon: <Lightbulb className="text-green-400 flex-shrink-0" size={60} strokeWidth={1.2} />,
-        title: "Did You Know?",
-        text: "Studies show that 90% of top performers have high EQ rather than high IQ. The good news: Emotional intelligence can be trained and improved over time.",
-      },
-    ].map((box, i) => (
-      <motion.div
-        key={i}
-        variants={slideFromLeft}
-        className="p-6 rounded-2xl shadow-md hover:shadow-lg transition-all bg-[#2b1b3a]"
-      >
-        <div className="flex items-start space-x-5">
-          {box.icon}
-          <div>
-            <h3 className="text-xl font-semibold mb-2 text-purple-200">{box.title}</h3>
-            <p className="text-sm text-gray-200 leading-relaxed">{box.text}</p>
-          </div>
-        </div>
-      </motion.div>
-    ))}
-  </motion.div>
-</section>
-
-
-      {/* 💡 Why EI Matters */}
-      <section className="py-24 bg-transparent text-center overflow-hidden">
-        <motion.h2
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-4xl font-bold mb-10"
-        >
-          Why Emotional Intelligence <span className="text-[#f9b700]">Matters</span>
-        </motion.h2>
-
-        {/* 🌀 Animated EI Diagram */}
-        <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -183,42 +107,122 @@ export default function LandingPage() {
           <img
             src="/images/ei-diagram.png"
             alt="Emotional Intelligence Diagram"
-            className="w-full max-w-2xl rounded-2xl shadow-lg border border-[#3c1f55]"
+            className="w-full max-w-xl rounded-2xl shadow-lg border border-[#3c1f55]"
           />
         </motion.div>
+      </section>
 
+      {/* 💜 Info Boxes */}
+      <section className="py-20 bg-transparent overflow-hidden">
         <motion.div
-          className="flex flex-wrap justify-center gap-10 px-10"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12 px-6"
           initial="hidden"
           whileInView="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.25 },
+            },
+          }}
           viewport={{ once: true }}
         >
           {[
             {
-              icon: "💞",
-              title: "Build better relationships",
-              text: "When you understand and manage emotions well, you communicate better and connect deeply with others, building trust and respect naturally.",
+              icon: <Heart className="text-pink-400 flex-shrink-0" size={60} strokeWidth={1.2} />,
+              title: "What is Emotional Intelligence?",
+              text: "Emotional intelligence is the ability to understand and manage your emotions, while recognizing others’ emotions to communicate effectively.",
             },
             {
-              icon: "🚀",
-              title: "Boost your career success",
-              text: "People with strong emotional intelligence handle stress, teamwork, and feedback well — qualities every leader and manager values.",
+              icon: <Brain className="text-yellow-400 flex-shrink-0" size={60} strokeWidth={1.2} />,
+              title: "EQ vs IQ",
+              text: "IQ measures cognitive intelligence. EQ measures how well you understand and manage emotions. High EQ often leads to better real-life outcomes.",
             },
             {
-              icon: "🌿",
-              title: "Improve mental wellness",
-              text: "Understanding your emotions helps you calm your mind, avoid burnout, and stay balanced, making life feel lighter and more manageable.",
+              icon: <Lightbulb className="text-green-400 flex-shrink-0" size={60} strokeWidth={1.2} />,
+              title: "Did You Know?",
+              text: "Studies show that 90% of top performers have high EQ rather than high IQ. The good news: Emotional intelligence can be trained and improved over time.",
             },
-            {
-              icon: "🧠",
-              title: "Make smarter decisions",
-              text: "When emotions don’t cloud your judgment, you can think clearly, evaluate better, and choose what’s truly right for you.",
-            },
-          ].map((item, i) => (
-            <WhyCard key={i} item={item} i={i} />
+          ].map((box, i) => (
+            <motion.div
+              key={i}
+              variants={slideFromLeft}
+              className="p-6 rounded-2xl shadow-md hover:shadow-lg transition-all bg-[#2b1b3a]"
+            >
+              <div className="flex items-start space-x-5">
+                {box.icon}
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-purple-200">{box.title}</h3>
+                  <p className="text-sm text-gray-200 leading-relaxed">{box.text}</p>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </motion.div>
       </section>
+
+     {/* 💡 Why EI Matters */}
+<section className="py-24 bg-transparent text-center">
+  <motion.h2
+    initial={{ opacity: 0, x: -80 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+    className="text-4xl font-bold mb-10"
+  >
+    Why Emotional Intelligence <span className="text-[#f9b700]">Matters</span>
+  </motion.h2>
+
+  <motion.div
+    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 px-6 md:px-10"
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={{
+      hidden: {},
+      visible: {
+        transition: { staggerChildren: 0.25 },
+      },
+    }}
+  >
+    {[
+      {
+        icon: "💞",
+        title: "Build better relationships",
+        text: "When you understand and manage emotions well, you communicate better and connect deeply with others, building trust and respect naturally.",
+      },
+      {
+        icon: "🚀",
+        title: "Boost your career success",
+        text: "People with strong emotional intelligence handle stress, teamwork, and feedback well, qualities every leader and manager values.",
+      },
+      {
+        icon: "🌿",
+        title: "Improve mental wellness",
+        text: "Understanding your emotions helps you calm your mind, avoid burnout, and stay balanced, making life feel lighter and more manageable.",
+      },
+      {
+        icon: "🧠",
+        title: "Make smarter decisions",
+        text: "When emotions don’t cloud your judgment, you can think clearly, evaluate better, and choose what’s truly right for you.",
+      },
+    ].map((item, i) => (
+      <motion.div
+        key={i}
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+        }}
+        className="bg-[#2b1b3a] p-6 rounded-2xl shadow-md hover:shadow-lg transition-all relative z-10 cursor-pointer"
+      >
+        <div className="flex flex-col items-center">
+          <div className="text-5xl mb-3">{item.icon}</div>
+          <h3 className="text-xl font-semibold mb-2 text-purple-200 text-center">{item.title}</h3>
+          <p className="text-sm text-gray-200 leading-relaxed text-center">{item.text}</p>
+        </div>
+      </motion.div>
+    ))}
+  </motion.div>
+</section>
 
       {/* ⚙️ How It Works */}
       <section className="py-24 bg-transparent text-center relative overflow-hidden">

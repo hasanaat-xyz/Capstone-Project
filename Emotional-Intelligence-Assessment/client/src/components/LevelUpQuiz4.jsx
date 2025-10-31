@@ -2,12 +2,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import levelUpData3 from "../data/levelUpData3"; // ✅ Level 3 questions
+import levelUpData4 from "../data/levelUpData4"; // Level 4 questions
 
-export default function LevelUpQuiz3() {
+export default function LevelUpQuiz4() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { currentUser, level1Results, level2Results } = location.state || {};
+  const { currentUser, level1Results, level2Results, level3Results } = location.state || {};
 
   if (!currentUser) {
     navigate("/login");
@@ -28,7 +28,7 @@ export default function LevelUpQuiz3() {
     setUserAnswers(updatedAnswers);
     setQuestionTimes(updatedTimes);
 
-    if (currentQuestion + 1 === levelUpData3.length) {
+    if (currentQuestion + 1 === levelUpData4.length) {
       setStage("complete");
     } else {
       setCurrentQuestion(currentQuestion + 1);
@@ -37,14 +37,14 @@ export default function LevelUpQuiz3() {
   };
 
   const handleShowReport = () => {
-    const level3Data = {
-      level: 3,
+    const level4Data = {
+      level: 4,
       score: userAnswers.reduce(
-        (sum, ans, i) => sum + (ans === levelUpData3[i].answer ? 1 : 0),
+        (sum, ans, i) => sum + (ans === levelUpData4[i].answer ? 1 : 0),
         0
       ),
-      total: levelUpData3.length,
-      questions: levelUpData3.map((q, i) => ({
+      total: levelUpData4.length,
+      questions: levelUpData4.map((q, i) => ({
         questionText: q.question,
         chosenAnswer: q.options[userAnswers[i]],
         score: userAnswers[i] === q.answer ? 1 : 0,
@@ -52,23 +52,23 @@ export default function LevelUpQuiz3() {
       })),
     };
 
-    // Navigate immediately to next screen (Level 4 or report)
-    navigate("/level4", {
-      state: { currentUser, level1Results, level2Results, level3Results: level3Data },
+    // Navigate immediately
+    navigate("/eq-report", {
+      state: [level1Results, level2Results, level3Results, level4Data],
     });
 
-    // Save results to backend
+    // Send results to server in background
     axios.post("http://localhost:5000/api/quiz/result", {
       userId: currentUser._id,
-      level: 3,
+      level: 4,
       userAnswers,
       timePerQuestion: questionTimes,
-      quizQuestions: levelUpData3.map((q) => ({
+      quizQuestions: levelUpData4.map((q) => ({
         question: q.question,
         options: q.options,
         correctIndex: q.answer,
       })),
-    }).catch(err => console.error("Error saving Level 3 result:", err));
+    }).catch(err => console.error("Error saving Level 4 result:", err));
   };
 
   return (
@@ -80,11 +80,11 @@ export default function LevelUpQuiz3() {
     >
       {stage === "quiz" && (
         <>
-          <h2 className="text-3xl font-bold mb-6 text-purple-700">Resilience & Grit 💪</h2>
+          <h2 className="text-3xl font-bold mb-6 text-purple-700">Motivation & Drive ⚡</h2>
           <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-xl w-full max-w-lg">
-            <h3 className="text-lg mb-4 font-semibold">{levelUpData3[currentQuestion].question}</h3>
+            <h3 className="text-lg mb-4 font-semibold">{levelUpData4[currentQuestion].question}</h3>
             <div className="flex flex-col space-y-3">
-              {levelUpData3[currentQuestion].options.map((opt, i) => (
+              {levelUpData4[currentQuestion].options.map((opt, i) => (
                 <button
                   key={i}
                   onClick={() => handleSelect(i)}
@@ -96,7 +96,7 @@ export default function LevelUpQuiz3() {
             </div>
           </div>
           <p className="mt-6 text-sm opacity-80">
-            Question {currentQuestion + 1} of {levelUpData3.length}
+            Question {currentQuestion + 1} of {levelUpData4.length}
           </p>
         </>
       )}
@@ -108,22 +108,22 @@ export default function LevelUpQuiz3() {
           transition={{ duration: 0.6 }}
           className="text-center bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-sm"
         >
-          <h2 className="text-3xl font-bold mb-4 text-purple-700">Awesome Work!</h2>
+          <h2 className="text-3xl font-bold mb-4 text-purple-700">Captain of Drive & Ambition</h2>
           <p className="text-xl mb-4">
             You scored{" "}
             <span className="font-bold text-pink-600">
               {userAnswers.reduce(
-                (sum, ans, i) => sum + (ans === levelUpData3[i].answer ? 1 : 0),
+                (sum, ans, i) => sum + (ans === levelUpData4[i].answer ? 1 : 0),
                 0
               )}
             </span>{" "}
-            / {levelUpData3.length}
+            / {levelUpData4.length}
           </p>
           <button
             onClick={handleShowReport}
             className="bg-pink-300 hover:bg-pink-400 text-white font-semibold px-6 py-3 rounded-full shadow-md transition-all duration-300"
           >
-           It's time to explore Motivation
+            View Final EQ Report →
           </button>
         </motion.div>
       )}

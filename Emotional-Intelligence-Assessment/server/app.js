@@ -8,32 +8,31 @@ import authRoutes from "./routes/auth.js";
 import quizRoutes from "./routes/quiz.js";
 import aiReportRoutes from "./routes/aiReportRoutes.js";
 
-
+// Load .env
 dotenv.config();
+
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
 // MongoDB Connection
-mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch((err) => console.error("❌ MongoDB Error:", err));
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB Connected"))
+.catch((err) => console.error("❌ MongoDB Error:", err));
 
 // Routes
-app.use("/api/auth", authRoutes);   //  handles /register & /login
-app.use("/api/quiz", quizRoutes);   //  handles /result & /results/:userId
-app.use("/api/ai", aiReportRoutes);
-
-// server.js (Node/Express)
-app.post("/api/quizResults", async (req, res) => {
-  const { userId, score, questionTimes, date } = req.body;
-  const result = new QuizResult({ userId, score, questionTimes, date });
-  await result.save();
-  res.json({ success: true });
+app.get("/", (req, res) => {
+  res.send("Server is working!");
 });
+
+app.use("/api/auth", authRoutes);   // handles /register & /login
+app.use("/api/quiz", quizRoutes);   // handles /result & /results/:userId
+app.use("/api/ai", aiReportRoutes); // handles AI report
 
 // Start Server
 const PORT = process.env.PORT || 5000;
