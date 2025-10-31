@@ -60,4 +60,5 @@ const levelUpData3 = [
     answer: 2, // genuine concern > curiosity or gossip
   },
 ];
+
 export default levelUpData3;

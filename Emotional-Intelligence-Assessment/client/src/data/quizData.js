@@ -10,6 +10,7 @@ const levelUpData = [
     ],
     answer: 4, // ideal: deep reflection & awareness
   },
+  
   {
     question: "2. If someone described you using only your emotional reactions, what three traits would they choose, and which one would you disagree with most?",
     options: [
@@ -21,6 +22,7 @@ const levelUpData = [
     ],
     answer: 4, // ideal: reflective and meta-aware
   },
+
   {
     question: "3. Do your emotions lead your thoughts, or your thoughts lead your emotions, and can you recall a time you were wrong about which was driving which?",
     options: [
@@ -32,6 +34,7 @@ const levelUpData = [
     ],
     answer: 4, // ideal: meta-cognition and reflection
   },
+
   {
     question: "4. What emotion do you express most easily, and what emotion hides behind it when you’re under pressure?",
     options: [
@@ -43,6 +46,7 @@ const levelUpData = [
     ],
     answer: 4, // ideal: self-awareness and emotional regulation
   },
+
   {
     question: "5. If every emotion you feel were a person sitting around a table, which one would always interrupt, and which one never gets to speak?",
     options: [
