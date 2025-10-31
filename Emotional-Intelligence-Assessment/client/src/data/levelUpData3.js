@@ -14,6 +14,7 @@ const levelUpData3 = [
     ],
     answer: 1, // awareness + empathy under hunger pressure
   },
+  
   { // ❤️ Relationship Talk
     question: "2. Your partner says, ‘We need to talk.’ You reply...",
     options: [
