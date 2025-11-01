@@ -74,8 +74,6 @@ router.post("/result", async (req, res) => {
     res.status(500).json({ msg: "Server error", error: err.message });
   }
 });
-
-
 // ✅ Get all results for a user
 router.get("/results/:userId", async (req, res) => {
   try {
