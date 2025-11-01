@@ -84,5 +84,4 @@ router.get("/results/:userId", async (req, res) => {
     res.status(500).json({ msg: "Server error", error: err.message });
   }
 });
-
 export default router;
