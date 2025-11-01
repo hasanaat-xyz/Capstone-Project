@@ -19,9 +19,9 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#1b0e2e] text-white overflow-hidden font-poppins">
-      {/* 🌙 Navbar */}
+      {/* Navbar */}
       <nav className="flex justify-between items-center px-6 md:px-16 py-5 bg-[#4a2c6e]/60 backdrop-blur-md border-b border-[#2b1b3a]/50 fixed top-0 left-0 w-full z-50 shadow-lg">
-        {/* 🍔 Burger Menu (Mobile) */}
+        {/* Burger Menu (Mobile) */}
         <button
           onClick={() => setIsMenuOpen(true)}
           className="text-white md:hidden"
@@ -29,7 +29,7 @@ export default function LandingPage() {
           <Menu size={28} />
         </button>
 
-        {/* 🌟 Brand */}
+        {/* Brand */}
         <h1
           className="text-2xl font-bold text-white cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -37,7 +37,7 @@ export default function LandingPage() {
           nuvio.<span className="text-white">care</span>
         </h1>
 
-        {/* 🧭 Desktop Links */}
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-6 text-gray-200 font-medium">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -115,7 +115,7 @@ export default function LandingPage() {
         )}
       </AnimatePresence>
 
-      {/* 🏁 Hero Section */}
+      {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-[90vh] px-6 md:px-16 text-center gap-10 pt-32">
         <motion.div
           className="max-w-3xl flex flex-col items-center"
