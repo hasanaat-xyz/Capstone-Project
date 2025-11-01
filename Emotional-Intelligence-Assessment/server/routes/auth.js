@@ -4,7 +4,6 @@ import User from "../models/User.js";
 import QuizResult from "../models/QuizResult.js";
 
 const router = express.Router();
-
 // 🧠 Register user
 router.post("/register", async (req, res) => {
   console.log("📩 Register route hit:", req.body);
