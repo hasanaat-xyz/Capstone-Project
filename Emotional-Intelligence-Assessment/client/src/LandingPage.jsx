@@ -155,7 +155,7 @@ export default function LandingPage() {
       </section>
 
       {/* 💜 Info Boxes */}
-      
+
       <section
         id="info"
         className="py-16 bg-transparent overflow-hidden" // increased padding-top to move downward
@@ -207,6 +207,7 @@ export default function LandingPage() {
       </section>
 
       {/* 🧠 WHY EI MATTERS */}
+      
       <section className="py-20 bg-[#1b0e2e] text-white flex flex-col items-center justify-center px-6 md:px-16">
         <motion.h2
           className="text-4xl md:text-5xl font-bold mb-12 text-center text-[#bfa5ff]"
