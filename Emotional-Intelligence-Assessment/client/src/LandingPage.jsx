@@ -349,7 +349,6 @@ export default function LandingPage() {
         >
           3 Quick EI Tips to Practice Daily
         </motion.h2>
-
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
           initial="hidden"
@@ -361,6 +360,7 @@ export default function LandingPage() {
           viewport={{ once: true }}
         >
           {[
+            
             {
               title: "Pause & Reflect",
               text: "Take a moment before reacting to emotionally charged situations.",
