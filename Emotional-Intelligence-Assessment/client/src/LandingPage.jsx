@@ -248,6 +248,7 @@ export default function LandingPage() {
               title: "Personal Growth",
               text: "Self-awareness helps you grow, adapt, and stay motivated even in challenges.",
             },
+            
           ].map((item, i) => (
             <motion.div
               key={i}
