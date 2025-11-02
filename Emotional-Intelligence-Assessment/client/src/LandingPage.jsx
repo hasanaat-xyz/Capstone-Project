@@ -313,7 +313,7 @@ export default function LandingPage() {
               text: "I improved my communication and empathy at work thanks to the interactive exercises.",
               name: "Rahul S.",
             },
-            
+
             {
               text: "Fun, engaging, and practical. My EQ score increased within weeks!",
               name: "Maya K.",
@@ -339,7 +339,6 @@ export default function LandingPage() {
           ))}
         </div>
       </section>
-
       {/* 📚 EI Tips Section */}
       <section className="py-20 bg-[#2b1b3a] text-white flex flex-col items-center justify-center px-6 md:px-16 gap-10">
         <motion.h2
