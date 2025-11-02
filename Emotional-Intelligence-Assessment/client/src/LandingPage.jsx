@@ -291,7 +291,7 @@ export default function LandingPage() {
           🎯 Start Your EI Adventure!
         </motion.button>
       </section>
-      
+
       {/* 🗣 Testimonials Section */}
       <section className="py-20 bg-[#1b0e2e] text-white px-6 md:px-16">
         <motion.h2
@@ -313,6 +313,7 @@ export default function LandingPage() {
               text: "I improved my communication and empathy at work thanks to the interactive exercises.",
               name: "Rahul S.",
             },
+            
             {
               text: "Fun, engaging, and practical. My EQ score increased within weeks!",
               name: "Maya K.",
