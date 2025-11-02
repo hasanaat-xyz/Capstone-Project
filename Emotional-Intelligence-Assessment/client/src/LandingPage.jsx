@@ -248,7 +248,7 @@ export default function LandingPage() {
               title: "Personal Growth",
               text: "Self-awareness helps you grow, adapt, and stay motivated even in challenges.",
             },
-            
+
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -291,7 +291,7 @@ export default function LandingPage() {
           🎯 Start Your EI Adventure!
         </motion.button>
       </section>
-
+      
       {/* 🗣 Testimonials Section */}
       <section className="py-20 bg-[#1b0e2e] text-white px-6 md:px-16">
         <motion.h2
