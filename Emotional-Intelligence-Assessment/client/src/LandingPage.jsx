@@ -142,7 +142,7 @@ export default function LandingPage() {
             Discover how well you understand emotions in yourself and others
             through an interactive, gamified experience.
           </motion.p>
-          
+
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -155,6 +155,7 @@ export default function LandingPage() {
       </section>
 
       {/* 💜 Info Boxes */}
+      
       <section
         id="info"
         className="py-16 bg-transparent overflow-hidden" // increased padding-top to move downward
