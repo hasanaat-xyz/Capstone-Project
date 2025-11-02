@@ -360,7 +360,7 @@ export default function LandingPage() {
           viewport={{ once: true }}
         >
           {[
-            
+
             {
               title: "Pause & Reflect",
               text: "Take a moment before reacting to emotionally charged situations.",
@@ -387,7 +387,6 @@ export default function LandingPage() {
           ))}
         </motion.div>
       </section>
-
       {/* ❤️ Footer */}
       <footer className="text-center py-6 text-gray-400 text-sm border-t border-[#2b1b3a] bg-[#1b0e2e]">
         Made with <span className="text-red-500">❤️</span> by{" "}
