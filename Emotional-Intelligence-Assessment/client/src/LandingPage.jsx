@@ -360,7 +360,6 @@ export default function LandingPage() {
           viewport={{ once: true }}
         >
           {[
-
             {
               title: "Pause & Reflect",
               text: "Take a moment before reacting to emotionally charged situations.",
