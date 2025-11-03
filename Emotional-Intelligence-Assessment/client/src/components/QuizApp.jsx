@@ -86,7 +86,6 @@ export default function Level1Quiz() {
         Question {currentQuestion + 1} of {quizData.length}
       </p>
 
-      {/* Completion Popup */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
@@ -106,9 +105,11 @@ export default function Level1Quiz() {
                 onClick={handleNextLevel}
                 className="bg-indigo-400 text-white px-6 py-2 rounded-full hover:bg-indigo-500 transition-all"
               >
-                Explore Self-Regulation →
+               Let’s see if your charm survives Level 2 😏 →
               </button>
             </div>
+
+            
           </motion.div>
         )}
       </AnimatePresence>

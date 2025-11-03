@@ -5,6 +5,7 @@ import LoginSignup from "./LoginSignup";
 import LevelUpQuiz from "./components/LevelUpQuiz"; // Level 2
 import LevelUpQuiz3 from "./components/LevelUpQuiz3"; // Level 3
 import LevelUpQuiz4 from "./components/LevelUpQuiz4"; // Level 4
+import LevelUpQuiz5 from "./components/LevelUpQuiz5";
 import LandingPage from "./LandingPage";
 import EQReport from "./components/EQReport"; // Final report
 
@@ -48,6 +49,7 @@ function App() {
 
           {/* ✅ Level 4 */}
           <Route path="/level4" element={<LevelUpQuiz4 />} />
+           <Route path="/level5" element={<LevelUpQuiz5 />} />
 
           {/* ✅ Final EQ Report */}
           <Route path="/eq-report" element={<EQReport />} />

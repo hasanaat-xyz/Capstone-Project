@@ -36,7 +36,7 @@ export default function LevelUpQuiz4() {
     }
   };
 
-  const handleShowReport = () => {
+  const handleNextLevel = () => {
     const level4Data = {
       level: 4,
       score: userAnswers.reduce(
@@ -52,9 +52,9 @@ export default function LevelUpQuiz4() {
       })),
     };
 
-    // Navigate immediately
-    navigate("/eq-report", {
-      state: [level1Results, level2Results, level3Results, level4Data],
+    // Navigate to Level 5 with all previous results
+    navigate("/level5", {
+      state: [currentUser, level1Results, level2Results, level3Results, level4Data],
     });
 
     // Send results to server in background
@@ -80,7 +80,7 @@ export default function LevelUpQuiz4() {
     >
       {stage === "quiz" && (
         <>
-          <h2 className="text-3xl font-bold mb-6 text-purple-700">Motivation & Drive ⚡</h2>
+          <h2 className="text-3xl font-bold mb-6 text-purple-700">Fuel Up, Fear Down⚡</h2>
           <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-xl w-full max-w-lg">
             <h3 className="text-lg mb-4 font-semibold">{levelUpData4[currentQuestion].question}</h3>
             <div className="flex flex-col space-y-3">
@@ -108,7 +108,7 @@ export default function LevelUpQuiz4() {
           transition={{ duration: 0.6 }}
           className="text-center bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-2xl max-w-sm"
         >
-          <h2 className="text-3xl font-bold mb-4 text-purple-700">Captain of Drive & Ambition</h2>
+          <h2 className="text-3xl font-bold mb-4 text-purple-700">Well-done!</h2>
           <p className="text-xl mb-4">
             You scored{" "}
             <span className="font-bold text-pink-600">
@@ -120,10 +120,10 @@ export default function LevelUpQuiz4() {
             / {levelUpData4.length}
           </p>
           <button
-            onClick={handleShowReport}
+            onClick={handleNextLevel}
             className="bg-pink-300 hover:bg-pink-400 text-white font-semibold px-6 py-3 rounded-full shadow-md transition-all duration-300"
           >
-            View Final EQ Report →
+           Blast Off to Level 5 🚀 →
           </button>
         </motion.div>
       )}

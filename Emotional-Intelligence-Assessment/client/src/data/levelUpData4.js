@@ -39,12 +39,12 @@ const levelUpData4 = [
     // 💡 4. The Comparison Spiral
     question: "4. You see a peer succeeding faster than you, same field, same age. What happens in your mind?",
     options: [
+            "You reflect: 'Their path isn’t mine. I’m building differently.' 🧱",
       "You use their success as fuel, healthy competition 🔥",
       "You feel jealous but mask it with fake cheer 🫠",
-      "You reflect: 'Their path isn’t mine. I’m building differently.' 🧱",
       "You promise yourself revenge-level success 😤"
     ],
-    answer: 2
+    answer: 0
   },
 
   { 
