@@ -70,7 +70,6 @@ Please include:
 2. Strengths observed
 3. Areas for improvement
 4. 3 personalized tips
-
 Keep it friendly, insightful, and under 250 words.
 `;
 
