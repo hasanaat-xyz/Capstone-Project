@@ -72,6 +72,7 @@ Please include:
 4. 3 personalized tips
 Keep it friendly, insightful, and under 250 words.
 `;
+
         const result = await model.generateContent(prompt);
         let text = result.response.text() || "⚠️ No insights generated at this time.";
         text = text.replace(/\*\*/g, "").replace(/^-+\s*/gm, "").replace(/\n{2,}/g, "\n").trim();
