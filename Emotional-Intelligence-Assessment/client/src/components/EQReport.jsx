@@ -88,7 +88,6 @@ Keep it friendly, insightful, and under 250 words.
 
     generateAIReport();
   }, [results, totalScore, maxScore, percentage, rating]);
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-gray-100 to-gray-200 p-6">
       <h1 className="text-4xl font-bold mb-6 text-gray-800">🎯 Your EQ Report</h1>
