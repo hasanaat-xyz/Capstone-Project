@@ -123,7 +123,7 @@ export default function LevelUpQuiz4() {
             onClick={handleNextLevel}
             className="bg-pink-300 hover:bg-pink-400 text-white font-semibold px-6 py-3 rounded-full shadow-md transition-all duration-300"
           >
-           Blast Off to Level 5 🚀 →
+           Blast Off to to explore your social skills 🚀 →
           </button>
         </motion.div>
       )}
