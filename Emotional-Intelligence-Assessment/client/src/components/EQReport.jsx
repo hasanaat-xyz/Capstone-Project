@@ -139,7 +139,6 @@ Keep it friendly, insightful, and under 250 words.
                   📄 {line}
                 </p>
               );
-              
               if (/strength/i.test(line)) return (
                 <p key={idx} className="bg-blue-50 pl-4 py-1 rounded-lg text-blue-800 font-semibold">
                   ⭐ {line}
