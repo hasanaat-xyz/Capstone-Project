@@ -118,7 +118,7 @@ Keep it friendly, insightful, and under 250 words.
               ></div>
             </div>
           </div>
-          
+
         ))}
       </div>
       <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-2xl mb-6">
@@ -128,7 +128,6 @@ Keep it friendly, insightful, and under 250 words.
         {loading ? (
           <p className="animate-pulse text-gray-500">Generating your personalized EQ insights...</p>
         ) : (
-
           <div className="space-y-4 text-gray-700">
             {aiReport.split("\n").map((line, idx) => {
               if (/tip/i.test(line)) return (
