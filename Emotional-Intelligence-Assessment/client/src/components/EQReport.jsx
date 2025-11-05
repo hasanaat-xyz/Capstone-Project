@@ -156,5 +156,4 @@ Keep it friendly, insightful, and under 250 words.
       </div>
     </div>
   );
-  
 }
