@@ -39,7 +39,6 @@ export default function Level1Quiz() {
           correctIndex: q.answer,
         })),
       };
-
       setShowPopup(true);
       localStorage.setItem("level1Results", JSON.stringify(level1Results));
     } else {
@@ -108,8 +107,6 @@ export default function Level1Quiz() {
                Let’s see if your charm survives Level 2 😏 →
               </button>
             </div>
-
-            
           </motion.div>
         )}
       </AnimatePresence>
