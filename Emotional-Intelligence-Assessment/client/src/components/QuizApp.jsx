@@ -90,6 +90,7 @@ export default function Level1Quiz() {
         {showPopup && (
           <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
+            
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm"
