@@ -8,9 +8,9 @@ export default function EQReport() {
 
   if (!results) results = [];
   else if (!Array.isArray(results) && typeof results === "object") {
-    // Convert object level1, level2, level3 to array
+    // Convert object level1, level2, level3, etc. to array
     results = Object.keys(results).map(key => ({
-      level: key.replace("level", ""), // "1", "2", "3"
+      level: key.replace("level", ""), // "1", "2", "3", etc.
       ...results[key]
     }));
   }
@@ -39,6 +39,15 @@ export default function EQReport() {
     ratingColor = "bg-red-100 text-red-800";
   }
 
+  // Map level numbers to their corresponding round names
+  const levelNames = {
+    1: "Round 1  (Self-Regulation)",
+    2: "Round 2  (Self-Awareness)",
+    3: "Round 3  (Empathy & Relationships)",
+    4: "Round 4  (Motivation)",
+    5: "Round 5  (Social Skills)",
+  };
+
   useEffect(() => {
     const generateAIReport = async () => {
       setLoading(true);
@@ -47,7 +56,7 @@ export default function EQReport() {
         const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const allLevelsText = results.map(level => {
-          return `Level ${level.level}:\n` +
+          return `${levelNames[level.level] || `Round ${level.level}`}:\n` +
             (level.questions || []).map(q =>
               `Q: ${q.questionText}\nAnswer: ${q.chosenAnswer}\nScore: ${q.score}\nTime Spent: ${q.timeSpent}s`
             ).join("\n\n");
@@ -88,6 +97,7 @@ Keep it friendly, insightful, and under 250 words.
 
     generateAIReport();
   }, [results, totalScore, maxScore, percentage, rating]);
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-gray-100 to-gray-200 p-6">
       <h1 className="text-4xl font-bold mb-6 text-gray-800">🎯 Your EQ Report</h1>
@@ -103,7 +113,9 @@ Keep it friendly, insightful, and under 250 words.
 
         {results.map((level, idx) => (
           <div key={idx} className="mb-4">
-            <h2 className="font-bold text-lg mb-1 text-gray-800">Level {level.level}</h2>
+            <h2 className="font-bold text-lg mb-1 text-gray-800">
+              {levelNames[level.level] || `Round ${level.level}`}
+            </h2>
             <p className="text-gray-700 mb-1">
               Score: {level.score} / {level.total}
             </p>
@@ -112,7 +124,7 @@ Keep it friendly, insightful, and under 250 words.
                 className="h-4 rounded-full"
                 style={{
                   width: `${Math.round((level.score / level.total) * 100)}%`,
-                  backgroundColor: ["#A3BFFA","#FBC5A3","#C6F6D5"][idx % 3],
+                  backgroundColor: ["#A3BFFA","#FBC5A3","#C6F6D5","#FEEBC8","#E9D8FD"][idx % 5],
                   transition: "width 0.5s ease-in-out",
                 }}
               ></div>
@@ -120,6 +132,7 @@ Keep it friendly, insightful, and under 250 words.
           </div>
         ))}
       </div>
+
       <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-2xl mb-6">
         <h2 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center gap-2">
          Decode My Feels:
