@@ -47,7 +47,6 @@ export default function EQReport() {
     4: "Round 4  (Motivation)",
     5: "Round 5  (Social Skills)",
   };
-
   useEffect(() => {
     const generateAIReport = async () => {
       setLoading(true);
