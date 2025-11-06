@@ -87,7 +87,6 @@ Keep it friendly, insightful, and under 250 words.
         setLoading(false);
       }
     };
-
     generateAIReport();
   }, [results, totalScore, maxScore, percentage, rating]);
 
