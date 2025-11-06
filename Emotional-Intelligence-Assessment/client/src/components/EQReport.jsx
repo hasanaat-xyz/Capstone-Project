@@ -9,9 +9,9 @@ export default function EQReport() {
   if (!results) results = [];
   else if (!Array.isArray(results) && typeof results === "object") {
     // Convert object level1, level2, level3, etc. to array
-    results = Object.keys(results).map(key => ({
+    results = Object.keys(results).map((key) => ({
       level: key.replace("level", ""), // "1", "2", "3", etc.
-      ...results[key]
+      ...results[key],
     }));
   }
 
@@ -19,10 +19,17 @@ export default function EQReport() {
   const [loading, setLoading] = useState(false);
 
   if (!results || results.length === 0) {
-    return <p className="p-6 text-red-500">No results found. Please complete the quiz first.</p>;
+    return (
+      <p className="p-6 text-red-500">
+        No results found. Please complete the quiz first.
+      </p>
+    );
   }
 
-  const totalScore = results.reduce((sum, level) => sum + (level.score || 0), 0);
+  const totalScore = results.reduce(
+    (sum, level) => sum + (level.score || 0),
+    0
+  );
   const maxScore = results.reduce((sum, level) => sum + (level.total || 0), 0);
   const percentage = Math.round((totalScore / maxScore) * 100);
 
@@ -51,14 +58,23 @@ export default function EQReport() {
     const generateAIReport = async () => {
       setLoading(true);
       try {
-        const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+        const genAI = new GoogleGenerativeAI(
+          import.meta.env.VITE_GEMINI_API_KEY
+        );
         const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-        const allLevelsText = results.map(level => {
-          return `${levelNames[level.level] || `Round ${level.level}`}:\n` +
-            (level.questions || []).map(q =>
-              `Q: ${q.questionText}\nAnswer: ${q.chosenAnswer}\nScore: ${q.score}\nTime Spent: ${q.timeSpent}s`
-            ).join("\n\n");
-        }).join("\n\n");
+        const allLevelsText = results
+          .map((level) => {
+            return (
+              `${levelNames[level.level] || `Round ${level.level}`}:\n` +
+              (level.questions || [])
+                .map(
+                  (q) =>
+                    `Q: ${q.questionText}\nAnswer: ${q.chosenAnswer}\nScore: ${q.score}\nTime Spent: ${q.timeSpent}s`
+                )
+                .join("\n\n")
+            );
+          })
+          .join("\n\n");
         const prompt = `
 You are an expert emotional intelligence coach.
 Generate a concise, motivational, and personalized EQ report for the user based on their quiz performance.
@@ -75,9 +91,14 @@ Please include:
 4. 3 personalized tips
 Keep it friendly, insightful, and under 250 words.
 `;
- const result = await model.generateContent(prompt);
-        let text = result.response.text() || "⚠️ No insights generated at this time.";
-        text = text.replace(/\*\*/g, "").replace(/^-+\s*/gm, "").replace(/\n{2,}/g, "\n").trim();
+        const result = await model.generateContent(prompt);
+        let text =
+          result.response.text() || "⚠️ No insights generated at this time.";
+        text = text
+          .replace(/\*\*/g, "")
+          .replace(/^-+\s*/gm, "")
+          .replace(/\n{2,}/g, "\n")
+          .trim();
 
         setAiReport(text);
       } catch (err) {
@@ -92,16 +113,21 @@ Keep it friendly, insightful, and under 250 words.
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-gray-100 to-gray-200 p-6">
-      <h1 className="text-4xl font-bold mb-6 text-gray-800">🎯 Your EQ Report</h1>
+      <h1 className="text-4xl font-bold mb-6 text-gray-800">
+        🎯 Your EQ Report
+      </h1>
       <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-2xl mb-6">
         <p className="text-xl mb-2 text-gray-700">
-          Total Score: <span className="font-bold">{totalScore}</span> / {maxScore}
+          Total Score: <span className="font-bold">{totalScore}</span> /{" "}
+          {maxScore}
         </p>
         <p className="text-xl mb-2 text-gray-700">Percentage: {percentage}%</p>
-        <p className={`text-2xl font-semibold mb-4 inline-block px-3 py-1 rounded-full ${ratingColor}`}>
+        <p
+          className={`text-2xl font-semibold mb-4 inline-block px-3 py-1 rounded-full ${ratingColor}`}
+        >
           {rating}
         </p>
-        
+
         {results.map((level, idx) => (
           <div key={idx} className="mb-4">
             <h2 className="font-bold text-lg mb-1 text-gray-800">
@@ -115,7 +141,13 @@ Keep it friendly, insightful, and under 250 words.
                 className="h-4 rounded-full"
                 style={{
                   width: `${Math.round((level.score / level.total) * 100)}%`,
-                  backgroundColor: ["#A3BFFA","#FBC5A3","#C6F6D5","#FEEBC8","#E9D8FD"][idx % 5],
+                  backgroundColor: [
+                    "#A3BFFA",
+                    "#FBC5A3",
+                    "#C6F6D5",
+                    "#FEEBC8",
+                    "#E9D8FD",
+                  ][idx % 5],
                   transition: "width 0.5s ease-in-out",
                 }}
               ></div>
@@ -126,34 +158,56 @@ Keep it friendly, insightful, and under 250 words.
 
       <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-2xl mb-6">
         <h2 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-2 flex items-center gap-2">
-         Decode My Feels:
+          Decode My Feels:
         </h2>
         {loading ? (
-          <p className="animate-pulse text-gray-500">Generating your personalized EQ insights...</p>
+          <p className="animate-pulse text-gray-500">
+            Generating your personalized EQ insights...
+          </p>
         ) : (
           <div className="space-y-4 text-gray-700">
             {aiReport.split("\n").map((line, idx) => {
-              if (/tip/i.test(line)) return (
-                <p key={idx} className="bg-purple-50 border-l-4 border-purple-400 pl-4 py-2 rounded-lg text-purple-800 font-medium">
-                  💡 {line}
+              if (/tip/i.test(line))
+                return (
+                  <p
+                    key={idx}
+                    className="bg-purple-50 border-l-4 border-purple-400 pl-4 py-2 rounded-lg text-purple-800 font-medium"
+                  >
+                    💡 {line}
+                  </p>
+                );
+              if (/summary/i.test(line))
+                return (
+                  <p
+                    key={idx}
+                    className="bg-green-50 pl-4 py-1 rounded-lg text-green-800 font-semibold"
+                  >
+                    📄 {line}
+                  </p>
+                );
+              if (/strength/i.test(line))
+                return (
+                  <p
+                    key={idx}
+                    className="bg-blue-50 pl-4 py-1 rounded-lg text-blue-800 font-semibold"
+                  >
+                    ⭐ {line}
+                  </p>
+                );
+              if (/area/i.test(line))
+                return (
+                  <p
+                    key={idx}
+                    className="bg-red-50 pl-4 py-1 rounded-lg text-red-800 font-semibold"
+                  >
+                    ⚠️ {line}
+                  </p>
+                );
+              return (
+                <p key={idx} className="text-gray-700 leading-relaxed">
+                  {line}
                 </p>
               );
-              if (/summary/i.test(line)) return (
-                <p key={idx} className="bg-green-50 pl-4 py-1 rounded-lg text-green-800 font-semibold">
-                  📄 {line}
-                </p>
-              );
-              if (/strength/i.test(line)) return (
-                <p key={idx} className="bg-blue-50 pl-4 py-1 rounded-lg text-blue-800 font-semibold">
-                  ⭐ {line}
-                </p>
-              );
-              if (/area/i.test(line)) return (
-                <p key={idx} className="bg-red-50 pl-4 py-1 rounded-lg text-red-800 font-semibold">
-                  ⚠️ {line}
-                </p>
-              );
-              return <p key={idx} className="text-gray-700 leading-relaxed">{line}</p>;
             })}
           </div>
         )}
