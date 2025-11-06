@@ -53,7 +53,6 @@ export default function EQReport() {
       try {
         const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
         const allLevelsText = results.map(level => {
           return `${levelNames[level.level] || `Round ${level.level}`}:\n` +
             (level.questions || []).map(q =>
