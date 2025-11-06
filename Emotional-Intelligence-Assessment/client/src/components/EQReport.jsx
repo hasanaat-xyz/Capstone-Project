@@ -62,7 +62,6 @@ export default function EQReport() {
         const prompt = `
 You are an expert emotional intelligence coach.
 Generate a concise, motivational, and personalized EQ report for the user based on their quiz performance.
-
 User Answers:
 ${allLevelsText}
 
