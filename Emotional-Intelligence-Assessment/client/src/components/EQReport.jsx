@@ -68,7 +68,6 @@ Total Scores:
 - Total Score: ${totalScore} / ${maxScore}
 - Overall Percentage: ${percentage}%
 - Rating: ${rating}
-
 Please include:
 1. Summary of user's emotional intelligence
 2. Strengths observed
