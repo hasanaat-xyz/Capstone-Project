@@ -140,6 +140,7 @@ Keep it friendly, insightful, and under 250 words.
               <div
                 className="h-4 rounded-full"
                 style={{
+                  
                   width: `${Math.round((level.score / level.total) * 100)}%`,
                   backgroundColor: [
                     "#A3BFFA",
