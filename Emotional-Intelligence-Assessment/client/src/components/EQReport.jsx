@@ -102,7 +102,6 @@ Keep it friendly, insightful, and under 250 words.
         <p className={`text-2xl font-semibold mb-4 inline-block px-3 py-1 rounded-full ${ratingColor}`}>
           {rating}
         </p>
-
         {results.map((level, idx) => (
           <div key={idx} className="mb-4">
             <h2 className="font-bold text-lg mb-1 text-gray-800">
