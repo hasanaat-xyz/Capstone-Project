@@ -59,7 +59,6 @@ export default function EQReport() {
               `Q: ${q.questionText}\nAnswer: ${q.chosenAnswer}\nScore: ${q.score}\nTime Spent: ${q.timeSpent}s`
             ).join("\n\n");
         }).join("\n\n");
-
         const prompt = `
 You are an expert emotional intelligence coach.
 Generate a concise, motivational, and personalized EQ report for the user based on their quiz performance.
