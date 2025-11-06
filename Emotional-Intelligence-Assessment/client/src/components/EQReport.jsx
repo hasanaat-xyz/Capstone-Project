@@ -93,7 +93,6 @@ Keep it friendly, insightful, and under 250 words.
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-gray-100 to-gray-200 p-6">
       <h1 className="text-4xl font-bold mb-6 text-gray-800">🎯 Your EQ Report</h1>
-
       <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-2xl mb-6">
         <p className="text-xl mb-2 text-gray-700">
           Total Score: <span className="font-bold">{totalScore}</span> / {maxScore}
