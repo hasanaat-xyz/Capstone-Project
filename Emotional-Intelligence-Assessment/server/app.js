@@ -25,7 +25,6 @@ app.get(/^\/(?!api).*/,(req, res)=>{
     res.sendFile(path.join(buildPath, "index.html"));
 })
 }
-
 // Middleware
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
