@@ -81,7 +81,7 @@ export default function LevelUpQuiz2() {
       {stage === "quiz" && (
         <>
           <h2 className="text-3xl font-bold mb-6 text-green-700">
-          Own The Flow (self-regulation) 🌿
+          Own The Flow 🌿
           </h2>
           <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-xl w-full max-w-lg">
             <h3 className="text-lg mb-4 font-semibold">

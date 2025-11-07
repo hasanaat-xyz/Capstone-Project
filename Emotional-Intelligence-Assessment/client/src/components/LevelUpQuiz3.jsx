@@ -80,7 +80,7 @@ export default function LevelUpQuiz3() {
     >
       {stage === "quiz" && (
         <>
-          <h2 className="text-3xl font-bold mb-6 text-purple-700">Feel the Feels! (empathy-round)</h2>
+          <h2 className="text-3xl font-bold mb-6 text-purple-700">Feel the Feels! </h2>
           <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-xl w-full max-w-lg">
             <h3 className="text-lg mb-4 font-semibold">{levelUpData3[currentQuestion].question}</h3>
             <div className="flex flex-col space-y-3">
