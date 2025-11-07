@@ -19,13 +19,18 @@ export default function LandingPage() {
     <div className="min-h-screen bg-[#1b0e2e] text-white font-poppins">
       {/* 🌙 Navbar */}
       <nav className="flex justify-between items-center px-4 sm:px-6 md:px-12 py-4 bg-[#4a2c6e]/60 backdrop-blur-md border-b border-[#2b1b3a]/50 fixed top-0 left-0 w-full z-50 shadow-lg">
-        {/* Brand */}
-        <h1
-          className="text-xl sm:text-2xl font-bold cursor-pointer"
+        {/* Brand with tagline */}
+        <div
+          className="cursor-pointer flex flex-col items-start"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          nuvio.<span className="text-white">care</span>
-        </h1>
+          <h1 className="text-xl sm:text-2xl font-bold">
+            nuvio.<span className="text-white">care</span>
+          </h1>
+          <p className="text-xs sm:text-sm text-gray-300 underline decoration-[#bfa5ff]/60 decoration-1 mt-1">
+            a new perspective on feelings
+          </p>
+        </div>
 
         {/* Navbar Links */}
         <div className="flex items-center gap-4 sm:gap-6 text-gray-200 text-sm sm:text-base font-medium">
