@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 // Routes
 import authRoutes from "./routes/auth.js";
@@ -11,7 +14,17 @@ import aiReportRoutes from "./routes/aiReportRoutes.js";
 // Load .env
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename);
 const app = express();
+
+const buildPath = path.join(__dirname, "dist");
+if (fs.existsSync(buildPath)){
+app.use(express.static(buildPath));
+app.get(/^\/(?!api).*/,(req, res)=>{
+    res.sendFile(path.join(buildPath, "index.html"));
+})
+}
 
 // Middleware
 app.use(cors({ origin: "http://localhost:5173" }));
