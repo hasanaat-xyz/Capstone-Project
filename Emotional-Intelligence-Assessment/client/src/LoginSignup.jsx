@@ -26,14 +26,14 @@ export default function LoginSignup() {
 
     try {
       // ✅ Register user
-      await axios.post("http://localhost:5000/api/auth/register", {
+      await axios.post("https://nuvio.care/api/auth/register", {
         name,
         email,
         password,
       });
 
       // ✅ Login user immediately after registration
-      const loginRes = await axios.post("http://localhost:5000/api/auth/login", {
+      const loginRes = await axios.post("https://nuvio.care/api/auth/login", {
         email,
         password,
       });
@@ -44,7 +44,7 @@ export default function LoginSignup() {
 
       // ✅ Save level 1 results if available
       if (level1Results && loggedInUser?._id) {
-        await axios.post("http://localhost:5000/api/quiz/result", {
+        await axios.post("https://nuvio.care/api/quiz/result", {
           userId: loggedInUser._id,
           level: 1,
           userAnswers: level1Results.userAnswers,

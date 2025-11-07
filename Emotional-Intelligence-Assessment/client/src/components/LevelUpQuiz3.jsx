@@ -58,7 +58,7 @@ export default function LevelUpQuiz3() {
     });
 
     // Save results to backend
-    axios.post("http://localhost:5000/api/quiz/result", {
+    axios.post("https://nuvio.care/api/quiz/result", {
       userId: currentUser._id,
       level: 3,
       userAnswers,
