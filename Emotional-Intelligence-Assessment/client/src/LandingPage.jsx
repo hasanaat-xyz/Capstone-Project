@@ -74,7 +74,7 @@ export default function LandingPage() {
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             Discover how well you understand emotions in yourself and others
-            through an interactive, fun experience.
+            through an interactive, fun experiences.
           </motion.p>
 
           <motion.button
