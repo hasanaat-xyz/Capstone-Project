@@ -293,7 +293,7 @@ export default function LandingPage() {
           }}
           viewport={{ once: true }}
         >
-          
+
           {[
             { title: "Pause & Reflect", text: "Take a moment before reacting to emotionally charged situations." },
             { title: "Active Listening", text: "Focus fully on the speaker, without planning your response." },
@@ -301,6 +301,7 @@ export default function LandingPage() {
           ].map((tip, i) => (
             <motion.div
               key={i}
+              
               variants={slideFromLeft}
               whileHover={{ scale: 1.05 }}
               className="bg-[#1b0e2e] p-6 rounded-2xl shadow-md hover:shadow-lg text-center transition-all"
