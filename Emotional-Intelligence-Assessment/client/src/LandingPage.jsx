@@ -293,6 +293,7 @@ export default function LandingPage() {
           }}
           viewport={{ once: true }}
         >
+          
           {[
             { title: "Pause & Reflect", text: "Take a moment before reacting to emotionally charged situations." },
             { title: "Active Listening", text: "Focus fully on the speaker, without planning your response." },
