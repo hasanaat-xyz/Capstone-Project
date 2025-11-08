@@ -307,6 +307,7 @@ export default function LandingPage() {
               <Lightbulb size={45} className="text-green-400 mb-4 mx-auto" />
               <h3 className="text-lg sm:text-xl font-semibold text-[#bfa5ff] mb-2">
                 {tip.title}
+                
               </h3>
               <p className="text-gray-300 text-sm leading-relaxed">{tip.text}</p>
             </motion.div>
