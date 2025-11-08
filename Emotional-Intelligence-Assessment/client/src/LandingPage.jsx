@@ -305,7 +305,7 @@ export default function LandingPage() {
               whileHover={{ scale: 1.05 }}
               className="bg-[#1b0e2e] p-6 rounded-2xl shadow-md hover:shadow-lg text-center transition-all"
             >
-              
+
               <Lightbulb size={45} className="text-green-400 mb-4 mx-auto" />
               <h3 className="text-lg sm:text-xl font-semibold text-[#bfa5ff] mb-2">
                 {tip.title}
