@@ -320,5 +320,6 @@ export default function LandingPage() {
         <span className="text-white font-semibold">Hasanaat</span> | 2025
       </footer>
     </div>
+    
   );
 }
