@@ -10,7 +10,7 @@ const QuizResultSchema = new mongoose.Schema({
       questionText: String,     // the actual question
       chosenAnswer: String,     // answer text chosen by user
       score: Number,            // 1 if correct, 0 if wrong
-      timeSpent: Number         // time spent in seconds
+      timeSpent: Number         // time spent in secondsa
     }
   ],
   createdAt: { type: Date, default: Date.now },
