@@ -82,6 +82,7 @@ export default function LandingPage() {
           </motion.p>
 
           <motion.button
+          
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate("/level1")}
