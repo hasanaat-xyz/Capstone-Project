@@ -104,7 +104,7 @@ export default function LandingPage() {
             visible: { transition: { staggerChildren: 0.25 } },
           }}
           viewport={{ once: true }}
-          
+
         >
           {[
             {
@@ -164,6 +164,7 @@ export default function LandingPage() {
           viewport={{ once: true }}
         >
           {[
+            
             {
               icon: <Smile size={40} className="text-yellow-400 mb-3" />,
               title: "Better Communication",
