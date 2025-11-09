@@ -164,13 +164,13 @@ export default function LandingPage() {
           viewport={{ once: true }}
         >
           {[
-            
             {
               icon: <Smile size={40} className="text-yellow-400 mb-3" />,
               title: "Better Communication",
               text: "Understand emotions to express yourself clearly and listen empathetically.",
             },
             {
+              
               icon: <Heart size={40} className="text-pink-400 mb-3" />,
               title: "Stronger Relationships",
               text: "Build deeper bonds through empathy, trust, and understanding.",
