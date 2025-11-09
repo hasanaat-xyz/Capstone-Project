@@ -87,7 +87,7 @@ export default function LandingPage() {
             onClick={() => navigate("/level1")}
             className="px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold bg-[#bfa5ff] text-[#1b0e2e] rounded-full shadow-lg hover:shadow-xl transition-all"
           >
-            Wanna Get Started?
+            Test Your Emotional Intelligence!
           </motion.button>
         </motion.div>
       </section>
