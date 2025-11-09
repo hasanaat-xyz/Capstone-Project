@@ -170,7 +170,6 @@ export default function LandingPage() {
               text: "Understand emotions to express yourself clearly and listen empathetically.",
             },
             {
-              
               icon: <Heart size={40} className="text-pink-400 mb-3" />,
               title: "Stronger Relationships",
               text: "Build deeper bonds through empathy, trust, and understanding.",
