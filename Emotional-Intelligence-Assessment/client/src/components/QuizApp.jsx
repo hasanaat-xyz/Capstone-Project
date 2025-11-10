@@ -10,7 +10,7 @@ export default function Level1Quiz() {
   const [startTime, setStartTime] = useState(Date.now());
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
-  
+
   const handleSelect = (index) => {
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
     const newAnswers = [...userAnswers, index];
@@ -30,6 +30,7 @@ export default function Level1Quiz() {
           score: newAnswers[i] === q.answer ? 1 : 0,
           timeSpent: newTimes[i],
         })),
+        
         level: 1,
         userAnswers: newAnswers,
         timePerQuestion: newTimes,
