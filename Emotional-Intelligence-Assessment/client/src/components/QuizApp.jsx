@@ -30,7 +30,7 @@ export default function Level1Quiz() {
           score: newAnswers[i] === q.answer ? 1 : 0,
           timeSpent: newTimes[i],
         })),
-        
+
         level: 1,
         userAnswers: newAnswers,
         timePerQuestion: newTimes,
@@ -49,7 +49,6 @@ export default function Level1Quiz() {
       setStartTime(Date.now());
     }
   };
-
   const handleNextLevel = () => {
     const storedResults = JSON.parse(localStorage.getItem("level1Results"));
     navigate("/login", { state: { level1Results: storedResults } });
