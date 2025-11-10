@@ -19,6 +19,7 @@ export default function LevelUpQuiz2() {
   const [questionTimes, setQuestionTimes] = useState([]);
   const [startTime, setStartTime] = useState(Date.now());
   const [stage, setStage] = useState("quiz");
+  
   const handleSelect = (index) => {
     const timeSpent = Math.floor((Date.now() - startTime) / 1000);
     const updatedAnswers = [...userAnswers, index];
