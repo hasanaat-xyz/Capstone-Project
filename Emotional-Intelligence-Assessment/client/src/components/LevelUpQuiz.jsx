@@ -13,7 +13,7 @@ export default function LevelUpQuiz2() {
     navigate("/login");
     return null;
   }
-
+  
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [questionTimes, setQuestionTimes] = useState([]);
