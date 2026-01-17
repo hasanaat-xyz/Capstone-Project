@@ -3,6 +3,9 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 
+// Update this to match your local backend port (usually 5000 or 8000)
+const API_BASE_URL = "http://localhost:5000"; 
+
 export default function LoginSignup() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -12,7 +15,7 @@ export default function LoginSignup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [user, setUser] = useState(null);
-  const [submitted, setSubmitted] = useState(false); // ✅ controls what shows after form submission
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,26 +28,28 @@ export default function LoginSignup() {
     const { name, email, password } = formData;
 
     try {
-      // ✅ Register user
-      await axios.post("https://nuvio.care/api/auth/register", {
+      // 1. Register user locally
+      await axios.post(`${API_BASE_URL}/api/auth/register`, {
         name,
         email,
         password,
       });
 
-      // ✅ Login user immediately after registration
-      const loginRes = await axios.post("https://nuvio.care/api/auth/login", {
+      // 2. Login user locally (Note: endpoint changed from register to login)
+      const loginRes = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         email,
         password,
       });
 
       const { user: loggedInUser, token } = loginRes.data;
+      
+      // Store token for subsequent requests
       localStorage.setItem("token", token);
       setUser(loggedInUser);
 
-      // ✅ Save level 1 results if available
+      // 3. Save results to local database
       if (level1Results && loggedInUser?._id) {
-        await axios.post("https://nuvio.care/api/quiz/result", {
+        await axios.post(`${API_BASE_URL}/api/quiz/result`, {
           userId: loggedInUser._id,
           level: 1,
           userAnswers: level1Results.userAnswers,
@@ -52,14 +57,15 @@ export default function LoginSignup() {
           quizQuestions: level1Results.quizQuestions,
           score: level1Results.score,
           total: level1Results.total,
+        }, {
+          headers: { Authorization: `Bearer ${token}` } // Often required for protected routes
         });
       }
 
-      // ✅ Show success screen, don’t redirect yet
       setSubmitted(true);
     } catch (err) {
-      console.error(err);
-      setError(err.response?.data?.msg || "Something went wrong!");
+      console.error("Local Server Error:", err);
+      setError(err.response?.data?.msg || "Could not connect to the local server.");
     } finally {
       setLoading(false);
     }
@@ -72,7 +78,6 @@ export default function LoginSignup() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#EDE9FE] to-[#DDD6FE] text-gray-900 p-6">
       {submitted && user ? (
-        // ✅ Success screen
         <motion.div
           className="text-center bg-white/70 backdrop-blur-lg p-10 rounded-2xl shadow-lg border border-white/50"
           initial={{ opacity: 0, y: -20 }}
@@ -82,7 +87,7 @@ export default function LoginSignup() {
             🎉 Welcome, {user.name}!
           </h1>
           <p className="text-lg mb-6">
-            Level 1 Completed, You scored{" "}
+            Level 1 Completed! You scored{" "}
             <b>{level1Results.score}</b> / {level1Results.total}
           </p>
           <motion.button
@@ -94,14 +99,13 @@ export default function LoginSignup() {
           </motion.button>
         </motion.div>
       ) : (
-        // ✅ Login/signup form
         <motion.div
           className="bg-white/60 backdrop-blur-xl rounded-2xl shadow-md p-8 w-full max-w-md border border-white/30"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
         >
           <h2 className="text-2xl font-bold text-center mb-6 text-purple-700">
-            Login or Sign Up to Save Your Progress ✨
+            Local Dev: Save Your Progress ✨
           </h2>
 
           {error && <p className="text-red-500 text-sm text-center mb-3">{error}</p>}
@@ -140,7 +144,7 @@ export default function LoginSignup() {
               disabled={loading}
               className="bg-purple-600 text-white py-3 rounded-lg font-semibold shadow-md hover:bg-purple-700 hover:shadow-lg transition-all duration-200"
             >
-              {loading ? "Processing..." : "Continue →"}
+              {loading ? "Connecting to Local DB..." : "Register & Save →"}
             </button>
           </form>
         </motion.div>

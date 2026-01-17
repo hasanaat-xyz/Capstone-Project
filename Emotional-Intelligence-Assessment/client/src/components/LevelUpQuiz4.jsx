@@ -58,7 +58,7 @@ export default function LevelUpQuiz4() {
     });
 
     // Send results to server in background
-    axios.post("https://nuvio.care/api/quiz/result", {
+    axios.post("http://localhost:5000/api/quiz/result", {
       userId: currentUser._id,
       level: 4,
       userAnswers,
