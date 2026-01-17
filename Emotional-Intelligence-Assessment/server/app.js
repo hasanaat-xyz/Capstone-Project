@@ -31,7 +31,6 @@ app.use("/api/ai", aiReportRoutes);
 mongoose.connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/nuvio")
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.error("❌ MongoDB Error:", err));
-
 // 6. Default Route (Health Check)
 app.get("/", (req, res) => res.send("Server is running!"));
 
